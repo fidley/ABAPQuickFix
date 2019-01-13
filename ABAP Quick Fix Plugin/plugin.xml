@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.sap.adt.tools.core.ui.quickAssistProcessors">
+         <quickAssistProcessor
+          id="com.abapblog.adt.quickfix.abapQuickFix"
+          class="com.abapblog.adt.quickfix.abapAssistProcessor"
+          name="ABAP Quick Assist Processor2">
+          </quickAssistProcessor>
+   </extension>
+
+</plugin>
