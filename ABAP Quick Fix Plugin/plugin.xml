@@ -7,6 +7,18 @@
           id="com.abapblog.adt.quickfix.abapQuickFix"
           class="com.abapblog.adt.quickfix.abapAssistProcessor"
           name="ABAP Quick Assist Processor2">
+ <!--     <handledMarkerTypes>
+         <markerType
+               id="com.sap.adt.atc.finding.warning">
+         </markerType>
+         <markerType
+               id="com.sap.adt.atc.finding.error">
+         </markerType>
+         <markerType
+               id="com.sap.adt.atc.finding.info">
+         </markerType>
+      </handledMarkerTypes>
+-->
           </quickAssistProcessor>
    </extension>
 

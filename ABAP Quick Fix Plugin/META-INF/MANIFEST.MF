@@ -13,7 +13,13 @@ Require-Bundle: org.eclipse.ui,
  com.sap.adt.tools.core.ui,
  com.sap.adt.tools.core;bundle-version="2.102.4",
  com.sap.adt.tools.core.base;bundle-version="2.102.4",
- com.sap.adt.tools.abapsource.ui;bundle-version="2.102.4"
+ com.sap.adt.tools.abapsource.ui;bundle-version="2.102.4",
+ com.sap.adt.atc,
+ org.eclipse.ui.editors;bundle-version="3.11.300",
+ com.sap.adt.tools.abapsource;bundle-version="3.2.4",
+ com.sap.adt.communication;bundle-version="3.2.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.abapblog.adt.quickfix
 Bundle-ActivationPolicy: lazy
+Import-Package: com.sap.adt.project.ui.util,
+ org.eclipse.core.resources
