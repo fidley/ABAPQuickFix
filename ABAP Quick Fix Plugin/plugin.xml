@@ -4,21 +4,17 @@
    <extension
          point="com.sap.adt.tools.core.ui.quickAssistProcessors">
          <quickAssistProcessor
-          id="com.abapblog.adt.quickfix.abapQuickFix"
-          class="com.abapblog.adt.quickfix.abapAssistProcessor"
-          name="ABAP Quick Assist Processor2">
- <!--     <handledMarkerTypes>
-         <markerType
-               id="com.sap.adt.atc.finding.warning">
-         </markerType>
-         <markerType
-               id="com.sap.adt.atc.finding.error">
-         </markerType>
-         <markerType
-               id="com.sap.adt.atc.finding.info">
-         </markerType>
-      </handledMarkerTypes>
--->
+          id="com.abapblog.adt.quickfix.abapQuickFixRAC"
+          class="com.abapblog.adt.quickfix.RemoveAllComments"
+          name="ABAP Quick Assist Processor Remove All Comments">
+          </quickAssistProcessor>
+   </extension>
+  <extension
+         point="com.sap.adt.tools.core.ui.quickAssistProcessors">
+         <quickAssistProcessor
+          id="com.abapblog.adt.quickfix.abapQuickFixRSC"
+          class="com.abapblog.adt.quickfix.RemoveSelectedComments"
+          name="ABAP Quick Assist Processor Remove Selected Comments">
           </quickAssistProcessor>
    </extension>
 
