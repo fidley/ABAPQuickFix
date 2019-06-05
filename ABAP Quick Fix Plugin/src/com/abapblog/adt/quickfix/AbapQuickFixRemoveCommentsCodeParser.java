@@ -1,85 +1,56 @@
 package com.abapblog.adt.quickfix;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AbapQuickFixRemoveCommentsCodeParser {
-	List<Match> commentMatches = new ArrayList<Match>();
+	private static final String multipleEmptyLines = "(\\r?\\n\\r?\\n?(\\r?\\n))+";
+	private static final String singleLineCommentPattern = "(\\\".*)";
+	private static final String fullLineCommentPattern = "(\\*.*)";
 
-	public Boolean haveComment(String codeText, int start, int end)
-	{
+	public Boolean haveComment(String codeText, int start, int end) {
 		String NewCodeText = codeText.substring(start, end);
-		matchFullLineComments(NewCodeText);
-		matchFlexibleComments(NewCodeText);
+		if (matchFullLineComments(NewCodeText) == true || matchFlexibleComments(NewCodeText) == true) {
+			return true;
+		}
 
-		return !commentMatches.isEmpty();
+		return false;
 
 	}
 
 	public String parse(String codeText) {
 
-		matchFullLineComments(codeText);
-		matchFlexibleComments(codeText);
 		return removeComments(codeText);
 
 	}
 
-	public String parse(String codeText, int start, int end) {
-
-		matchFullLineComments(codeText);
-		matchFlexibleComments(codeText);
-		return removeComments(codeText, start, end);
-
-	}
 
 	private String removeComments(String codeText) {
 		String NewCodeText = codeText;
-		for (Match comment : commentMatches) {
-			NewCodeText = NewCodeText.replace(comment.text, "");
-
-		}
-
-		NewCodeText = NewCodeText.replaceAll("(\\r?\\n\\r?\\n\\r?\\n)+", "\r\n");
+		NewCodeText = NewCodeText.replaceAll(fullLineCommentPattern, "");
+		NewCodeText = NewCodeText.replaceAll(singleLineCommentPattern, "");
+		NewCodeText = NewCodeText.replaceAll(multipleEmptyLines, "\r\n\r\n");
 		return NewCodeText;
 	}
 
-	private String removeComments(String codeText, int start, int end) {
-		String NewCodeText = codeText.substring(start, end);
-		for (Match comment : commentMatches) {
-			if (comment.start >= start && comment.start <= end) {
-
-				NewCodeText = NewCodeText.replace(comment.text, "");		}
-		}
-
-		return NewCodeText.replaceAll("(\\r?\\n\\r?\\n)+", "\r\n");
-	}
-
-	private void matchFlexibleComments(String codeText) {
-		Pattern flexibleCommentPattern = Pattern.compile("(\\\".*)");
+	private Boolean matchFlexibleComments(String codeText) {
+		Pattern flexibleCommentPattern = Pattern.compile(singleLineCommentPattern);
 
 		Matcher flexibleCommentMatcher = flexibleCommentPattern.matcher(codeText);
 		while (flexibleCommentMatcher.find()) {
-			Match match = new Match();
-			match.start = flexibleCommentMatcher.start();
-			match.text = flexibleCommentMatcher.group();
-			System.out.println(match.text);
-			commentMatches.add(match);
+			return true;
 		}
+		return false;
 	}
 
-	private void matchFullLineComments(String codeText) {
-		Pattern fullLineCommentsPattern = Pattern.compile("^(\\*.*)", Pattern.MULTILINE);
+	private Boolean matchFullLineComments(String codeText) {
+		Pattern fullLineCommentsPattern = Pattern.compile(fullLineCommentPattern, Pattern.MULTILINE);
 
 		Matcher fullLineCommentsMatcher = fullLineCommentsPattern.matcher(codeText);
 		while (fullLineCommentsMatcher.find()) {
-			Match match = new Match();
-			match.start = fullLineCommentsMatcher.start();
-			match.text = fullLineCommentsMatcher.group();
-			commentMatches.add(match);
-			System.out.println(match.text);
+			return true;
 		}
+		return false;
 	}
 
 	static class Match {

@@ -3,6 +3,7 @@ package com.abapblog.adt.quickfix;
 import java.util.ArrayList;
 
 
+
 import java.util.List;
 
 import org.eclipse.jface.text.contentassist.CompletionProposal;
@@ -41,10 +42,11 @@ public class RemoveAllComments implements IQuickAssistProcessor {
 					sourceCode.length(), offset, image, "Remove all ABAP Comments", null,
 					"Removes all ABAP Comments from the code. Please think twice before using it.");
 			proposals.add(cPropAllComments);
+			return proposals.toArray(new ICompletionProposal[1]);
 
-		}
-		;
-		return proposals.toArray(new ICompletionProposal[1]);
+		};
+		return null;
+
 	}
 
 	@Override

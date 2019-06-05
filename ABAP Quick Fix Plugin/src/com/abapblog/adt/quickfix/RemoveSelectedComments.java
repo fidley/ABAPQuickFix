@@ -40,7 +40,7 @@ public class RemoveSelectedComments implements IQuickAssistProcessor {
 
 			Image image = null;
 			CompletionProposal cPropSelectedComments = new CompletionProposal(
-					commentParser.parse(sourceCode, offset, offset + lenght), offset, lenght, offset, image,
+					commentParser.parse(sourceCode.substring( offset, offset + lenght)), offset, lenght, offset, image,
 					"Remove ABAP Comments in selection", null,
 					"Removes all ABAP Comments from the selected code. Please think twice before using it.");
 			proposals.add(cPropSelectedComments);
