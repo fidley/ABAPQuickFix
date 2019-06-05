@@ -33,13 +33,10 @@ public class RemoveAllComments implements IQuickAssistProcessor {
 	public ICompletionProposal[] computeQuickAssistProposals(IQuickAssistInvocationContext context) {
 		List<ICompletionProposal> proposals = new ArrayList<>();
 		if (canAssist(context)) {
-			int offset = context.getSourceViewer().getSelectedRange().x;
-
-			String sourceCode = context.getSourceViewer().getDocument().get();
-
+		   String sourceCode = context.getSourceViewer().getDocument().get();
 			Image image = null;
 			CompletionProposal cPropAllComments = new CompletionProposal(commentParser.parse(sourceCode), 0,
-					sourceCode.length(), offset, image, "Remove all ABAP Comments", null,
+					sourceCode.length(), 0, image, "Remove all ABAP Comments", null,
 					"Removes all ABAP Comments from the code. Please think twice before using it.");
 			proposals.add(cPropAllComments);
 			return proposals.toArray(new ICompletionProposal[1]);
