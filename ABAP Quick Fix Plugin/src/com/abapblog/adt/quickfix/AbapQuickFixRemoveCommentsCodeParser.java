@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class AbapQuickFixRemoveCommentsCodeParser {
 	private static final String multipleEmptyLines = "(\\r?\\n\\r?\\n?(\\r?\\n))+";
-	private static final String singleLineCommentPattern = "(\\\".*)";
+	private static final String singleLineCommentPattern = "(?!\\\"\\!)(?!\\\"#EC )(\\\".*)";
 	private static final String fullLineCommentPattern = "(\\*.*)";
 
 	public Boolean haveComment(String codeText, int start, int end) {
