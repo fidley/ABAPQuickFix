@@ -1,4 +1,4 @@
-# ABAPQuickFix
+# ABAP Quick Fix plugin for ADT
 ABAP Quick Fix
 Two functions so far:
 - Remove all comments
