@@ -25,7 +25,6 @@ public class RemoveAllComments implements IQuickAssistProcessor {
 
 	@Override
 	public boolean canFix(Annotation arg0) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -42,13 +41,13 @@ public class RemoveAllComments implements IQuickAssistProcessor {
 			return proposals.toArray(new ICompletionProposal[1]);
 
 		};
+
 		return null;
 
 	}
 
 	@Override
 	public String getErrorMessage() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
