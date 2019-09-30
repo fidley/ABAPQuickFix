@@ -17,5 +17,12 @@
           name="ABAP Quick Assist Processor Remove Selected Comments">
           </quickAssistProcessor>
    </extension>
-
+  <extension
+         point="com.sap.adt.tools.core.ui.quickAssistProcessors">
+         <quickAssistProcessor
+          id="com.abapblog.adt.quickfix.abapQuickFixRIC"
+          class="com.abapblog.adt.quickfix.ReplaceIconsWithConstants"
+          name="ABAP Quick Assist Processor Replace Icons With Constants">
+          </quickAssistProcessor>
+   </extension>
 </plugin>

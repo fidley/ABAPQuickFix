@@ -2,7 +2,7 @@
 <feature
       id="com.abapblog.adt.quickfix.feature"
       label="ABAP Quick Fix"
-      version="1.0.2.qualifier"
+      version="1.0.3.qualifier"
       provider-name="ABAPblog.com">
 
    <description url="https://abapblog.com">
