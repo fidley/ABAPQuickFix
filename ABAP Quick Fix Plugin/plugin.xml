@@ -25,4 +25,15 @@
           name="ABAP Quick Assist Processor Replace Icons With Constants">
           </quickAssistProcessor>
    </extension>
+  <extension
+         point="com.sap.adt.tools.core.ui.quickAssistProcessors">
+         <quickAssistProcessor
+          id="com.abapblog.adt.quickfix.abapQuickFixTCTE"
+          class="com.abapblog.adt.quickfix.TranslateCommentToEnglish"
+          name="ABAP Quick Assist Processor Translate Comment To English">
+          </quickAssistProcessor>
+   </extension>
+
+
+
 </plugin>
