@@ -1,4 +1,4 @@
-package com.abapblog.adt.quickfix;
+package com.abapblog.adt.quickfix.assist.comments;
 
 import java.util.ArrayList;
 

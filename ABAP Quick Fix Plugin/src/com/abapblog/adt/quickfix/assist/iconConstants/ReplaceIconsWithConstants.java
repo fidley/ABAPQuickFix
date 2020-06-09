@@ -1,4 +1,4 @@
-package com.abapblog.adt.quickfix;
+package com.abapblog.adt.quickfix.assist.iconConstants;
 
 import java.util.ArrayList;
 
