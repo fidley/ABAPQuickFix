@@ -37,7 +37,7 @@
          point="com.sap.adt.tools.core.ui.quickAssistProcessors">
          <quickAssistProcessor
           id="com.abapblog.adt.quickfix.abapQuickFix.Syntax.ReadTable"
-          class="com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable"
+          class="com.abapblog.adt.quickfix.assist.syntax.statements.StatementsAssistProcessor"
           name="ABAP Quick Assist Processor Read Table to Assign">
           </quickAssistProcessor>
    </extension>

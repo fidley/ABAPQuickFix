@@ -20,10 +20,14 @@ public class AbapStatement {
 			}
 
 			for (int i = offset + 1; i > 0; i++) {
-				if (Code.charAt(i) == '.')
+				try {
+					if (Code.charAt(i) == '.')
+						break;
+					Suffix = Suffix + Code.charAt(i);
+					endOfStatement = i;
+				} catch (StringIndexOutOfBoundsException e) {
 					break;
-				Suffix = Suffix + Code.charAt(i);
-				endOfStatement = i;
+				}
 			}
 			Statement = Prefix + Suffix;
 		}
