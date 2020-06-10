@@ -5,7 +5,7 @@
          point="com.sap.adt.tools.core.ui.quickAssistProcessors">
          <quickAssistProcessor
           id="com.abapblog.adt.quickfix.abapQuickFixRAC"
-          class="com.abapblog.adt.quickfix.RemoveAllComments"
+          class="com.abapblog.adt.quickfix.assist.comments.RemoveAllComments"
           name="ABAP Quick Assist Processor Remove All Comments">
           </quickAssistProcessor>
    </extension>
@@ -13,7 +13,7 @@
          point="com.sap.adt.tools.core.ui.quickAssistProcessors">
          <quickAssistProcessor
           id="com.abapblog.adt.quickfix.abapQuickFixRSC"
-          class="com.abapblog.adt.quickfix.RemoveSelectedComments"
+          class="com.abapblog.adt.quickfix.assist.comments.RemoveSelectedComments"
           name="ABAP Quick Assist Processor Remove Selected Comments">
           </quickAssistProcessor>
    </extension>
@@ -21,7 +21,7 @@
          point="com.sap.adt.tools.core.ui.quickAssistProcessors">
          <quickAssistProcessor
           id="com.abapblog.adt.quickfix.abapQuickFixRIC"
-          class="com.abapblog.adt.quickfix.ReplaceIconsWithConstants"
+          class="com.abapblog.adt.quickfix.assist.iconConstants.ReplaceIconsWithConstants"
           name="ABAP Quick Assist Processor Replace Icons With Constants">
           </quickAssistProcessor>
    </extension>
@@ -29,8 +29,16 @@
          point="com.sap.adt.tools.core.ui.quickAssistProcessors">
          <quickAssistProcessor
           id="com.abapblog.adt.quickfix.abapQuickFixTCTE"
-          class="com.abapblog.adt.quickfix.TranslateCommentToEnglish"
+          class="com.abapblog.adt.quickfix.assist.comments.TranslateCommentToEnglish"
           name="ABAP Quick Assist Processor Translate Comment To English">
+          </quickAssistProcessor>
+   </extension>
+     <extension
+         point="com.sap.adt.tools.core.ui.quickAssistProcessors">
+         <quickAssistProcessor
+          id="com.abapblog.adt.quickfix.abapQuickFix.Syntax.ReadTable"
+          class="com.abapblog.adt.quickfix.assist.syntax.statements.StatementsAssistProcessor"
+          name="ABAP Quick Assist Processor Read Table to Assign">
           </quickAssistProcessor>
    </extension>
       <extension
@@ -48,7 +56,5 @@
                      class="com.abapblog.adt.quickfix.preferences.PreferenceInitializer">
                </initializer>
             </extension>
-
-
 
 </plugin>

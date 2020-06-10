@@ -2,8 +2,9 @@
 <feature
       id="com.abapblog.adt.quickfix.feature"
       label="ABAP Quick Fix"
-      version="1.0.4.qualifier"
-      provider-name="ABAPblog.com">
+      version="1.0.6.qualifier"
+      provider-name="ABAPblog.com"
+      plugin="com.abapblog.branding">
 
    <description url="https://abapblog.com">
       Quick Fix addon for ABAP
@@ -63,8 +64,19 @@ You may add Your own copyright statement to Your modifications and may provide a
 END OF TERMS AND CONDITIONS
    </license>
 
+   <url>
+      <update label="ABAPBlog.com Update Site" url="http://abapblog.com/eclipse/plugin/ABAPFavorites"/>
+   </url>
+
    <plugin
          id="com.abapblog.adt.quickfix"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.abapblog.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"

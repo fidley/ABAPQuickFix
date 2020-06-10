@@ -1,4 +1,4 @@
-package com.abapblog.adt.quickfix;
+package com.abapblog.adt.quickfix.assist.comments;
 
 import java.io.BufferedReader;
 
@@ -9,6 +9,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.net.URLEncoder;
 
+import com.abapblog.adt.quickfix.Activator;
 import com.abapblog.adt.quickfix.preferences.PreferenceConstants;
 
 public class Translator {

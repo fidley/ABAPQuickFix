@@ -1,4 +1,4 @@
-package com.abapblog.adt.quickfix;
+package com.abapblog.adt.quickfix.assist.comments;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
 
+import com.abapblog.adt.quickfix.Activator;
 import com.abapblog.adt.quickfix.preferences.PreferenceConstants;
 
 public class TranslateCommentToEnglish implements IQuickAssistProcessor {
