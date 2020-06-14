@@ -1,4 +1,6 @@
 # ABAP Quick Fix plugin for ADT
+Installation from Marketplace https://marketplace.eclipse.org/content/abap-quick-fix
+Direct installation from 
 ABAP Quick Fix
 Functions so far:
 - Remove all comments (do not delete pseudo comments and ADT comments)
