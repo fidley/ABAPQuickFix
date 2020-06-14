@@ -1,4 +1,4 @@
-package com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable;
+package com.abapblog.adt.quickfix.assist.syntax.statements.readTable;
 
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;
@@ -6,25 +6,25 @@ import org.eclipse.swt.graphics.Image;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class ReadTableReferenceIntoWithKey extends StatementAssist implements IAssistRegex {
+public class ReadTableIndexInto extends StatementAssist implements IAssistRegex {
 
-	public ReadTableReferenceIntoWithKey(IQuickAssistInvocationContext context) {
+	public ReadTableIndexInto(IQuickAssistInvocationContext context) {
 		super(context);
 	}
 
 	@Override
 	public String getMatchPattern() {
-		return IReadTablePatterns.readTableRefereceWithKey;
+		return IReadTablePatterns.readTableIndexInto;
 	}
 
 	@Override
 	public String getReplacePattern() {
-		return IReadTablePatterns.replaceReadTableRefereceWithKey;
+		return IReadTablePatterns.replacereadTableIndexInto;
 	}
 
 	@Override
 	public String getAssistShortText() {
-		return "Replace READ TABLE with REF #( )";
+		return "Replace READ TABLE with Table Expression";
 	}
 
 	@Override
@@ -41,7 +41,8 @@ public class ReadTableReferenceIntoWithKey extends StatementAssist implements IA
 
 	@Override
 	public boolean canAssist() {
-		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())) {
+		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())
+				&& !(new ReadTableIndexReferenceInto(context).canAssist())) {
 			return true;
 		}
 		return false;

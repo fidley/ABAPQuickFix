@@ -1,4 +1,4 @@
-package com.abapblog.adt.quickfix.assist.syntax.statements.Move;
+package com.abapblog.adt.quickfix.assist.syntax.statements.readTable;
 
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;
@@ -6,40 +6,31 @@ import org.eclipse.swt.graphics.Image;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class Move extends StatementAssist implements IAssistRegex {
+public class ReadTableIndexAssigning extends StatementAssist implements IAssistRegex {
 
-	private static final String movePattern = "(?s)(move)\\s+(.*)\\s+(to)\\s+(.*)";
-	private static final String replaceMovePattern = "$4 = $2";
-
-	public Move(IQuickAssistInvocationContext context) {
+	public ReadTableIndexAssigning(IQuickAssistInvocationContext context) {
 		super(context);
 	}
 
 	@Override
 	public String getMatchPattern() {
-		return movePattern;
+		return IReadTablePatterns.readTableIndexAssigning;
 	}
 
 	@Override
 	public String getReplacePattern() {
-		return replaceMovePattern;
-	}
-
-	@Override
-	public String getChangedCode() {
-		return CodeReader.CurrentStatement.replacePattern(getMatchPattern(), getReplacePattern());
+		return IReadTablePatterns.replacereadTableIndexAssigning;
 	}
 
 	@Override
 	public String getAssistShortText() {
-		// TODO Auto-generated method stub
-		return "Replace MOVE with direct assignment";
+		return "Replace READ TABLE with ASSIGN";
 	}
 
 	@Override
 	public String getAssistLongText() {
 		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override
@@ -50,7 +41,7 @@ public class Move extends StatementAssist implements IAssistRegex {
 
 	@Override
 	public boolean canAssist() {
-		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern()) && !(new MoveExact(context).canAssist())) {
+		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())) {
 			return true;
 		}
 		return false;
@@ -64,6 +55,11 @@ public class Move extends StatementAssist implements IAssistRegex {
 	@Override
 	public int getReplaceLength() {
 		return CodeReader.CurrentStatement.getStatementLength();
+	}
+
+	@Override
+	public String getChangedCode() {
+		return CodeReader.CurrentStatement.replacePattern(getMatchPattern(), getReplacePattern());
 	}
 
 }

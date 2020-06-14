@@ -1,4 +1,4 @@
-package com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable;
+package com.abapblog.adt.quickfix.assist.syntax.statements.readTable;
 
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;
@@ -6,20 +6,20 @@ import org.eclipse.swt.graphics.Image;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class ReadTableIndexReferenceInto extends StatementAssist implements IAssistRegex {
+public class ReadTableReferenceIntoWithKey extends StatementAssist implements IAssistRegex {
 
-	public ReadTableIndexReferenceInto(IQuickAssistInvocationContext context) {
+	public ReadTableReferenceIntoWithKey(IQuickAssistInvocationContext context) {
 		super(context);
 	}
 
 	@Override
 	public String getMatchPattern() {
-		return IReadTablePatterns.readTableIndexReferece;
+		return IReadTablePatterns.readTableRefereceWithKey;
 	}
 
 	@Override
 	public String getReplacePattern() {
-		return IReadTablePatterns.replacereadTableIndexReferece;
+		return IReadTablePatterns.replaceReadTableRefereceWithKey;
 	}
 
 	@Override
