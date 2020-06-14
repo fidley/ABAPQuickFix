@@ -14,3 +14,6 @@ Functions so far:
 - Reaplace READ TABLE with Table Expression
 - Replace CALL METHOD with direct call
 - Reaplace MOVE with direct assignment
+- Combine statements: DATA, TYPES, CONSTANTS, FIELD-SYMBOLS, CHECK, CLEAR, REFRESH
+- Change APPEND TO to APPEND VALUE #( ) TO
+- Change INSERT INTO to INSERT VALUE #( ) INTO
