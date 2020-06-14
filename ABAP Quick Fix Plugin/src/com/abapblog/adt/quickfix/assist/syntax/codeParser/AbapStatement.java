@@ -4,11 +4,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AbapStatement {
+	private static final String fullLineCommentPattern = "^(\\*.*)|^((\\r\\n)+\\*.*)";
 	private int beginOfStatement;
 	private int endOfStatement;
 	private String Statement;
+	private String Code;
+	private boolean FullLineComment;
 
-	public AbapStatement(String Code, int offset) {
+	public AbapStatement(String code, int offset) {
+		Code = code;
 		String Prefix = "";
 		String Suffix = "";
 		if (offset >= 0) {
@@ -21,8 +25,11 @@ public class AbapStatement {
 
 			for (int i = offset + 1; i > 0; i++) {
 				try {
-					if (Code.charAt(i) == '.')
+					if (Code.charAt(i) == '.') {
+						endOfStatement = i - 1;
 						break;
+					}
+
 					Suffix = Suffix + Code.charAt(i);
 					endOfStatement = i;
 				} catch (StringIndexOutOfBoundsException e) {
@@ -30,7 +37,23 @@ public class AbapStatement {
 				}
 			}
 			Statement = Prefix + Suffix;
+			checkFullLineComment();
+
 		}
+	}
+
+	private void checkFullLineComment() {
+		if (matchPatternSingleLine(fullLineCommentPattern))
+			setFullLineComment(true);
+	}
+
+	public AbapStatement getNextAbapStatement() {
+		return new AbapStatement(Code, endOfStatement + 2);
+
+	}
+
+	public AbapStatement getPreviousAbapStatement() {
+		return new AbapStatement(Code, beginOfStatement - 2);
 	}
 
 	public String getStatement() {
@@ -59,6 +82,16 @@ public class AbapStatement {
 		return false;
 	}
 
+	public Boolean matchPatternSingleLine(String pattern) {
+		Pattern redexPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+
+		Matcher regexPatterMatcher = redexPattern.matcher(Statement);
+		while (regexPatterMatcher.find()) {
+			return true;
+		}
+		return false;
+	}
+
 	public String replacePattern(String pattern, String replace) {
 		Pattern redexPattern = Pattern.compile(pattern, Pattern.MULTILINE + Pattern.CASE_INSENSITIVE);
 
@@ -69,6 +102,25 @@ public class AbapStatement {
 
 		return "";
 
+	}
+
+	public String getMatchGroup(String pattern, int group) {
+		Pattern redexPattern = Pattern.compile(pattern, Pattern.MULTILINE + Pattern.CASE_INSENSITIVE);
+
+		Matcher regexPatterMatcher = redexPattern.matcher(Statement);
+		while (regexPatterMatcher.find()) {
+			return regexPatterMatcher.group(group);
+		}
+
+		return "";
+	}
+
+	public boolean isFullLineComment() {
+		return FullLineComment;
+	}
+
+	public void setFullLineComment(boolean isFullLineComment) {
+		this.FullLineComment = isFullLineComment;
 	}
 
 }

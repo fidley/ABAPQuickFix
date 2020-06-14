@@ -1,4 +1,4 @@
-package com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable;
+package com.abapblog.adt.quickfix.assist.syntax.statements.readTable;
 
 public interface IReadTablePatterns {
 

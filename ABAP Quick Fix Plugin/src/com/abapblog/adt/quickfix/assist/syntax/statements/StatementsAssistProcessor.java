@@ -10,20 +10,28 @@ import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 
-import com.abapblog.adt.quickfix.assist.syntax.statements.Move.Move;
-import com.abapblog.adt.quickfix.assist.syntax.statements.Move.MoveExact;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableAssigningIndex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableAssigningWithKey;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableIndexAssigning;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableIndexInto;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableIndexReferenceInto;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableIntoIndex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableIntoWithKey;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableReferenceIntoIndex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableReferenceIntoWithKey;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableWithKeyAssigning;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableWithKeyInto;
-import com.abapblog.adt.quickfix.assist.syntax.statements.ReadTable.ReadTableWithKeyReferenceInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToAppendValueTo;
+import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Clear;
+import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Constants;
+import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Data;
+import com.abapblog.adt.quickfix.assist.syntax.statements.combine.FieldSymbols;
+import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Refresh;
+import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Types;
+import com.abapblog.adt.quickfix.assist.syntax.statements.insert.InsertIntoInsertValueInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.move.Move;
+import com.abapblog.adt.quickfix.assist.syntax.statements.move.MoveExact;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableAssigningIndex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableAssigningWithKey;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexAssigning;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexReferenceInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIntoIndex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIntoWithKey;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableReferenceIntoIndex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableReferenceIntoWithKey;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyAssigning;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyReferenceInto;
 
 public class StatementsAssistProcessor implements IQuickAssistProcessor {
 
@@ -86,6 +94,14 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new CallMethod(context));
 		assists.add(new Move(context));
 		assists.add(new MoveExact(context));
+		assists.add(new Data(context));
+		assists.add(new Types(context));
+		assists.add(new Constants(context));
+		assists.add(new FieldSymbols(context));
+		assists.add(new Clear(context));
+		assists.add(new Refresh(context));
+		assists.add(new AppendToAppendValueTo(context));
+		assists.add(new InsertIntoInsertValueInto(context));
 	}
 
 	@Override

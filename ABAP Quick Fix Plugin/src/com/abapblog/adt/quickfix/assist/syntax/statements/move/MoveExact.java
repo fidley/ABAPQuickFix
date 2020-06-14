@@ -1,4 +1,4 @@
-package com.abapblog.adt.quickfix.assist.syntax.statements.Move;
+package com.abapblog.adt.quickfix.assist.syntax.statements.move;
 
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;

@@ -14,12 +14,12 @@ public class AbapCodeReader {
 	private AbapCodeReader(IQuickAssistInvocationContext context) {
 		Code = context.getSourceViewer().getDocument().get();
 		CurrentStatement = createStatement(context.getOffset());
-		NextStatement = createStatement(CurrentStatement.getEndOfStatement() + 1);
-		PreviousStatement = createStatement(CurrentStatement.getBeginOfStatement() - 1);
+		NextStatement = createStatement(CurrentStatement.getEndOfStatement() + 2);
+		PreviousStatement = createStatement(CurrentStatement.getBeginOfStatement() - 2);
 	}
 
 	private AbapStatement createStatement(int offset) {
-		return new AbapStatement(Code, offset);
+		return new AbapStatement(getCode(), offset);
 	}
 
 	public static AbapCodeReader getInstance(IQuickAssistInvocationContext context) {
@@ -33,5 +33,9 @@ public class AbapCodeReader {
 		}
 
 		return CodeReader;
+	}
+
+	public String getCode() {
+		return Code;
 	}
 }
