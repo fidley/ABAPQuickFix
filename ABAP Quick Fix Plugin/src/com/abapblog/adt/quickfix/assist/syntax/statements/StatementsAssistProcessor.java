@@ -11,6 +11,7 @@ import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToAppendValueTo;
+import com.abapblog.adt.quickfix.assist.syntax.statements.combine.ClassMethods;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Clear;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Constants;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Data;
@@ -26,6 +27,8 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.insert.InsertIntoInser
 import com.abapblog.adt.quickfix.assist.syntax.statements.lineEnd.LineBreakAtEnd;
 import com.abapblog.adt.quickfix.assist.syntax.statements.lineEnd.LineBreakAtEndOfMethod;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CallMethod;
+import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectExportingToNEW;
+import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectToNEW;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitExporting;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitReceiving;
 import com.abapblog.adt.quickfix.assist.syntax.statements.move.Move;
@@ -114,6 +117,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new Parameters(context));
 		assists.add(new SelectOptions(context));
 		assists.add(new Methods(context));
+		assists.add(new ClassMethods(context));
 		assists.add(new AppendToAppendValueTo(context));
 		assists.add(new InsertIntoInsertValueInto(context));
 		assists.add(new LineBreakAtEnd(context));
@@ -121,6 +125,8 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new SplitToSeveralStatements(context));
 		assists.add(new MethodOmitReceiving(context));
 		assists.add(new MethodOmitExporting(context));
+		assists.add(new CreateObjectToNEW(context));
+		assists.add(new CreateObjectExportingToNEW(context));
 
 	}
 

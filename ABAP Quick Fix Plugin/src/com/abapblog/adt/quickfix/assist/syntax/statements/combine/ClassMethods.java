@@ -11,20 +11,20 @@ import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapStatement;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class Methods extends StatementAssist implements IAssistRegex {
+public class ClassMethods extends StatementAssist implements IAssistRegex {
 
-	private static final String BeginningOfStatement = "\r\n\tMETHODS: ";
+	private static final String BeginningOfStatement = "\r\n\tCLASS-METHODS: ";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePattern = "\\r\\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
-	private String MatchPattern = "(?s)^\\s*METHODS\\s*:*\\s+(.*)";
+	private String MatchPattern = "(?s)class-methods\\s*:*\\s+(.*)";
 	private String ReplacePattern = "$1";
 	private boolean assistWithNext;
 	private boolean assistWithPrevious;
 	private List<AbapStatement> matchedStatements;
 
-	public Methods(IQuickAssistInvocationContext context) {
+	public ClassMethods(IQuickAssistInvocationContext context) {
 		super(context);
 	}
 
@@ -62,7 +62,7 @@ public class Methods extends StatementAssist implements IAssistRegex {
 
 				}
 				if (statementIterator.hasNext())
-					ChangedCode = ChangedCode + "," + NewLineWithTabAndSpaceString;
+					ChangedCode = ChangedCode + ",";
 			}
 
 		}
@@ -72,7 +72,7 @@ public class Methods extends StatementAssist implements IAssistRegex {
 
 	@Override
 	public String getAssistShortText() {
-		return "Combine METHODS statements";
+		return "Combine CLASS-METHODS statements";
 	}
 
 	@Override
