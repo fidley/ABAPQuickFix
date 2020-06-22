@@ -73,6 +73,7 @@ public class AbapStatement {
 	}
 
 	public Boolean matchPattern(String pattern) {
+
 		Pattern redexPattern = Pattern.compile(pattern, Pattern.MULTILINE + Pattern.CASE_INSENSITIVE);
 
 		Matcher regexPatterMatcher = redexPattern.matcher(Statement);
@@ -93,14 +94,32 @@ public class AbapStatement {
 	}
 
 	public String replacePattern(String pattern, String replace) {
+
+		String StatementCode = Statement;
 		Pattern redexPattern = Pattern.compile(pattern, Pattern.MULTILINE + Pattern.CASE_INSENSITIVE);
 
 		Matcher regexPatterMatcher = redexPattern.matcher(Statement);
 		while (regexPatterMatcher.find()) {
+
 			return regexPatterMatcher.replaceFirst(replace);
 		}
 
-		return "";
+		return StatementCode;
+
+	}
+
+	public String replaceAllPattern(String pattern, String replace) {
+
+		String StatementCode = Statement;
+		Pattern redexPattern = Pattern.compile(pattern, Pattern.MULTILINE + Pattern.CASE_INSENSITIVE);
+
+		Matcher regexPatterMatcher = redexPattern.matcher(Statement);
+		while (regexPatterMatcher.find()) {
+
+			StatementCode = regexPatterMatcher.replaceAll(replace);
+		}
+
+		return StatementCode;
 
 	}
 
