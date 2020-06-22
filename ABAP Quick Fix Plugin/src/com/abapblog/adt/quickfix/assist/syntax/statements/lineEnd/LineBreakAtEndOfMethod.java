@@ -1,20 +1,22 @@
-package com.abapblog.adt.quickfix.assist.syntax.statements;
+package com.abapblog.adt.quickfix.assist.syntax.statements.lineEnd;
 
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;
 
-public class CallMethod extends StatementAssist implements IAssistRegex {
+import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-	private static final String callMethodPattern = "(?s)(call)\\s+.*(method)\\s+(\\w+(->)*(=>)*\\w+)(.*)";
-	private static final String replaceCallMethodPattern = "$3( $6 )";
+public class LineBreakAtEndOfMethod extends StatementAssist implements IAssistRegex {
+	private static final String lineBreakAtEndPattern = "(?s)(\\s)*(\\r?\\n)+(\\s)*(\\))(\\s)*(\\r?\\n)*(\\s)*$";
+	private static final String replaceCallMethodPattern = " )";
 
-	public CallMethod(IQuickAssistInvocationContext context) {
+	public LineBreakAtEndOfMethod(IQuickAssistInvocationContext context) {
 		super(context);
 	}
 
 	@Override
 	public String getMatchPattern() {
-		return callMethodPattern;
+		return lineBreakAtEndPattern;
 	}
 
 	@Override
@@ -24,13 +26,12 @@ public class CallMethod extends StatementAssist implements IAssistRegex {
 
 	@Override
 	public String getChangedCode() {
-		return CodeReader.CurrentStatement.replacePattern(getMatchPattern(), getReplacePattern());
+		return CodeReader.CurrentStatement.replaceAllPattern(getMatchPattern(), getReplacePattern());
 	}
 
 	@Override
 	public String getAssistShortText() {
-		// TODO Auto-generated method stub
-		return "Replace CALL METHOD with direct call";
+		return "Remove line break at end of statement";
 	}
 
 	@Override

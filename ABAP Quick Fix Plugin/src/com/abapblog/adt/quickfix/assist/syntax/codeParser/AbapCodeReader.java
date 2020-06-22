@@ -14,8 +14,16 @@ public class AbapCodeReader {
 	private AbapCodeReader(IQuickAssistInvocationContext context) {
 		Code = context.getSourceViewer().getDocument().get();
 		CurrentStatement = createStatement(context.getOffset());
-		NextStatement = createStatement(CurrentStatement.getEndOfStatement() + 2);
-		PreviousStatement = createStatement(CurrentStatement.getBeginOfStatement() - 2);
+		try {
+			NextStatement = createStatement(CurrentStatement.getEndOfStatement() + 2);
+		} catch (Exception e) {
+
+		}
+		try {
+			PreviousStatement = createStatement(CurrentStatement.getBeginOfStatement() - 2);
+		} catch (Exception e) {
+
+		}
 	}
 
 	private AbapStatement createStatement(int offset) {

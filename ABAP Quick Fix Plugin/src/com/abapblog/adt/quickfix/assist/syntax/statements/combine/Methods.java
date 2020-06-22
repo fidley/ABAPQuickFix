@@ -11,22 +11,20 @@ import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapStatement;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class Data extends StatementAssist implements IAssistRegex {
+public class Methods extends StatementAssist implements IAssistRegex {
 
-	private static final String BeginningOfStatement = "\r\n\tDATA: ";
+	private static final String BeginningOfStatement = "\r\n\tMETHODS: ";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePattern = "\\r\\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
-	private String MatchPattern = "(?s)data\\s*:*\\s+(.*)";
-	private String InlineDeclarationAtBeginning = "(?s)data\\(\\w*\\)\\s+=";
-	private String InlineDeclaration = "(?s)data\\s*:*\\s+(.*)=";
+	private String MatchPattern = "(?s)METHODS\\s*:*\\s+(.*)";
 	private String ReplacePattern = "$1";
 	private boolean assistWithNext;
 	private boolean assistWithPrevious;
 	private List<AbapStatement> matchedStatements;
 
-	public Data(IQuickAssistInvocationContext context) {
+	public Methods(IQuickAssistInvocationContext context) {
 		super(context);
 	}
 
@@ -74,7 +72,7 @@ public class Data extends StatementAssist implements IAssistRegex {
 
 	@Override
 	public String getAssistShortText() {
-		return "Combine DATA statements";
+		return "Combine METHODS statements";
 	}
 
 	@Override
@@ -101,22 +99,16 @@ public class Data extends StatementAssist implements IAssistRegex {
 		return false;
 	}
 
-	private boolean checkMatch(AbapStatement statement) {
-		if (statement.matchPattern(getMatchPattern()) && !statement.matchPattern(InlineDeclaration)
-				&& !statement.matchPattern(InlineDeclarationAtBeginning)) {
-			return true;
-		}
-		return false;
-	}
-
 	private boolean canAssistWithPrevious() {
-		if (checkMatch(CodeReader.CurrentStatement) && checkMatch(CodeReader.PreviousStatement))
+		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())
+				&& CodeReader.PreviousStatement.matchPattern(getMatchPattern()))
 			assistWithPrevious = true;
 		return assistWithPrevious;
 	}
 
 	private boolean canAssistWithNext() {
-		if (checkMatch(CodeReader.CurrentStatement) && checkMatch(CodeReader.NextStatement))
+		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())
+				&& CodeReader.NextStatement.matchPattern(getMatchPattern()))
 			assistWithNext = true;
 		return assistWithNext;
 	}
@@ -136,7 +128,7 @@ public class Data extends StatementAssist implements IAssistRegex {
 		if (matchedStatements == null)
 			matchedStatements = new ArrayList<>();
 		AbapStatement previousStatement = statement.getPreviousAbapStatement();
-		if (checkMatch(previousStatement)) {
+		if (previousStatement.matchPattern(MatchPattern)) {
 			if (previousStatement.isFullLineComment() == false)
 				matchedStatements.add(0, previousStatement);
 			checkPreviousStatements(previousStatement);
@@ -148,7 +140,7 @@ public class Data extends StatementAssist implements IAssistRegex {
 		if (matchedStatements == null)
 			matchedStatements = new ArrayList<>();
 		AbapStatement nextStatement = statement.getNextAbapStatement();
-		if (checkMatch(nextStatement)) {
+		if (nextStatement.matchPattern(MatchPattern)) {
 			if (nextStatement.isFullLineComment() == false)
 				matchedStatements.add(nextStatement);
 			checkNextStatements(nextStatement);
