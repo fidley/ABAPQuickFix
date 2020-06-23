@@ -14,6 +14,11 @@ Functions so far:
 - Reaplace READ TABLE with Table Expression
 - Replace CALL METHOD with direct call
 - Reaplace MOVE with direct assignment
-- Combine statements: DATA, TYPES, CONSTANTS, FIELD-SYMBOLS, CHECK, CLEAR, REFRESH
+- Combine statements: DATA, TYPES, CONSTANTS, FIELD-SYMBOLS, CHECK, CLEAR, REFRESH, FREE, PARAMETERS, SELECT-OPTIONS, METHODS, CLASS-METHODS
 - Change APPEND TO to APPEND VALUE #( ) TO
 - Change INSERT INTO to INSERT VALUE #( ) INTO
+- Split combined(chained) statements
+- Remove Line Break at end of statement
+- Replace CREATE OBJECT with NEW
+- Omit EXPORTING in method call
+- Omit RECEIVING in method call
