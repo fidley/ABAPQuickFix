@@ -22,3 +22,6 @@ Functions so far:
 - Replace CREATE OBJECT with NEW
 - Omit EXPORTING in method call
 - Omit RECEIVING in method call
+- Change APPEND TO to INSERT VALUE #( ) TO
+- Replace GET REFERENCE to REF #
+- Replace READ TABLE TRANSPORTING NO FIELDS to LINE_EXISTS
