@@ -9,11 +9,11 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
 public class MethodOmitExporting extends StatementAssist implements IAssistRegex {
 
-	private static final String omitExportingPattern = "(?s)((->)?(=>)?.*)EXPORTING(.*\\s+(\\r?\\n)*(.*))\\)";
+	private static final String omitExportingPattern = "(?s)(.*(->|=>).*)EXPORTING(.*\\s+(\\r?\\n)*(.*))\\)";
 	private static final String importing = "importing";
 	private static final String changing = "changing";
 	private static final String receiving = "receiving";
-	private static final String replaceOmitExportingPattern = "\r\n$5 = $3 )";
+	private static final String replaceOmitExportingPattern = "\r\n$1 = $3 )";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
 
@@ -36,7 +36,7 @@ public class MethodOmitExporting extends StatementAssist implements IAssistRegex
 		String Code = "\r\n"
 				+ CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 1)
 						.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(NewLineString, "")
-				+ CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 4)
+				+ CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 3)
 						.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(NewLineString, "")
 				+ " )";
 		return StringCleaner.clean(Code);

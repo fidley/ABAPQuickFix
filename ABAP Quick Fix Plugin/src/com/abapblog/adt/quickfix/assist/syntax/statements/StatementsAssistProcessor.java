@@ -24,6 +24,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Refresh;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.SelectOptions;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.SplitToSeveralStatements;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Types;
+import com.abapblog.adt.quickfix.assist.syntax.statements.global.RemoveFullLineCommentsFromStatement;
 import com.abapblog.adt.quickfix.assist.syntax.statements.insert.InsertIntoInsertValueInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.lineEnd.LineBreakAtEnd;
 import com.abapblog.adt.quickfix.assist.syntax.statements.lineEnd.LineBreakAtEndOfMethod;
@@ -139,6 +140,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new CreateObjectToNEW(context));
 		assists.add(new CreateObjectExportingToNEW(context));
 		assists.add(new GetReferenceToRef(context));
+		assists.add(new RemoveFullLineCommentsFromStatement(context));
 
 	}
 

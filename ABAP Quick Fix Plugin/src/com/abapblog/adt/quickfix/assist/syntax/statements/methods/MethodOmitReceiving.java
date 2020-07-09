@@ -9,8 +9,8 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
 public class MethodOmitReceiving extends StatementAssist implements IAssistRegex {
 
-	private static final String omitReceivingPattern = "(?s)(->)?(=>)?(.*)RECEIVING.*=\\s+(\\r?\\n)*(.*)\\)";
-	private static final String replaceOmitReceivingPattern = "\r\n$5 = $3 )";
+	private static final String omitReceivingPattern = "(?s)(.*(->|=>).*)RECEIVING.*=\\s+(\\r?\\n)*(.*)\\)";
+	private static final String replaceOmitReceivingPattern = "\r\n$4 = $1 )";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
 
@@ -31,9 +31,9 @@ public class MethodOmitReceiving extends StatementAssist implements IAssistRegex
 	@Override
 	public String getChangedCode() {
 		String Code = "\r\n"
-				+ CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 5)
+				+ CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 4)
 						.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(NewLineString, "")
-				+ " = " + CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 3)
+				+ " = " + CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 1)
 						.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(NewLineString, "")
 				+ ")";
 		return StringCleaner.clean(Code);

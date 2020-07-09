@@ -3,6 +3,8 @@ package com.abapblog.adt.quickfix.assist.syntax.codeParser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.abapblog.adt.quickfix.assist.utility.RegularExpressionUtils;
+
 public class AbapStatement {
 	private static final String fullLineCommentPattern = "^(\\*.*)|^((\\r\\n)+\\*.*)";
 	private int beginOfStatement;
@@ -76,7 +78,7 @@ public class AbapStatement {
 
 		Pattern redexPattern = Pattern.compile(pattern, Pattern.MULTILINE + Pattern.CASE_INSENSITIVE);
 
-		Matcher regexPatterMatcher = redexPattern.matcher(Statement);
+		Matcher regexPatterMatcher = RegularExpressionUtils.createMatcherWithTimeout(Statement, redexPattern, 1000);
 		while (regexPatterMatcher.find()) {
 			return true;
 		}
@@ -86,7 +88,7 @@ public class AbapStatement {
 	public Boolean matchPatternSingleLine(String pattern) {
 		Pattern redexPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
 
-		Matcher regexPatterMatcher = redexPattern.matcher(Statement);
+		Matcher regexPatterMatcher = RegularExpressionUtils.createMatcherWithTimeout(Statement, redexPattern, 1000);
 		while (regexPatterMatcher.find()) {
 			return true;
 		}
@@ -98,7 +100,7 @@ public class AbapStatement {
 		String StatementCode = Statement;
 		Pattern redexPattern = Pattern.compile(pattern, Pattern.MULTILINE + Pattern.CASE_INSENSITIVE);
 
-		Matcher regexPatterMatcher = redexPattern.matcher(Statement);
+		Matcher regexPatterMatcher = RegularExpressionUtils.createMatcherWithTimeout(Statement, redexPattern, 1000);
 		while (regexPatterMatcher.find()) {
 
 			return regexPatterMatcher.replaceFirst(replace);
@@ -113,7 +115,7 @@ public class AbapStatement {
 		String StatementCode = Statement;
 		Pattern redexPattern = Pattern.compile(pattern, Pattern.MULTILINE + Pattern.CASE_INSENSITIVE);
 
-		Matcher regexPatterMatcher = redexPattern.matcher(Statement);
+		Matcher regexPatterMatcher = RegularExpressionUtils.createMatcherWithTimeout(Statement, redexPattern, 1000);
 		while (regexPatterMatcher.find()) {
 
 			StatementCode = regexPatterMatcher.replaceAll(replace);
@@ -126,7 +128,7 @@ public class AbapStatement {
 	public String getMatchGroup(String pattern, int group) {
 		Pattern redexPattern = Pattern.compile(pattern, Pattern.MULTILINE + Pattern.CASE_INSENSITIVE);
 
-		Matcher regexPatterMatcher = redexPattern.matcher(Statement);
+		Matcher regexPatterMatcher = RegularExpressionUtils.createMatcherWithTimeout(Statement, redexPattern, 1000);
 		while (regexPatterMatcher.find()) {
 			return regexPatterMatcher.group(group);
 		}
