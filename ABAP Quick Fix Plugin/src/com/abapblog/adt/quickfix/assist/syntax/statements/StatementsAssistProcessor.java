@@ -11,6 +11,7 @@ import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToAppendValueTo;
+import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToInsertValueInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.ClassMethods;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Clear;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Constants;
@@ -38,13 +39,18 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableAss
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexAssigning;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexReferenceInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexTransportingNoFields;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIntoIndex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIntoWithKey;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableReferenceIntoIndex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableReferenceIntoWithKey;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableTransportingNoFieldsIndex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableTransportingNoFieldsWithKey;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyAssigning;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyReferenceInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyTransportingNoFields;
+import com.abapblog.adt.quickfix.assist.syntax.statements.reference.GetReferenceToRef;
 
 public class StatementsAssistProcessor implements IQuickAssistProcessor {
 
@@ -104,6 +110,10 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new ReadTableWithKeyInto(context));
 		assists.add(new ReadTableIntoIndex(context));
 		assists.add(new ReadTableIntoWithKey(context));
+		assists.add(new ReadTableTransportingNoFieldsWithKey(context));
+		assists.add(new ReadTableWithKeyTransportingNoFields(context));
+		assists.add(new ReadTableTransportingNoFieldsIndex(context));
+		assists.add(new ReadTableIndexTransportingNoFields(context));
 		assists.add(new CallMethod(context));
 		assists.add(new Move(context));
 		assists.add(new MoveExact(context));
@@ -119,6 +129,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new Methods(context));
 		assists.add(new ClassMethods(context));
 		assists.add(new AppendToAppendValueTo(context));
+		assists.add(new AppendToInsertValueInto(context));
 		assists.add(new InsertIntoInsertValueInto(context));
 		assists.add(new LineBreakAtEnd(context));
 		assists.add(new LineBreakAtEndOfMethod(context));
@@ -127,6 +138,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new MethodOmitExporting(context));
 		assists.add(new CreateObjectToNEW(context));
 		assists.add(new CreateObjectExportingToNEW(context));
+		assists.add(new GetReferenceToRef(context));
 
 	}
 

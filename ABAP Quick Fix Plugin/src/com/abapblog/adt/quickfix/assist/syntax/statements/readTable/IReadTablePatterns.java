@@ -26,5 +26,15 @@ public interface IReadTablePatterns {
 	public static final String replaceReadTableWithKeyAssigning = "ASSIGN $3[ $6 ] TO $8";
 	public static final String readTableWithKeyReferece = "(?s)(read).*(table)\\s+(\\S*)\\s+.*(with)\\s+(key)\\s+(.*)(reference)\\s+(into)\\s+(.*)";
 	public static final String replaceReadTableWithKeyReferece = "$9 = REF #( $3[ $6 ] )";
-
+	public static final String readTableTransportingNoFieldsWithKey = "(?s)read\\s+table\\s+(\\S*)\\s+transporting\\s+no\\s+fields\\s+with\\s+key\\s+(.*)";
+	public static final String replaceReadTableTransportingNoFieldsWithKey = "line_exists( $1[ $2 ] )";
+	public static final String readTableWithKeyTransportingNoFields = "(?s)read\\s+table\\s+(\\S*)\\s+with\\s+key\\s+(.*)\\s+transporting\\s+no\\s+fields";
+	public static final String replaceReadTableWithKeyTransportingNoFields = "line_exists( $1[ $2 ] )";
+	public static final String readTableTransportingNoFieldsIndex = "(?s)read\\s+table\\s+(\\S*)\\s+transporting\\s+no\\s+fields\\s+index\\s+(.*)";
+	public static final String replaceReadTableTransportingNoFieldsIndex = "line_exists( $1[ $2 ] )";
+	public static final String readTableIndexTransportingNoFields = "(?s)read\\s+table\\s+(\\S*)\\s+index\\s+(.*)\\s+transporting\\s+no\\s+fields";
+	public static final String replaceReadTableIndexTransportingNoFields = "line_exists( $1[ $2 ] )";
+	public static final String ifSySubrcEq0 = "(?s)(if.*)(sy-subrc\\s+(EQ)?(=)?\\s+0)(.*)";
+	public static final String ifSySubrcNe0 = "(?s)(if.*)(sy-subrc\\s+(NE)?(<>)?\\s+0)(.*)";
+	public static final String replaceIfSySubrc = "$1 Code $5";
 }
