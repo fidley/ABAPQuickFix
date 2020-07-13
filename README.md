@@ -26,3 +26,4 @@ Functions so far:
 - Replace GET REFERENCE with REF #
 - Replace READ TABLE TRANSPORTING NO FIELDS with LINE_EXISTS
 - Remove full line comments from statement
+- Omit self reference ME->
