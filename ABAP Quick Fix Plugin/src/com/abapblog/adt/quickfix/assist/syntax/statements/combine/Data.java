@@ -18,7 +18,7 @@ public class Data extends StatementAssist implements IAssistRegex {
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePattern = "\\r\\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
-	private String MatchPattern = "(?s)data\\s*:*\\s+(.*)";
+	private String MatchPattern = "(?s)\\s+data\\s*:*\\s+(.*)";
 	private String InlineDeclarationAtBeginning = "(?s)data\\(\\w*\\)\\s+=";
 	private String InlineDeclaration = "(?s)data\\s*:*\\s+(.*)=";
 	private String ReplacePattern = "$1";
@@ -64,7 +64,7 @@ public class Data extends StatementAssist implements IAssistRegex {
 
 				}
 				if (statementIterator.hasNext())
-					ChangedCode = ChangedCode + ",";
+					ChangedCode = ChangedCode + "," + NewLineString;
 			}
 
 		}
