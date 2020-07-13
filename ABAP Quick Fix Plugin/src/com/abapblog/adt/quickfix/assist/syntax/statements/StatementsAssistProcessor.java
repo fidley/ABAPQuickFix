@@ -12,6 +12,7 @@ import org.eclipse.jface.text.source.Annotation;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToAppendValueTo;
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToInsertValueInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Check;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.ClassMethods;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Clear;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Constants;
@@ -33,6 +34,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectEx
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectToNEW;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitExporting;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitReceiving;
+import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitSelfReference;
 import com.abapblog.adt.quickfix.assist.syntax.statements.move.Move;
 import com.abapblog.adt.quickfix.assist.syntax.statements.move.MoveExact;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableAssigningIndex;
@@ -119,6 +121,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new Move(context));
 		assists.add(new MoveExact(context));
 		assists.add(new Data(context));
+		assists.add(new Check(context));
 		assists.add(new Types(context));
 		assists.add(new Constants(context));
 		assists.add(new FieldSymbols(context));
@@ -141,6 +144,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new CreateObjectExportingToNEW(context));
 		assists.add(new GetReferenceToRef(context));
 		assists.add(new RemoveFullLineCommentsFromStatement(context));
+		assists.add(new MethodOmitSelfReference(context));
 
 	}
 
