@@ -14,7 +14,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 public class AppendToInsertValueInto extends StatementAssist implements IAssistRegex {
 
 	private static final String BeginningOfStatement = "\r\n\tINSERT VALUE #(  ";
-	private String EndOfStatement = " ) INTO internalTable";
+	private String EndOfStatement = " ) INTO TABLE internalTable";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";

@@ -1,20 +1,21 @@
 package com.abapblog.adt.quickfix.preferences;
 
-import java.awt.CheckboxGroup;
-
-import org.eclipse.jface.preference.*;
+import org.eclipse.jface.preference.BooleanFieldEditor;
+import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.eclipse.ui.internal.IPreferenceConstants;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPreferencePage;
+
 import com.abapblog.adt.quickfix.Activator;
 
 public class QuickFixPreferences extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 	private IPreferenceStore store;
+
 	public QuickFixPreferences() {
 		super(GRID);
 		store = Activator.getDefault().getPreferenceStore();
@@ -22,6 +23,7 @@ public class QuickFixPreferences extends FieldEditorPreferencePage implements IW
 		setDescription("Settings for ABAP QuickFix Plugin");
 	}
 
+	@Override
 	public void createFieldEditors() {
 		Composite top = new Composite(getFieldEditorParent(), SWT.LEFT);
 
@@ -36,14 +38,17 @@ public class QuickFixPreferences extends FieldEditorPreferencePage implements IW
 		Group tcte_group = new Group(top, SWT.SHADOW_ETCHED_IN);
 		tcte_group.setText("Translate comment into English settings");
 		addField(new BooleanFieldEditor(PreferenceConstants.P_TCTE_ALLOWED,
-				"&Translate comment into English QuickFix allowed",tcte_group ));
+				"&Translate comment into English QuickFix allowed", tcte_group));
 		addField(new BooleanFieldEditor(PreferenceConstants.P_TCTE_REMOVE_COMMENT_SIGNS,
-				"&Remove comment sings \" and * from translated text",tcte_group ));
+				"&Remove comment sings \" and * from translated text", tcte_group));
 		addField(new BooleanFieldEditor(PreferenceConstants.P_TCTE_REMOVE_LINE_BREAKS,
 				"&Remove line breaks from translated text", tcte_group));
+		addField(new BooleanFieldEditor(PreferenceConstants.HideRemoveAllComments,
+				"&Hide Remove All Comments Quick Fix", getFieldEditorParent()));
 
 	}
 
+	@Override
 	public void init(IWorkbench workbench) {
 
 	}
@@ -60,7 +65,5 @@ public class QuickFixPreferences extends FieldEditorPreferencePage implements IW
 		Boolean ApplyClose = super.performOk();
 		return ApplyClose;
 	}
-
-
 
 }
