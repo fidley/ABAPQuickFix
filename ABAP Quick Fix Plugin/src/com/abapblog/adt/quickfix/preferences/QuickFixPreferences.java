@@ -37,6 +37,8 @@ public class QuickFixPreferences extends FieldEditorPreferencePage implements IW
 		tcte_group.setText("Translate comment into English settings");
 		addField(new BooleanFieldEditor(PreferenceConstants.P_TCTE_ALLOWED,
 				"&Translate comment into English QuickFix allowed",tcte_group ));
+		addField(new BooleanFieldEditor(PreferenceConstants.P_TCTE_ALLOW_REMOVE_ALL_COMMENTS,
+				"&Remove all comments allowed",tcte_group ));
 		addField(new BooleanFieldEditor(PreferenceConstants.P_TCTE_REMOVE_COMMENT_SIGNS,
 				"&Remove comment sings \" and * from translated text",tcte_group ));
 		addField(new BooleanFieldEditor(PreferenceConstants.P_TCTE_REMOVE_LINE_BREAKS,

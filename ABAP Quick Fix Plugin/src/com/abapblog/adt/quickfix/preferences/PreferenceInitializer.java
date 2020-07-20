@@ -11,6 +11,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.P_TCTE_REMOVE_COMMENT_SIGNS, false);
 		store.setDefault(PreferenceConstants.P_TCTE_REMOVE_LINE_BREAKS, false);
 		store.setDefault(PreferenceConstants.P_TCTE_ALLOWED, true);
+		store.setDefault(PreferenceConstants.P_TCTE_ALLOW_REMOVE_ALL_COMMENTS, false);
 	}
 
 

@@ -10,11 +10,17 @@ import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
 
+import com.abapblog.adt.quickfix.Activator;
+import com.abapblog.adt.quickfix.preferences.PreferenceConstants;
+
 public class RemoveAllComments implements IQuickAssistProcessor {
 	AbapQuickFixRemoveCommentsCodeParser commentParser;
 
 	@Override
 	public boolean canAssist(IQuickAssistInvocationContext context) {
+		if (!checkQuickFixAllowed()) {
+			return false;
+		}
 		commentParser = new AbapQuickFixRemoveCommentsCodeParser();
 		String sourceCode = context.getSourceViewer().getDocument().get();
 		return commentParser.haveComment(sourceCode, 0, sourceCode.length());
@@ -47,6 +53,10 @@ public class RemoveAllComments implements IQuickAssistProcessor {
 	@Override
 	public String getErrorMessage() {
 		return null;
+	}
+	
+	private boolean checkQuickFixAllowed() {
+		return Activator.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.P_TCTE_ALLOW_REMOVE_ALL_COMMENTS);
 	}
 
 }
