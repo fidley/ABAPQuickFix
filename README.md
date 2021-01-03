@@ -11,9 +11,9 @@ Functions so far:
 - Translate comments into English
 - Replace READ TABLE with ASSIGN
 - Replace READ TABLE with REF #( )
-- Reaplace READ TABLE with Table Expression
+- Replace READ TABLE with Table Expression
 - Replace CALL METHOD with direct call
-- Reaplace MOVE with direct assignment
+- Replace MOVE with direct assignment
 - Combine statements: DATA, TYPES, CONSTANTS, FIELD-SYMBOLS, CHECK, CLEAR, REFRESH, FREE, PARAMETERS, SELECT-OPTIONS, METHODS, CLASS-METHODS
 - Change APPEND TO to APPEND VALUE #( ) TO
 - Change INSERT INTO to INSERT VALUE #( ) INTO
