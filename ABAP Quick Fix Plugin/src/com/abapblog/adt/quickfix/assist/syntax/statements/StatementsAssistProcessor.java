@@ -37,6 +37,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitRece
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitSelfReference;
 import com.abapblog.adt.quickfix.assist.syntax.statements.move.Move;
 import com.abapblog.adt.quickfix.assist.syntax.statements.move.MoveExact;
+import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Eq;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableAssigningIndex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableAssigningWithKey;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexAssigning;
@@ -145,6 +146,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new GetReferenceToRef(context));
 		assists.add(new RemoveFullLineCommentsFromStatement(context));
 		assists.add(new MethodOmitSelfReference(context));
+		assists.add(new Eq(context));
 
 	}
 
