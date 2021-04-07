@@ -4,9 +4,9 @@ import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
-public class SplitToSeveralStatements extends StatementAssist implements IAssistRegex {
+public class SplitToSeveralStatements extends StatementAssistRegex implements IAssistRegex {
 
 	private static final String BeginningOfStatement = "\r\n";
 	private static final String NewLineString = "\r\n";

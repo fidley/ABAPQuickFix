@@ -8,8 +8,11 @@ Bundle-Vendor: ABAPBlog.com
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.jface,
- org.eclipse.jface.text;bundle-version="3.14.0",
- org.eclipse.ui.editors;bundle-version="3.11.300"
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ com.sap.adt.tools.abapsource.ui,
+ com.sap.adt.util.ui,
+ org.eclipse.ui.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.abapblog.adt.quickfix
 Bundle-ActivationPolicy: lazy

@@ -5,9 +5,9 @@ import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
-public class MethodOmitSelfReference extends StatementAssist implements IAssistRegex {
+public class MethodOmitSelfReference extends StatementAssistRegex implements IAssistRegex {
 
 	private static final String omitSelfReferencePattern = "me(->)(\\w*)"; // me(->)(\\S+)\\((.*)";
 	private static final String replaceOmitSelfReferencePattern = "$2";

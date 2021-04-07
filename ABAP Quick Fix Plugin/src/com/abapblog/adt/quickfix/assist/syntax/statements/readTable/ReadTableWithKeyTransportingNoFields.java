@@ -5,9 +5,9 @@ import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
-public class ReadTableWithKeyTransportingNoFields extends StatementAssist implements IAssistRegex {
+public class ReadTableWithKeyTransportingNoFields extends StatementAssistRegex implements IAssistRegex {
 
 	private static final String NOT = "NOT";
 	private static final String CODE = "Code";

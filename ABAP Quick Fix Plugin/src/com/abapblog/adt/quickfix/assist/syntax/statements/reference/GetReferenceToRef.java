@@ -4,9 +4,9 @@ import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
-public class GetReferenceToRef extends StatementAssist implements IAssistRegex {
+public class GetReferenceToRef extends StatementAssistRegex implements IAssistRegex {
 
 	private static final String movePattern = "(?s)\\s*get\\s+reference\\s+of\\s+(.*)\\s+into\\s+(.*)";
 	private static final String replaceMovePattern = "\r\n$2 = REF #( $1 )";

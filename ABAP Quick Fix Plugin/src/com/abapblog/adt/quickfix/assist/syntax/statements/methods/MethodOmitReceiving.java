@@ -5,9 +5,9 @@ import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
-public class MethodOmitReceiving extends StatementAssist implements IAssistRegex {
+public class MethodOmitReceiving extends StatementAssistRegex implements IAssistRegex {
 
 	private static final String omitReceivingPattern = "(?s)(.*(->|=>).*)RECEIVING.*=\\s+(\\r?\\n)*(.*)\\)";
 	private static final String replaceOmitReceivingPattern = "\r\n$4 = $1 )";

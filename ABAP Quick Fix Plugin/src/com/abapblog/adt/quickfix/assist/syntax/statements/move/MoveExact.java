@@ -4,9 +4,9 @@ import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
-public class MoveExact extends StatementAssist implements IAssistRegex {
+public class MoveExact extends StatementAssistRegex implements IAssistRegex {
 
 	private static final String moveExactPattern = "(?s)(move)\\s+(exact)\\s+(.*)\\s+(to)\\s+(.*)";
 	private static final String replacemoveExactPattern = "$5 = EXACT #( $3 )";
