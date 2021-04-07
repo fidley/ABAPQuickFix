@@ -4,9 +4,9 @@ import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
-public class ReadTableReferenceIntoIndex extends StatementAssist implements IAssistRegex {
+public class ReadTableReferenceIntoIndex extends StatementAssistRegex implements IAssistRegex {
 
 	public ReadTableReferenceIntoIndex(IQuickAssistInvocationContext context) {
 		super(context);

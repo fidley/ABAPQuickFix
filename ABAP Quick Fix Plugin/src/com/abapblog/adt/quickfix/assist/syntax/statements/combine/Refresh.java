@@ -9,9 +9,9 @@ import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapStatement;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
-public class Refresh extends StatementAssist implements IAssistRegex {
+public class Refresh extends StatementAssistRegex implements IAssistRegex {
 
 	private static final String BeginningOfStatement = "\r\n\tREFRESH: ";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";

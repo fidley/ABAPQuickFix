@@ -37,6 +37,12 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitRece
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitSelfReference;
 import com.abapblog.adt.quickfix.assist.syntax.statements.move.Move;
 import com.abapblog.adt.quickfix.assist.syntax.statements.move.MoveExact;
+import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Eq;
+import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Ge;
+import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Gt;
+import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Le;
+import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Lt;
+import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Ne;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableAssigningIndex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableAssigningWithKey;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexAssigning;
@@ -57,7 +63,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.reference.GetReference
 
 public class StatementsAssistProcessor implements IQuickAssistProcessor {
 
-	private List<IAssistRegex> assists;
+	private List<IAssist> assists;
 	private List<ICompletionProposal> proposals;
 	private IQuickAssistInvocationContext context;
 
@@ -87,9 +93,9 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 	private void createProposals() {
 		proposals = new ArrayList<>();
 
-		Iterator<IAssistRegex> assistIterator = assists.iterator();
+		Iterator<IAssist> assistIterator = assists.iterator();
 		while (assistIterator.hasNext()) {
-			IAssistRegex assist = assistIterator.next();
+			IAssist assist = assistIterator.next();
 			if (assist.canAssist()) {
 				proposals.add(new CompletionProposal(assist.getChangedCode(), assist.getStartOfReplace(),
 						assist.getReplaceLength(), 0, assist.getAssistIcon(), assist.getAssistShortText(), null,
@@ -145,6 +151,12 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new GetReferenceToRef(context));
 		assists.add(new RemoveFullLineCommentsFromStatement(context));
 		assists.add(new MethodOmitSelfReference(context));
+		assists.add(new Eq(context));
+		assists.add(new Ge(context));
+		assists.add(new Gt(context));
+		assists.add(new Le(context));
+		assists.add(new Lt(context));
+		assists.add(new Ne(context));
 
 	}
 

@@ -4,9 +4,9 @@ import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
-public class CreateObjectExportingToNEW extends StatementAssist implements IAssistRegex {
+public class CreateObjectExportingToNEW extends StatementAssistRegex implements IAssistRegex {
 
 	private String createObjectExportingPattern = "(?s)create\\s+object\\s+(.+)\\s+(exporting)\\s+(.*)";
 	private String replaceCreateObjectExportingPattern = "$1 = NEW #( $3 )";

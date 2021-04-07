@@ -4,9 +4,9 @@ import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
-public class CallMethod extends StatementAssist implements IAssistRegex {
+public class CallMethod extends StatementAssistRegex implements IAssistRegex {
 
 	private static final String callMethodPattern = "(?s)(call)\\s+.*(method)\\s+(\\w+(->)*(=>)*\\w+)(.*)";
 	private static final String replaceCallMethodPattern = "$3( $6 )";
