@@ -27,3 +27,4 @@ Functions so far:
 - Replace READ TABLE TRANSPORTING NO FIELDS with LINE_EXISTS
 - Remove full line comments from statement
 - Omit self reference ME->
+- Replace operators EQ,NE,GT,GE,LT,LE with =,<>,>,>=,<,<=
