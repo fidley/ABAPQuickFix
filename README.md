@@ -28,3 +28,4 @@ Functions so far:
 - Remove full line comments from statement
 - Omit self reference ME->
 - Replace operators EQ,NE,GT,GE,LT,LE with =,<>,>,>=,<,<=
+- Align operators (in selected code)
