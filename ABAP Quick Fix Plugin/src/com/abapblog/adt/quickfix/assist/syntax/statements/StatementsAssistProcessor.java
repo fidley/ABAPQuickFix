@@ -10,6 +10,7 @@ import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 
+import com.abapblog.adt.quickfix.assist.comments.ReplaceFullLineWithInlineComment;
 import com.abapblog.adt.quickfix.assist.formatter.AlignOperators;
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToAppendValueTo;
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToInsertValueInto;
@@ -159,6 +160,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new Lt(context));
 		assists.add(new Ne(context));
 		assists.add(new AlignOperators(context));
+		assists.add(new ReplaceFullLineWithInlineComment(context));
 
 	}
 
