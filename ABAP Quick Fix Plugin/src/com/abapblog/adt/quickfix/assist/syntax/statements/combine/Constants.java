@@ -62,7 +62,7 @@ public class Constants extends StatementAssistRegex implements IAssistRegex {
 
 				}
 				if (statementIterator.hasNext())
-					ChangedCode = ChangedCode + "," + NewLineString;
+					ChangedCode = ChangedCode + "," + NewLineWithTabAndSpaceString;
 			}
 
 		}

@@ -64,7 +64,7 @@ public class Data extends StatementAssistRegex implements IAssistRegex {
 
 				}
 				if (statementIterator.hasNext())
-					ChangedCode = ChangedCode + "," + NewLineString;
+					ChangedCode = ChangedCode + "," + NewLineWithTabAndSpaceString;
 			}
 
 		}

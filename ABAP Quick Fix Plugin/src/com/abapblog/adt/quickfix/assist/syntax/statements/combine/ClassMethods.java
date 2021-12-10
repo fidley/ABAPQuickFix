@@ -62,7 +62,7 @@ public class ClassMethods extends StatementAssistRegex implements IAssistRegex {
 
 				}
 				if (statementIterator.hasNext())
-					ChangedCode = ChangedCode + ",";
+					ChangedCode = ChangedCode + "," + NewLineWithTabAndSpaceString;
 			}
 
 		}
