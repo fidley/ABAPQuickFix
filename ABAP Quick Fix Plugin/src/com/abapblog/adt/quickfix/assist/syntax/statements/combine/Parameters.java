@@ -62,7 +62,7 @@ public class Parameters extends StatementAssistRegex implements IAssistRegex {
 
 				}
 				if (statementIterator.hasNext())
-					ChangedCode = ChangedCode + ",";
+					ChangedCode = ChangedCode + "," + NewLineWithTabAndSpaceString;
 			}
 
 		}

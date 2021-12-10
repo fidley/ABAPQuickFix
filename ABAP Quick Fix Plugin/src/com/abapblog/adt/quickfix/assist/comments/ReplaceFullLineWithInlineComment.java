@@ -7,9 +7,9 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 
 public class ReplaceFullLineWithInlineComment extends StatementAssistRegex implements IAssistRegex {
-	
+
 	private final String FIRST_CHAR_OF_FULLLINE_COMMENT = "(^\\*)";
-	
+
 	public ReplaceFullLineWithInlineComment(IQuickAssistInvocationContext context) {
 		super(context);
 	}
