@@ -18,7 +18,7 @@ public class Refresh extends StatementAssistRegex implements IAssistRegex {
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePattern = "\\r\\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
-	private String MatchPattern = "(?s)\s+refresh\\s*:*\\s+(.*)";
+	private String MatchPattern = "(?s)\\s*refresh\\s*:*\\s+(.*)";
 	private String ReplacePattern = "$1";
 	private boolean assistWithNext;
 	private boolean assistWithPrevious;
