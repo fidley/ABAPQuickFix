@@ -25,7 +25,7 @@ public class TranslateCommentToEnglish implements IQuickAssistProcessor {
 			String sourceCode = context.getSourceViewer().getDocument().get();
 			int lenght = context.getSourceViewer().getSelectedRange().y;
 			int offset = context.getSourceViewer().getSelectedRange().x;
-			return commentParser.haveComment(sourceCode, offset, offset + lenght);
+			return commentParser.hasComments(sourceCode, offset, offset + lenght);
 
 		}
 		;

@@ -20,6 +20,14 @@
   <extension
          point="com.sap.adt.tools.core.ui.quickAssistProcessors">
          <quickAssistProcessor
+          id="com.abapblog.adt.quickfix.abapQuickFixRFLC"
+          class="com.abapblog.adt.quickfix.assist.comments.ReplaceFullLineWithInlineComment"
+          name="ABAP Quick Assist Processor Replace Fulline with Inline Comments">
+          </quickAssistProcessor>
+   </extension>
+  <extension
+         point="com.sap.adt.tools.core.ui.quickAssistProcessors">
+         <quickAssistProcessor
           id="com.abapblog.adt.quickfix.abapQuickFixRIC"
           class="com.abapblog.adt.quickfix.assist.iconConstants.ReplaceIconsWithConstants"
           name="ABAP Quick Assist Processor Replace Icons With Constants">
