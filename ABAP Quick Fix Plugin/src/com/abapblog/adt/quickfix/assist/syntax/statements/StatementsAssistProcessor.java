@@ -160,8 +160,6 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new Lt(context));
 		assists.add(new Ne(context));
 		assists.add(new AlignOperators(context));
-		assists.add(new ReplaceFullLineWithInlineComment(context));
-
 	}
 
 	@Override

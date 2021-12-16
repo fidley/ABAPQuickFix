@@ -23,7 +23,7 @@ public class RemoveAllComments implements IQuickAssistProcessor {
 		}
 		commentParser = new AbapQuickFixRemoveCommentsCodeParser();
 		String sourceCode = context.getSourceViewer().getDocument().get();
-		return commentParser.haveComment(sourceCode, 0, sourceCode.length());
+		return commentParser.hasComments(sourceCode, 0, sourceCode.length());
 	}
 
 	@Override

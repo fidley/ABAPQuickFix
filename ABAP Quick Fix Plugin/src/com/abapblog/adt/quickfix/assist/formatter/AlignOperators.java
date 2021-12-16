@@ -104,6 +104,9 @@ public class AlignOperators extends StatementAssistAdt {
 		int loopOffset = selectionStart;
 		while (loopOffset <= selectionEnd) {
 			Token currentToken = scannerServices.getNextToken(document, loopOffset);
+			if (currentToken == null) {
+				break;
+			}
 			loopOffset = currentToken.offset + currentToken.name.length();
 			if (isTokenAnOperator(currentToken)) {
 

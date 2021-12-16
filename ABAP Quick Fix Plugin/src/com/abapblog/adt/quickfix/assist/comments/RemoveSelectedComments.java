@@ -17,15 +17,13 @@ public class RemoveSelectedComments implements IQuickAssistProcessor {
 	public boolean canAssist(IQuickAssistInvocationContext context) {
 		commentParser = new AbapQuickFixRemoveCommentsCodeParser();
 		String sourceCode = context.getSourceViewer().getDocument().get();
-		int lenght = context.getSourceViewer().getSelectedRange().y;
+		int length = context.getSourceViewer().getSelectedRange().y;
 		int offset = context.getSourceViewer().getSelectedRange().x;
-		return commentParser.haveComment(sourceCode, offset, offset + lenght);
-
+		return commentParser.hasComments(sourceCode, offset, offset + length);
 	}
 
 	@Override
 	public boolean canFix(Annotation arg0) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -33,14 +31,14 @@ public class RemoveSelectedComments implements IQuickAssistProcessor {
 	public ICompletionProposal[] computeQuickAssistProposals(IQuickAssistInvocationContext context) {
 		List<ICompletionProposal> proposals = new ArrayList<>();
 		if (canAssist(context)) {
-			int lenght = context.getSourceViewer().getSelectedRange().y;
+			int length = context.getSourceViewer().getSelectedRange().y;
 			int offset = context.getSourceViewer().getSelectedRange().x;
 
 			String sourceCode = context.getSourceViewer().getDocument().get();
 
 			Image image = null;
 			CompletionProposal cPropSelectedComments = new CompletionProposal(
-					commentParser.parse(sourceCode.substring( offset, offset + lenght)), offset, lenght, 0, image,
+					commentParser.parse(sourceCode.substring( offset, offset + length)), offset, length, 0, image,
 					"Remove ABAP Comments in selection", null,
 					"Removes all ABAP Comments from the selected code. Please think twice before using it.");
 			proposals.add(cPropSelectedComments);
@@ -52,7 +50,6 @@ public class RemoveSelectedComments implements IQuickAssistProcessor {
 
 	@Override
 	public String getErrorMessage() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

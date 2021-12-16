@@ -15,7 +15,7 @@ public class RemoveFullLineCommentsFromStatement extends StatementAssistRegex im
 
 	@Override
 	public String getMatchPattern() {
-		return AbapQuickFixRemoveCommentsCodeParser.fullLineCommentPattern;
+		return AbapQuickFixRemoveCommentsCodeParser.FULL_LINE_COMMENT_PATERN;
 	}
 
 	@Override
