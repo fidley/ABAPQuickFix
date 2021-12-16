@@ -18,8 +18,9 @@ public class AbapQuickFixRemoveCommentsCodeParser {
 	}
 	
 	public Boolean hasFullLineComments(String codeText, int start, int end) {
+		String selectedCode = codeText.substring(start,end);
 		Pattern pattern = Pattern.compile(FIRST_CHAR_OF_FULL_LINE_COMMENT, Pattern.MULTILINE);
-		Matcher matcher = pattern.matcher(codeText);
+		Matcher matcher = pattern.matcher(selectedCode);
 		return matcher.find();
 	}
 	
