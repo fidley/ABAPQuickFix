@@ -1,18 +1,15 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.move;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class MoveExact extends StatementAssistRegex implements IAssistRegex {
+public class MoveExact extends StatementAssist implements IAssistRegex {
 
 	private static final String moveExactPattern = "(?s)(move)\\s+(exact)\\s+(.*)\\s+(to)\\s+(.*)";
 	private static final String replacemoveExactPattern = "$5 = EXACT #( $3 )";
 
-	public MoveExact(IQuickAssistInvocationContext context) {
-		super(context);
+	public MoveExact() {
+		super();
 	}
 
 	@Override
@@ -38,12 +35,6 @@ public class MoveExact extends StatementAssistRegex implements IAssistRegex {
 
 	@Override
 	public String getAssistLongText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image getAssistIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

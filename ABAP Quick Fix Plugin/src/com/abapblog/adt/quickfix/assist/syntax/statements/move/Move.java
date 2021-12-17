@@ -1,18 +1,15 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.move;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class Move extends StatementAssistRegex implements IAssistRegex {
+public class Move extends StatementAssist implements IAssistRegex {
 
 	private static final String movePattern = "(?s)(move)\\s*:?\\s+(.*)\\s+(to)\\s+(.*)";
 	private static final String replaceMovePattern = "$4 = $2";
 
-	public Move(IQuickAssistInvocationContext context) {
-		super(context);
+	public Move() {
+		super();
 	}
 
 	@Override
@@ -43,14 +40,8 @@ public class Move extends StatementAssistRegex implements IAssistRegex {
 	}
 
 	@Override
-	public Image getAssistIcon() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean canAssist() {
-		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern()) && !(new MoveExact(context).canAssist())) {
+		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern()) && !(new MoveExact().canAssist())) {
 			return true;
 		}
 		return false;

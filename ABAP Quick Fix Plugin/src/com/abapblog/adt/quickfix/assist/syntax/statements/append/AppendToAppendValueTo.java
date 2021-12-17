@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapStatement;
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class AppendToAppendValueTo extends StatementAssistRegex implements IAssistRegex {
+public class AppendToAppendValueTo extends StatementAssist implements IAssistRegex {
 
 	private static final String BeginningOfStatement = "\r\n\tAPPEND VALUE #(  ";
-	private String EndOfStatement = " ) TO internalTable";
+	private String EndOfStatement = " ) TO internalTable.";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
@@ -25,8 +23,8 @@ public class AppendToAppendValueTo extends StatementAssistRegex implements IAssi
 	private boolean assistWithPrevious;
 	private List<AbapStatement> matchedStatements;
 
-	public AppendToAppendValueTo(IQuickAssistInvocationContext context) {
-		super(context);
+	public AppendToAppendValueTo() {
+		super();
 	}
 
 	@Override
@@ -55,7 +53,7 @@ public class AppendToAppendValueTo extends StatementAssistRegex implements IAssi
 							.replaceAll(multipleEmptyLines, NewLineString).replaceFirst(NewLinePatternWithSpaces, "");
 		}
 
-		return BeginningOfStatement + ChangedCode + EndOfStatement;
+		return StringCleaner.clean(BeginningOfStatement + ChangedCode + EndOfStatement);
 	}
 
 	@Override
@@ -65,12 +63,6 @@ public class AppendToAppendValueTo extends StatementAssistRegex implements IAssi
 
 	@Override
 	public String getAssistLongText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image getAssistIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

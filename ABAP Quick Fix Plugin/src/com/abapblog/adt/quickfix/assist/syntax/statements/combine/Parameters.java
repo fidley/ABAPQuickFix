@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapStatement;
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class Parameters extends StatementAssistRegex implements IAssistRegex {
+public class Parameters extends StatementAssist implements IAssistRegex {
 
 	private static final String BeginningOfStatement = "\r\n\tPARAMETERS: ";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";
@@ -19,13 +17,13 @@ public class Parameters extends StatementAssistRegex implements IAssistRegex {
 	private static final String NewLinePattern = "\\r\\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
 	private String MatchPattern = "(?s)\\s*parameters\\s*:*\\s+(.*)";
-	private String ReplacePattern = "$1";
+	private String ReplacePattern = "\r\n$1";
 	private boolean assistWithNext;
 	private boolean assistWithPrevious;
 	private List<AbapStatement> matchedStatements;
 
-	public Parameters(IQuickAssistInvocationContext context) {
-		super(context);
+	public Parameters() {
+		super();
 	}
 
 	@Override
@@ -67,7 +65,7 @@ public class Parameters extends StatementAssistRegex implements IAssistRegex {
 
 		}
 
-		return ChangedCode;
+		return StringCleaner.clean(ChangedCode + ".");
 	}
 
 	@Override
@@ -77,12 +75,6 @@ public class Parameters extends StatementAssistRegex implements IAssistRegex {
 
 	@Override
 	public String getAssistLongText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image getAssistIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,14 +1,16 @@
 package com.abapblog.adt.quickfix.assist.comments;
 
 import java.util.ArrayList;
-
 import java.util.List;
+
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
+
+import com.abapblog.adt.quickfix.assist.utility.QuickFixIcon;
 
 public class RemoveSelectedComments implements IQuickAssistProcessor {
 	AbapQuickFixRemoveCommentsCodeParser commentParser;
@@ -36,9 +38,9 @@ public class RemoveSelectedComments implements IQuickAssistProcessor {
 
 			String sourceCode = context.getSourceViewer().getDocument().get();
 
-			Image image = null;
+			Image image = QuickFixIcon.get();
 			CompletionProposal cPropSelectedComments = new CompletionProposal(
-					commentParser.parse(sourceCode.substring( offset, offset + length)), offset, length, 0, image,
+					commentParser.parse(sourceCode.substring(offset, offset + length)), offset, length, 0, image,
 					"Remove ABAP Comments in selection", null,
 					"Removes all ABAP Comments from the selected code. Please think twice before using it.");
 			proposals.add(cPropSelectedComments);

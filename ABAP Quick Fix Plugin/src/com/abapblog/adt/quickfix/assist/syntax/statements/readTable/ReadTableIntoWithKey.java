@@ -1,15 +1,12 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.readTable;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class ReadTableIntoWithKey extends StatementAssistRegex implements IAssistRegex {
+public class ReadTableIntoWithKey extends StatementAssist implements IAssistRegex {
 
-	public ReadTableIntoWithKey(IQuickAssistInvocationContext context) {
-		super(context);
+	public ReadTableIntoWithKey() {
+		super();
 	}
 
 	@Override
@@ -34,15 +31,9 @@ public class ReadTableIntoWithKey extends StatementAssistRegex implements IAssis
 	}
 
 	@Override
-	public Image getAssistIcon() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean canAssist() {
 		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())
-				&& !(new ReadTableReferenceIntoWithKey(context).canAssist())) {
+				&& !(new ReadTableReferenceIntoWithKey().canAssist())) {
 			return true;
 		}
 		return false;

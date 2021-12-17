@@ -1,13 +1,10 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.methods;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class MethodOmitExporting extends StatementAssistRegex implements IAssistRegex {
+public class MethodOmitExporting extends StatementAssist implements IAssistRegex {
 
 	private static final String omitExportingPattern = "(?s)(.*(->|=>).*)EXPORTING(.*\\s+(\\r?\\n)*(.*))\\)";
 	private static final String importing = "importing";
@@ -17,8 +14,8 @@ public class MethodOmitExporting extends StatementAssistRegex implements IAssist
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
 
-	public MethodOmitExporting(IQuickAssistInvocationContext context) {
-		super(context);
+	public MethodOmitExporting() {
+		super();
 	}
 
 	@Override
@@ -50,12 +47,6 @@ public class MethodOmitExporting extends StatementAssistRegex implements IAssist
 
 	@Override
 	public String getAssistLongText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image getAssistIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

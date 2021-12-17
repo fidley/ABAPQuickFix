@@ -3,8 +3,8 @@ package com.abapblog.adt.quickfix.assist.syntax.codeParser;
 public class StringCleaner {
 
 	public static String doubleSpacePattern = "(?s)( {2,})";
-	public static String doubleEnterPattern = "(?s)((\\r?\\n){2,})";
-	public static String EnterPattern = "(?s)((\\r?\\n){1,})";
+	public static String doubleEnterPattern = "(?s)((\\r?\\n\\t*\\s*){2,})";
+	public static String EnterPattern = "(?s)((\\r?\\n\\t*\\s*){1,})";
 	public static String lineBreakAtEndPattern = "(?s)\\s*(\\r?\\n)+\\s*$";
 	public static String lineBreakAtEndOfMethodPattern = "(?s)(\\s)*(\\r?\\n)+(\\s)*(\\))(\\s)*(\\r?\\n)*(\\s)*$";
 
