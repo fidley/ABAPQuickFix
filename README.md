@@ -29,3 +29,4 @@ Functions so far:
 - Omit self reference ME->
 - Replace operators EQ,NE,GT,GE,LT,LE with =,<>,>,>=,<,<=
 - Align operators (in selected code)
+- Replace Full Line Comment with In-line comment
