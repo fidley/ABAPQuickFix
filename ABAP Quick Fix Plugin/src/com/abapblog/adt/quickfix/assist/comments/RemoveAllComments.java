@@ -11,6 +11,7 @@ import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.Activator;
+import com.abapblog.adt.quickfix.assist.utility.QuickFixIcon;
 import com.abapblog.adt.quickfix.preferences.PreferenceConstants;
 
 public class RemoveAllComments implements IQuickAssistProcessor {
@@ -36,7 +37,7 @@ public class RemoveAllComments implements IQuickAssistProcessor {
 		List<ICompletionProposal> proposals = new ArrayList<>();
 		if (canAssist(context)) {
 			String sourceCode = context.getSourceViewer().getDocument().get();
-			Image image = null;
+			Image image = QuickFixIcon.get();
 			CompletionProposal cPropAllComments = new CompletionProposal(commentParser.parse(sourceCode), 0,
 					sourceCode.length(), 0, image, "Remove all ABAP Comments", null,
 					"Removes all ABAP Comments from the code. Please think twice before using it.");

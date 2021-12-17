@@ -1,19 +1,16 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.readTable;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class ReadTableWithKeyTransportingNoFields extends StatementAssistRegex implements IAssistRegex {
+public class ReadTableWithKeyTransportingNoFields extends StatementAssist implements IAssistRegex {
 
 	private static final String NOT = "NOT";
 	private static final String CODE = "Code";
 
-	public ReadTableWithKeyTransportingNoFields(IQuickAssistInvocationContext context) {
-		super(context);
+	public ReadTableWithKeyTransportingNoFields() {
+		super();
 	}
 
 	@Override
@@ -35,12 +32,6 @@ public class ReadTableWithKeyTransportingNoFields extends StatementAssistRegex i
 	public String getAssistLongText() {
 		// TODO Auto-generated method stub
 		return "";
-	}
-
-	@Override
-	public Image getAssistIcon() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

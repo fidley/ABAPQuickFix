@@ -1,61 +1,53 @@
 package com.abapblog.adt.quickfix.assist.syntax.codeParser;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.jface.text.BadLocationException;
+
 import com.abapblog.adt.quickfix.assist.utility.RegularExpressionUtils;
+import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
 
 public class AbapStatement {
 	private static final String fullLineCommentPattern = "^(\\*.*)|^((\\r\\n)+\\*.*)";
 	private int beginOfStatement;
 	private int endOfStatement;
 	private String Statement;
-	private String Code;
+	public List<Token> statementTokens;
 	private boolean FullLineComment;
 
-	public AbapStatement(String code, int offset) {
-		Code = code;
-		String Prefix = "";
-		String Suffix = "";
-		if (offset >= 0) {
-			for (int i = offset; i > 0; i--) {
-				if (Code.charAt(i) == '.')
-					break;
-				Prefix = Code.charAt(i) + Prefix;
-				beginOfStatement = i;
+	public AbapStatement(int offset) {
+		int moveOffsetLeftForDot = 0;
+		try {
+			if (AbapCodeReader.scannerServices.isDot(AbapCodeReader.document.getChar(offset))) {
+				moveOffsetLeftForDot = 1;
 			}
-
-			for (int i = offset + 1; i > 0; i++) {
-				try {
-					if (Code.charAt(i) == '.') {
-						endOfStatement = i - 1;
-						break;
-					}
-
-					Suffix = Suffix + Code.charAt(i);
-					endOfStatement = i;
-				} catch (StringIndexOutOfBoundsException e) {
-					break;
-				}
-			}
-			Statement = Prefix + Suffix;
-			checkFullLineComment();
-
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		beginOfStatement = AbapCodeReader.scannerServices.goBackToDot(AbapCodeReader.document,
+				offset - moveOffsetLeftForDot) + 1;
+		endOfStatement = AbapCodeReader.scannerServices.goForwardToDot(AbapCodeReader.document, offset);
+		statementTokens = AbapCodeReader.scannerServices.getStatementTokens(AbapCodeReader.document, beginOfStatement);
+		Statement = AbapCodeReader.getCode().substring(beginOfStatement, getEndOfStatement());
+		checkFullLineComment();
+
 	}
 
 	private void checkFullLineComment() {
-		if (matchPatternSingleLine(fullLineCommentPattern))
+		if (matchPatternSingleLine(fullLineCommentPattern) && statementTokens.size() == 0)
 			setFullLineComment(true);
 	}
 
 	public AbapStatement getNextAbapStatement() {
-		return new AbapStatement(Code, endOfStatement + 2);
+		return new AbapStatement(endOfStatement + 2);
 
 	}
 
 	public AbapStatement getPreviousAbapStatement() {
-		return new AbapStatement(Code, beginOfStatement - 2);
+		return new AbapStatement(beginOfStatement - 2);
 	}
 
 	public String getStatement() {
@@ -71,7 +63,7 @@ public class AbapStatement {
 	}
 
 	public int getStatementLength() {
-		return endOfStatement - beginOfStatement + 1;
+		return endOfStatement - beginOfStatement;
 	}
 
 	public Boolean matchPattern(String pattern) {

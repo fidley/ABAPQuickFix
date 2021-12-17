@@ -1,16 +1,13 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.global;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.comments.AbapQuickFixRemoveCommentsCodeParser;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class RemoveFullLineCommentsFromStatement extends StatementAssistRegex implements IAssistRegex {
+public class RemoveFullLineCommentsFromStatement extends StatementAssist implements IAssistRegex {
 
-	public RemoveFullLineCommentsFromStatement(IQuickAssistInvocationContext context) {
-		super(context);
+	public RemoveFullLineCommentsFromStatement() {
+		super();
 	}
 
 	@Override
@@ -35,12 +32,6 @@ public class RemoveFullLineCommentsFromStatement extends StatementAssistRegex im
 
 	@Override
 	public String getAssistLongText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image getAssistIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

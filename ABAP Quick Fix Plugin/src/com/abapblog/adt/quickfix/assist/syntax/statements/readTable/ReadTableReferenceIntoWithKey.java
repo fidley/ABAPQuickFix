@@ -1,15 +1,12 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.readTable;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class ReadTableReferenceIntoWithKey extends StatementAssistRegex implements IAssistRegex {
+public class ReadTableReferenceIntoWithKey extends StatementAssist implements IAssistRegex {
 
-	public ReadTableReferenceIntoWithKey(IQuickAssistInvocationContext context) {
-		super(context);
+	public ReadTableReferenceIntoWithKey() {
+		super();
 	}
 
 	@Override
@@ -31,12 +28,6 @@ public class ReadTableReferenceIntoWithKey extends StatementAssistRegex implemen
 	public String getAssistLongText() {
 		// TODO Auto-generated method stub
 		return "";
-	}
-
-	@Override
-	public Image getAssistIcon() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

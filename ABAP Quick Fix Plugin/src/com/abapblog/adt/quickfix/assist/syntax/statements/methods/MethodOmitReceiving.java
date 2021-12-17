@@ -1,21 +1,18 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.methods;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class MethodOmitReceiving extends StatementAssistRegex implements IAssistRegex {
+public class MethodOmitReceiving extends StatementAssist implements IAssistRegex {
 
 	private static final String omitReceivingPattern = "(?s)(.*(->|=>).*)RECEIVING.*=\\s+(\\r?\\n)*(.*)\\)";
 	private static final String replaceOmitReceivingPattern = "\r\n$4 = $1 )";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
 
-	public MethodOmitReceiving(IQuickAssistInvocationContext context) {
-		super(context);
+	public MethodOmitReceiving() {
+		super();
 	}
 
 	@Override
@@ -47,12 +44,6 @@ public class MethodOmitReceiving extends StatementAssistRegex implements IAssist
 
 	@Override
 	public String getAssistLongText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image getAssistIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,23 +1,20 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.combine;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class SplitToSeveralStatements extends StatementAssistRegex implements IAssistRegex {
+public class SplitToSeveralStatements extends StatementAssist implements IAssistRegex {
 
 	private static final String BeginningOfStatement = "\r\n";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
 	private String multipleEmptyLines = "(\\r?\\n?(\\r?\\n))+";
-	private String MatchPattern = "(?s)(.*):\\s+(\\r?\\n)*(.*\\s*,.*)";
+	private String MatchPattern = "(?s)(.*?):\\s+(\\r?\\n)*(.*\\s*,.*)";
 	private String ReplacePattern = "$3";
 	private String MatchedStatement;
 
-	public SplitToSeveralStatements(IQuickAssistInvocationContext context) {
-		super(context);
+	public SplitToSeveralStatements() {
+		super();
 	}
 
 	@Override
@@ -54,12 +51,6 @@ public class SplitToSeveralStatements extends StatementAssistRegex implements IA
 
 	@Override
 	public String getAssistLongText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image getAssistIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

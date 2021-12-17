@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapStatement;
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class ClassMethods extends StatementAssistRegex implements IAssistRegex {
+public class ClassMethods extends StatementAssist implements IAssistRegex {
 
 	private static final String BeginningOfStatement = "\r\n\tCLASS-METHODS: ";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";
@@ -24,8 +22,8 @@ public class ClassMethods extends StatementAssistRegex implements IAssistRegex {
 	private boolean assistWithPrevious;
 	private List<AbapStatement> matchedStatements;
 
-	public ClassMethods(IQuickAssistInvocationContext context) {
-		super(context);
+	public ClassMethods() {
+		super();
 	}
 
 	@Override
@@ -67,7 +65,7 @@ public class ClassMethods extends StatementAssistRegex implements IAssistRegex {
 
 		}
 
-		return ChangedCode;
+		return StringCleaner.clean(ChangedCode + ".");
 	}
 
 	@Override
@@ -77,12 +75,6 @@ public class ClassMethods extends StatementAssistRegex implements IAssistRegex {
 
 	@Override
 	public String getAssistLongText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image getAssistIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

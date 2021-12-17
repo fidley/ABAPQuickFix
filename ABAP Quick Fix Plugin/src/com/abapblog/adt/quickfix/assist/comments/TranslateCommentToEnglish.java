@@ -12,6 +12,7 @@ import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.Activator;
+import com.abapblog.adt.quickfix.assist.utility.QuickFixIcon;
 import com.abapblog.adt.quickfix.preferences.PreferenceConstants;
 
 public class TranslateCommentToEnglish implements IQuickAssistProcessor {
@@ -47,7 +48,7 @@ public class TranslateCommentToEnglish implements IQuickAssistProcessor {
 
 			String sourceCode = context.getSourceViewer().getDocument().get();
 
-			Image image = null;
+			Image image = QuickFixIcon.get();
 			CompletionProposal cPropSelectedComments;
 			try {
 				String translatedText = Translator.main(sourceCode.substring(offset, offset + lenght));

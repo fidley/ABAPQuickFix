@@ -1,14 +1,20 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
+import org.eclipse.swt.graphics.Image;
+
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapCodeReader;
+import com.abapblog.adt.quickfix.assist.utility.QuickFixIcon;
 
 public abstract class StatementAssist implements IAssist {
+	protected AbapCodeReader CodeReader;
 
-	protected IQuickAssistInvocationContext context;
+	public StatementAssist() {
+		CodeReader = AbapCodeReader.getInstance();
+	}
 
-	public StatementAssist(IQuickAssistInvocationContext context) {
-		this.context = context;
-
+	@Override
+	public Image getAssistIcon() {
+		return QuickFixIcon.get();
 	}
 
 }

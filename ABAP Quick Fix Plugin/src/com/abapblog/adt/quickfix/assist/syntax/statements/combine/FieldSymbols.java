@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapStatement;
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class FieldSymbols extends StatementAssistRegex implements IAssistRegex {
+public class FieldSymbols extends StatementAssist implements IAssistRegex {
 
 	private static final String BeginningOfStatement = "\r\n\tFIELD-SYMBOLS: ";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";
@@ -24,8 +22,8 @@ public class FieldSymbols extends StatementAssistRegex implements IAssistRegex {
 	private boolean assistWithPrevious;
 	private List<AbapStatement> matchedStatements;
 
-	public FieldSymbols(IQuickAssistInvocationContext context) {
-		super(context);
+	public FieldSymbols() {
+		super();
 	}
 
 	@Override
@@ -67,7 +65,7 @@ public class FieldSymbols extends StatementAssistRegex implements IAssistRegex {
 
 		}
 
-		return ChangedCode;
+		return StringCleaner.clean(ChangedCode + ".");
 	}
 
 	@Override
@@ -77,12 +75,6 @@ public class FieldSymbols extends StatementAssistRegex implements IAssistRegex {
 
 	@Override
 	public String getAssistLongText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image getAssistIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}

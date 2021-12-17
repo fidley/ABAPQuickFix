@@ -1,32 +1,30 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.operators;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistAdt;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
 
-public abstract class Operators extends StatementAssistAdt {
+public abstract class Operators extends StatementAssist {
 
 	protected String operatorName;
 	protected String replacement;
 
-	public Operators(IQuickAssistInvocationContext context) {
-		super(context);
+	public Operators() {
+		super();
 	}
 
 	@Override
 	public String getChangedCode() {
-		String code = sourcePage.getSource();
-		for (int i = 0; i < statementTokens.size(); i++) {
-			Token currentToken = statementTokens.get(i);
+		String code = CodeReader.sourcePage.getSource();
+		for (int i = 0; i < CodeReader.CurrentStatement.statementTokens.size(); i++) {
+			Token currentToken = CodeReader.CurrentStatement.statementTokens.get(i);
 			if (currentToken.name.toUpperCase().equals(operatorName)
-					&& scannerServices.isKeyword(sourcePage, currentToken.offset + 1, true)) {
+					&& CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true)) {
 				code = code.substring(0, currentToken.offset) + replacement + code.substring(currentToken.offset + 2);
 			}
 		}
-		return StringCleaner.clean(code.substring(beginning, end));
+		return StringCleaner.clean(code.substring(CodeReader.CurrentStatement.getBeginOfStatement(),
+				CodeReader.CurrentStatement.getEndOfStatement()));
 
 	}
 
@@ -41,17 +39,12 @@ public abstract class Operators extends StatementAssistAdt {
 	}
 
 	@Override
-	public Image getAssistIcon() {
-		return null;
-	}
-
-	@Override
 	public boolean canAssist() {
 
-		for (int i = 0; i < statementTokens.size(); i++) {
-			Token currentToken = statementTokens.get(i);
+		for (int i = 0; i < CodeReader.CurrentStatement.statementTokens.size(); i++) {
+			Token currentToken = CodeReader.CurrentStatement.statementTokens.get(i);
 			if (currentToken.name.toUpperCase().equals(operatorName)
-					&& scannerServices.isKeyword(sourcePage, currentToken.offset + 1, true)) {
+					&& CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true)) {
 				return true;
 			}
 		}
@@ -60,12 +53,12 @@ public abstract class Operators extends StatementAssistAdt {
 
 	@Override
 	public int getStartOfReplace() {
-		return beginning;
+		return CodeReader.CurrentStatement.getBeginOfStatement();
 	}
 
 	@Override
 	public int getReplaceLength() {
-		return end - beginning;
+		return CodeReader.CurrentStatement.getStatementLength();
 	}
 
 }

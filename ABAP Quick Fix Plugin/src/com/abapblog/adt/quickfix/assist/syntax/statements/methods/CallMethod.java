@@ -1,18 +1,15 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.methods;
 
-import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
-import org.eclipse.swt.graphics.Image;
-
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class CallMethod extends StatementAssistRegex implements IAssistRegex {
+public class CallMethod extends StatementAssist implements IAssistRegex {
 
 	private static final String callMethodPattern = "(?s)(call)\\s+.*(method)\\s+(\\w+(->)*(=>)*\\w+)(.*)";
 	private static final String replaceCallMethodPattern = "$3( $6 )";
 
-	public CallMethod(IQuickAssistInvocationContext context) {
-		super(context);
+	public CallMethod() {
+		super();
 	}
 
 	@Override
@@ -38,12 +35,6 @@ public class CallMethod extends StatementAssistRegex implements IAssistRegex {
 
 	@Override
 	public String getAssistLongText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Image getAssistIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}
