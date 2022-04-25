@@ -28,7 +28,11 @@ Functions so far:
 - Remove full line comments from statement
 - Omit self reference ME->
 - Replace operators EQ,NE,GT,GE,LT,LE with =,<>,>,>=,<,<=
+
+![EQ QuickFix](https://user-images.githubusercontent.com/7912195/165106328-defeb765-ca3a-4c31-bd97-9791f1721cdd.gif)
 - Align operators (in selected code)
+
+  ![QuickFixAlignOperators](https://user-images.githubusercontent.com/7912195/165106135-20c72b55-224c-4bf5-bc87-4c517a23ab9d.gif)
 - Replace Full Line Comment with In-line comment
 - Align TYPEs(and LIKE) in variable definitions)
 ![alignTypes](https://user-images.githubusercontent.com/7912195/165099044-719f4d22-3548-4ff8-a733-931b1a4d63a4.gif)
