@@ -1,6 +1,8 @@
 # ABAP Quick Fix plugin for ADT
 Installation from Marketplace https://marketplace.eclipse.org/content/abap-quick-fix 
 
+![Eclipse Marketplace](https://img.shields.io/eclipse-marketplace/favorites/abap-quick-fix)
+
 Direct installation from http://abapblog.com/eclipse/plugin/ABAPFavorites/
 
 ABAP Quick Fix
