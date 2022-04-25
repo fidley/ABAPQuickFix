@@ -11,6 +11,7 @@ import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 
 import com.abapblog.adt.quickfix.assist.formatter.AlignOperators;
+import com.abapblog.adt.quickfix.assist.formatter.AlignTypes;
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapCodeReader;
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToAppendValueTo;
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToInsertValueInto;
@@ -161,6 +162,8 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new Lt());
 		assists.add(new Ne());
 		assists.add(new AlignOperators());
+		assists.add(new AlignTypes());
+		// assists.add(new SelectSingle());
 	}
 
 	@Override
