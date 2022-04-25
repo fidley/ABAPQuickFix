@@ -30,3 +30,5 @@ Functions so far:
 - Replace operators EQ,NE,GT,GE,LT,LE with =,<>,>,>=,<,<=
 - Align operators (in selected code)
 - Replace Full Line Comment with In-line comment
+- Align TYPEs(and LIKE) in variable definitions)
+![alignTypes](https://user-images.githubusercontent.com/7912195/165099044-719f4d22-3548-4ff8-a733-931b1a4d63a4.gif)
