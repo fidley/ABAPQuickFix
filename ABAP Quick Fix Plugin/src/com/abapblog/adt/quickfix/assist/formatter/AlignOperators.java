@@ -27,7 +27,7 @@ public class AlignOperators extends StatementAssist {
 
 	@Override
 	public String getChangedCode() {
-		String sourceCode = "";
+		String sourceCode = CodeReader.getCode();
 		int addedOffset = 0;
 		int currentOffset = 0;
 		int currentLine = 0;
@@ -44,9 +44,9 @@ public class AlignOperators extends StatementAssist {
 			}
 
 			if (currentOffset < biggestOffset && currentLine != previousLine) {
-				sourceCode = CodeReader.getCode().substring(0, currentToken.offset + addedOffset)
+				sourceCode = sourceCode.substring(0, currentToken.offset + addedOffset)
 						+ getSpaces(biggestOffset - currentOffset)
-						+ CodeReader.getCode().substring(currentToken.offset + addedOffset);
+						+ sourceCode.substring(currentToken.offset + addedOffset);
 				addedOffset += biggestOffset - currentOffset;
 				previousLine = currentLine;
 			}
