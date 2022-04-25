@@ -2,6 +2,7 @@
 Installation from Marketplace https://marketplace.eclipse.org/content/abap-quick-fix 
 
 ![Eclipse Marketplace](https://img.shields.io/eclipse-marketplace/favorites/abap-quick-fix)
+![Downloads](https://img.shields.io/eclipse-marketplace/dt/abap-quick-fix)
 
 Direct installation from http://abapblog.com/eclipse/plugin/ABAPFavorites/
 
