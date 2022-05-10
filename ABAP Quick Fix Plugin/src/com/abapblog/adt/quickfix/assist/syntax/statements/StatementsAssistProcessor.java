@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.ISafeRunnable;
+import org.eclipse.core.runtime.RegistryFactory;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 
+import com.abapblog.adt.quickfix.IFixAppender;
 import com.abapblog.adt.quickfix.assist.formatter.AlignOperators;
 import com.abapblog.adt.quickfix.assist.formatter.AlignTypes;
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapCodeReader;
@@ -69,6 +75,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 	private List<IAssist> assists;
 	private List<ICompletionProposal> proposals;
 	private IQuickAssistInvocationContext context;
+    private static final String IFIXAPPENDER_ID = "com.abapblog.additional_quickfixes";
 
 	@Override
 	public boolean canAssist(IQuickAssistInvocationContext context) {
@@ -164,6 +171,35 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new AlignOperators());
 		assists.add(new AlignTypes());
 		// assists.add(new SelectSingle());
+
+        IConfigurationElement[] config = RegistryFactory.getRegistry().getConfigurationElementsFor(IFIXAPPENDER_ID);
+
+        ArrayList<StatementAssist> list = new ArrayList<StatementAssist>();
+        try {
+            for (IConfigurationElement e : config) {
+                final Object o = e.createExecutableExtension("class");
+                if (o instanceof IFixAppender) {
+                    ISafeRunnable runnable = new ISafeRunnable() {
+                        @Override
+                        public void handleException(Throwable e) {
+                            System.out.println("Exception in client");
+                        }
+
+                        @Override
+                        public void run() throws Exception {
+                            list.addAll(((IFixAppender) o).additional_fixes(context));
+                        }
+                    };
+
+                    SafeRunner.run(runnable);
+                }
+            }
+        } catch (CoreException ex) {
+            System.out.println(ex.getMessage());
+        }
+        for (StatementAssist statementAssist : list) {
+            assists.add(statementAssist);
+        }
 	}
 
 	@Override
