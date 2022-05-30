@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ABAP Quick Fix Plugin
 Bundle-SymbolicName: com.abapblog.adt.quickfix;singleton:=true
-Bundle-Version: 1.0.17.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: com.abapblog.adt.quickfix.Activator
 Bundle-Vendor: ABAPBlog.com
 Require-Bundle: org.eclipse.ui,
@@ -18,3 +18,8 @@ Automatic-Module-Name: com.abapblog.adt.quickfix
 Bundle-ActivationPolicy: lazy
 Import-Package: com.sap.adt.project.ui.util,
  org.eclipse.core.resources
+Export-Package: com.abapblog.adt.quickfix,
+ com.abapblog.adt.quickfix.assist.syntax.codeParser,
+ com.abapblog.adt.quickfix.assist.syntax.statements,
+ com.abapblog.adt.quickfix.assist.syntax.statements.move
+ 
