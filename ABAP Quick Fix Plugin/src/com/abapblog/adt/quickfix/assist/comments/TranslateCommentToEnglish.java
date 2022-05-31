@@ -11,9 +11,7 @@ import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
 
-import com.abapblog.adt.quickfix.Activator;
 import com.abapblog.adt.quickfix.assist.utility.QuickFixIcon;
-import com.abapblog.adt.quickfix.preferences.PreferenceConstants;
 
 public class TranslateCommentToEnglish implements IQuickAssistProcessor {
 	AbapQuickFixRemoveCommentsCodeParser commentParser;
@@ -71,6 +69,8 @@ public class TranslateCommentToEnglish implements IQuickAssistProcessor {
 	}
 
 	private boolean checkQuickFixAllowed() {
-		return Activator.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.P_TCTE_ALLOWED);
+		return false;
+		// return
+		// Activator.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.P_TCTE_ALLOWED);
 	}
 }
