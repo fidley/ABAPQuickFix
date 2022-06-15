@@ -75,7 +75,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 	private List<IAssist> assists;
 	private List<ICompletionProposal> proposals;
 	private IQuickAssistInvocationContext context;
-    private static final String IFIXAPPENDER_ID = "com.abapblog.additional_quickfixes";
+	private static final String IFIXAPPENDER_ID = "com.abapblog.additional_quickfixes";
 
 	@Override
 	public boolean canAssist(IQuickAssistInvocationContext context) {
@@ -90,9 +90,14 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 	@Override
 	public ICompletionProposal[] computeQuickAssistProposals(IQuickAssistInvocationContext context) {
 		this.context = context;
-		createAssistsList();
-		createProposals();
-		if (proposals.isEmpty()) {
+		try {
+			AbapCodeReader.getInstance(context);
+			createAssistsList();
+			createProposals();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		if (proposals == null || proposals.isEmpty()) {
 			return null;
 		} else {
 			return proposals.toArray(new ICompletionProposal[1]);
@@ -116,7 +121,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 	}
 
 	private void createAssistsList() {
-		AbapCodeReader.getInstance(context);
+
 		assists = new ArrayList<>();
 		assists.add(new ReadTableAssigningIndex());
 		assists.add(new ReadTableIndexAssigning());
@@ -172,34 +177,34 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new AlignTypes());
 		// assists.add(new SelectSingle());
 
-        IConfigurationElement[] config = RegistryFactory.getRegistry().getConfigurationElementsFor(IFIXAPPENDER_ID);
+		IConfigurationElement[] config = RegistryFactory.getRegistry().getConfigurationElementsFor(IFIXAPPENDER_ID);
 
-        ArrayList<StatementAssist> list = new ArrayList<StatementAssist>();
-        try {
-            for (IConfigurationElement e : config) {
-                final Object o = e.createExecutableExtension("class");
-                if (o instanceof IFixAppender) {
-                    ISafeRunnable runnable = new ISafeRunnable() {
-                        @Override
-                        public void handleException(Throwable e) {
-                            System.out.println("Exception in client");
-                        }
+		ArrayList<StatementAssist> list = new ArrayList<StatementAssist>();
+		try {
+			for (IConfigurationElement e : config) {
+				final Object o = e.createExecutableExtension("class");
+				if (o instanceof IFixAppender) {
+					ISafeRunnable runnable = new ISafeRunnable() {
+						@Override
+						public void handleException(Throwable e) {
+							System.out.println("Exception in client");
+						}
 
-                        @Override
-                        public void run() throws Exception {
-                            list.addAll(((IFixAppender) o).additional_fixes(context));
-                        }
-                    };
+						@Override
+						public void run() throws Exception {
+							list.addAll(((IFixAppender) o).additional_fixes(context));
+						}
+					};
 
-                    SafeRunner.run(runnable);
-                }
-            }
-        } catch (CoreException ex) {
-            System.out.println(ex.getMessage());
-        }
-        for (StatementAssist statementAssist : list) {
-            assists.add(statementAssist);
-        }
+					SafeRunner.run(runnable);
+				}
+			}
+		} catch (CoreException ex) {
+			System.out.println(ex.getMessage());
+		}
+		for (StatementAssist statementAssist : list) {
+			assists.add(statementAssist);
+		}
 	}
 
 	@Override

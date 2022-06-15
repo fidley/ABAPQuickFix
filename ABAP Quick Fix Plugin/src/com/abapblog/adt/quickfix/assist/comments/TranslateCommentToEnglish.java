@@ -11,7 +11,9 @@ import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
 
+import com.abapblog.adt.quickfix.Activator;
 import com.abapblog.adt.quickfix.assist.utility.QuickFixIcon;
+import com.abapblog.adt.quickfix.preferences.PreferenceConstants;
 
 public class TranslateCommentToEnglish implements IQuickAssistProcessor {
 	AbapQuickFixRemoveCommentsCodeParser commentParser;
@@ -40,7 +42,7 @@ public class TranslateCommentToEnglish implements IQuickAssistProcessor {
 	@Override
 	public ICompletionProposal[] computeQuickAssistProposals(IQuickAssistInvocationContext context) {
 		List<ICompletionProposal> proposals = new ArrayList<>();
-		if (canAssist(context) && Translator.doNotCallAgain == false) {
+		if (canAssist(context) && Translator.DO_NOT_CALL_AGAIN == false) {
 			int lenght = context.getSourceViewer().getSelectedRange().y;
 			int offset = context.getSourceViewer().getSelectedRange().x;
 
@@ -55,7 +57,7 @@ public class TranslateCommentToEnglish implements IQuickAssistProcessor {
 				proposals.add(cPropSelectedComments);
 				return proposals.toArray(new ICompletionProposal[1]);
 			} catch (IOException e) {
-				Translator.doNotCallAgain = true;
+				Translator.DO_NOT_CALL_AGAIN = true;
 				e.printStackTrace();
 			}
 
@@ -69,8 +71,6 @@ public class TranslateCommentToEnglish implements IQuickAssistProcessor {
 	}
 
 	private boolean checkQuickFixAllowed() {
-		return false;
-		// return
-		// Activator.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.P_TCTE_ALLOWED);
+		return Activator.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.P_TCTE_ALLOWED);
 	}
 }
