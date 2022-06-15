@@ -8,19 +8,22 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+import org.eclipse.json.provisonnal.com.eclipsesource.json.JsonArray;
+
 import com.abapblog.adt.quickfix.Activator;
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.preferences.PreferenceConstants;
 
 public class Translator {
-	public static Boolean doNotCallAgain = false;
+	public static Boolean DO_NOT_CALL_AGAIN = false;
 
 	public static String main(String args) throws IOException {
 		return translate("en", args);
 	}
 
 	private static String translate(String langTo, String text) throws IOException {
-		String urlStr = "http://abapblog.com/eclipse/plugin/translateAPI.php" + "?q=" + URLEncoder.encode(text, "UTF-8")
-				+ "&target=" + langTo;
+		String urlStr = "http://translate.google.com/translate_a/single?client=dict-chrome-ex&sl=auto&tl=en&dt=t&q="
+				+ URLEncoder.encode(text, "UTF-8");
 		URL url = new URL(urlStr);
 		StringBuilder response = new StringBuilder();
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -31,11 +34,23 @@ public class Translator {
 			response.append(inputLine);
 		}
 		in.close();
-		String result = response.toString().replaceAll("\"", "\r\n\"");
-		result = result.replaceAll("\\*", "\r\n\\*").replaceFirst("\r\n", "");
+		String result = parseJson(response);
 		result = removeLineBreaks(result);
 		result = removeCommentSigns(result);
-		return result.substring(0, result.length() - 1);
+		return StringCleaner.clean(result);
+	}
+
+	private static String parseJson(StringBuilder response) {
+		String jsonTranslation = "";
+		JsonArray jsonArray = JsonArray.readFrom(response.toString());
+
+		int len = jsonArray.get(0).asArray().size();
+		if (jsonArray.get(0).asArray() != null) {
+			for (int i = 0; i < len; i++) {
+				jsonTranslation = jsonTranslation + jsonArray.get(0).asArray().get(i).asArray().get(0).asString();
+			}
+		}
+		return jsonTranslation.toString();
 	}
 
 	private static String removeLineBreaks(String code) {
