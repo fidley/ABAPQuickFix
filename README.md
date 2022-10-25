@@ -6,7 +6,7 @@ Eclipse Marketplace Stats
 ![Eclipse Marketplace](https://img.shields.io/eclipse-marketplace/favorites/abap-quick-fix)
 ![Downloads](https://img.shields.io/eclipse-marketplace/dt/abap-quick-fix)
 
-Direct installation from http://abapblog.com/eclipse/plugin/ABAPFavorites/
+Direct installation from ttps://fidley.github.io/ADTPluginsUpdateSite/UpdateSite/
 
 ABAP Quick Fix
 Functions so far:
