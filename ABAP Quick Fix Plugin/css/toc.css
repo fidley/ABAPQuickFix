@@ -1,0 +1,165 @@
+
+html,
+#doc-body,
+body,
+p {
+	background-color: #FFF;
+	color: #333;
+	font-family: Verdana,sans-serif;
+}
+#doc-body,
+body {
+	margin: 0;
+	padding: 0 20px 20px 50px;
+}
+
+#doc-body,
+body,
+p,
+.doc-p
+li {
+	font-size: 13px !important;
+}
+
+.param-image {
+	vertical-align: middle;
+	padding-right: 5px;
+}
+
+.list {
+	font-size: 13px;
+	margin: 0;
+	padding: 0 20px 20px 30px;
+	font-family: Verdana,sans-serif;
+}
+
+.list li {
+	font-size: 13px;
+	padding: 2px 0;
+}
+
+figure {
+	text-align: center;
+	display: block;
+}
+
+blockquote {
+	position: relative;
+	font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+		sans-serif !important;
+	font-style: italic;
+	font-size: 14px;
+	padding: 5px 16px;
+	border-left: 5px solid rgba(0, 0, 0, .2);
+	background: rgba(0, 0, 0, .05);
+	margin: 13px 10px 13px 0;
+	color: #333;
+}
+
+figure figcaption {
+	font-size: 85%;
+	font-style: italic;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table td, table th {
+	border: 1px solid #dfe2e5;
+	padding: 6px 13px;
+}
+
+table th {
+	background-color: #f5f5f5;
+}
+
+.code {
+	background-color: rgba(27, 31, 35, .05);
+	border-radius: 3px;
+	font-size: 85%;
+	margin: 0;
+	padding: .2em .4em;
+	font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
+		monospace;
+}
+
+.example-description {
+	padding: 4px 0 0 0;
+}
+
+.heading {
+	color: #595959;
+	font-family: "Arial Black", Arial, Arial Unicode MS, Helvetica,
+		sans-serif;
+}
+
+a.link:link {
+	color: #0063a4;
+	text-decoration: none;
+}
+
+a.link:visited {
+	color: #0063a4;
+	text-decoration: none;
+}
+
+a.link:active {
+	color: #0063a4;
+	text-decoration: none;
+}
+
+a.link:hover {
+	color: #0063a4;
+	text-decoration: underline;
+}
+
+.button {
+	font-family: arial, sans-serif;
+}
+
+.inactive {
+	font-family: arial, sans-serif;
+	color: #919186;
+}
+
+.text {
+	font-family: arial, sans-serif;
+}
+
+.tab {
+	font-family: arial, sans-serif;
+}
+
+.groupbox {
+	font-family: arial, sans-serif;
+	color: #42423d;
+}
+
+.tableheader {
+	font-family: arial, sans-serif;
+	color: #42423d;
+}
+
+.nonedit {
+	font-family: arial, sans-serif;
+	color: #42423d;
+}
+
+.input {
+	font-family: arial, sans-serif;
+	background: #fefeee;
+	border: 0;
+	padding-left: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 5px;
+}
+
+.pulldown {
+	font-family: arial, sans-serif;
+	background: #fefeee;
+	border: 0;
+}

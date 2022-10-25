@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html id="doc-page">
+<head>
+<link rel="stylesheet" type="text/css" href="../css/toc.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ABAP Object Search</title>
+</head>
+
+<body id="doc-body">
+	<h2 class="heading">ABAP Object Search</h2>
+	<p>
+		The <i>ABAP Object Search</i> is similar to the <i>ABAP Quick
+			search</i> (i.e.
+		<code class="code">STRG</code>
+		+
+		<code class="code">SHIFT</code>
+		+
+		<code class="code">A</code>
+		). It is integrated in the eclipse <i>Search</i> dialog, which can be
+		called via
+		<code class="code">STRG</code>
+		+
+		<code class="code">H</code>
+		or the eclipse menu <i>Search ➠ Search...</i>
+	<p>
+	<p>It currently supports the following search types
+	<ul id="supported-types" class="list">
+		<li><a class="link" href="object_search/cds.html">CDS View</a></li>
+		<li><a class="link" href="object_search/dbtabview.html">Database
+				Table/View</a></li>
+		<li><a class="link" href="object_search/classintf.html">Class
+				/ Interface</a></li>
+	</ul>
+	</p>
+	<h3 class="heading">The User Interface</h3>
+	<figure id="figure1">
+		<img src="../images/SearchView-Overview.png">
+		<figcaption>
+			<strong>Figure 1:</strong> The Object Search Dialog
+		</figcaption>
+	</figure>
+	<!-- Description of general setup of the Search view -->
+	<p>The Object Search Dialog Page is structured into the following
+		controls</p>
+	<ol class="list">
+		<li>A Combo Box which lists the valid Object types</li>
+		<li>A text input control to enter object name search terms</li>
+		<li>A text input control to enter search filters. The control
+			supports content assist</li>
+		<li>A Checkbox to control which operator should be used to
+			connect the values of a given search parameter (see <a class="link"
+			href="#and_search_for_filter">Info</a>)
+		</li>
+		<li>A Scale to control the maximum number of search results that
+			should be returned</li>
+		<li>A text input control to enter the target ABAP Project. The
+			control supports content assist</li>
+	</ol>
+	<h3 class="heading">Content Assist</h3>
+	<p>
+		The Text Control for entering the search query provides assistance for
+		all available search filters. The available filters depend on the
+		current <em>ABAP Project</em> and the <em>Object Type</em>
+	</p>
+	<figure>
+		<img src="../images/SearchView-ContentAssistFilters.png">
+		<figcaption>
+			<strong>Figure 2:</strong> Content Assist for Search Filters
+		</figcaption>
+	</figure>
+	<p>Almost all search filters also provide further content
+		assistance to see which options are available (see the following
+		image)</p>
+	<figure>
+		<img src="../images/SearchView-ContentAssistParamExample.png">
+		<figcaption>
+			<strong>Figure 3:</strong> Content Assist for options for a search
+			filter
+		</figcaption>
+	</figure>
+
+	<h4 class="heading">Use Option exclusion to find objects that
+		don't comply with certain criteria</h4>
+	<p>
+		If you want to exclude entities which possess a certain option value
+		from the result view you do this either with a leading
+		<code class="code">
+			<strong>!</strong>
+		</code>
+		. So let's say you want objects whose description contains
+		<code class="code">Mat</code>
+		but don't want to see those which contain
+		<code class="code">cond</code>
+		you do this with the following query:
+		<code class="code">
+			<strong>desc</strong>:*Mat*,!*cond*
+		</code>
+		. See the concrete <a class="link" href="#supported-types">search
+			type</a> to see which parameters support this feature.
+	</p>
+
+	<h3 class="heading" id="and_search_for_filter">Additional search
+		settings</h3>
+	<h4 class="heading">
+		Use logical <strong>AND</strong> for options of search filters
+	</h4>
+	<p>
+		Normally the options of a search filter are interpreted with a logical
+		<code class="code">
+			<strong>OR</strong>
+		</code>
+		. So if you have the following query:
+		<code class="code">
+			<strong>field</strong>: product,plant
+		</code>
+		, the search would return all objects that have a field named <em>product</em>
+		<code class="code">
+			<strong>or</strong>
+		</code>
+		a field named <em>plant</em>
+	</p>
+	<p>
+		But sometimes you may want to find only the objects that have all the
+		specified fields. In this case you have to activate the setting <em>Use
+			"AND" instead of "OR" during search</em>. You can do this by setting the
+		checkbox in the search dialog (see <a class="link" href="#figure1">Figure
+			1</a>)
+	</p>
+	<p>Regardless of it's activation state this setting will only be
+		used for search filters where it makes sense, i.e. where multiple
+		values are at all possible.</p>
+
+	<h3 class="heading">The Search result View</h3>
+	<h4 class="heading">Working with the Search Results</h4>
+	<p>Once a search returns some results they are displayed in the
+		Search View. For each found object there are several options available</p>
+	<ul class="list">
+		<li>Opening the object in the corresponding eclipse editor (if
+			one is registered for the type) by double clicking on it</li>
+		<li>Open one or several selected objects via the context menu
+			item <code class="code">Open</code>
+		</li>
+	</ul>
+	<figure>
+		<img src="../images/SearchView-ContextMenu.png">
+		<figcaption>
+			<strong>Figure 4:</strong> Context Menu for a one or several nodes
+		</figcaption>
+	</figure>
+	<p>
+		If the tree node represents a <em>CDS View</em>, a <em>Database
+			Table</em> or a <em>Database View</em> There are also the following
+		options available via the context menu
+	</p>
+	<ul class="list">
+		<li>Open the selected objects in the <em>Data Preview</em> of ADT
+		</li>
+		<li>Open the selected objects in the SAP GUI Transaction <em>DB
+				Browser</em><br>
+			<blockquote>
+				<strong>Note</strong>: The DB Browser feature needs to be installed
+				in the ABAP System for this to work
+			</blockquote></li>
+	</ul>
+	<h4 class="heading">Sub Nodes of a Result Object</h4>
+	<p>
+		Every Result Object can be expanded to at least one level. Upon
+		expansion of one of these <em>ADT</em> objects, the sub nodes of the
+		object will be loaded. During the loading of the object's sub nodes
+		you will see a sub node called <em>Loading Contents...</em>.
+	</p>
+	<p>Once the sub nodes are available they will be displayed under
+		the ADT object</p>
+	<!-- <blockquote>
+		<strong>Note:</strong> The loading time depends greatly on the installed Database (server) of the
+		ABAP Project
+	</blockquote> -->
+	<figure>
+		<img src="../images/SearchView-ExpansionExample.png">
+		<figcaption>
+			<strong>Figure 5:</strong> Example of an expanded Tree Node
+		</figcaption>
+	</figure>
+
+</body>
+</html>

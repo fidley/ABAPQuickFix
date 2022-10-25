@@ -12,8 +12,10 @@ import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
 public class AbapStatement {
 	private static final String fullLineCommentPattern = "^(\\*.*)|^((\\r\\n)+\\*.*)";
 	private int beginOfStatement;
+	private int beginOfStatementReplacement;
 	private int endOfStatement;
 	private String Statement;
+	private String leadingCharacters = "";
 	public List<Token> statementTokens;
 	private boolean FullLineComment;
 
@@ -24,14 +26,20 @@ public class AbapStatement {
 				moveOffsetLeftForDot = 1;
 			}
 		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		beginOfStatement = AbapCodeReader.scannerServices.goBackToDot(AbapCodeReader.document,
 				offset - moveOffsetLeftForDot) + 1;
 		endOfStatement = AbapCodeReader.scannerServices.goForwardToDot(AbapCodeReader.document, offset);
 		statementTokens = AbapCodeReader.scannerServices.getStatementTokens(AbapCodeReader.document, beginOfStatement);
-		Statement = AbapCodeReader.getCode().substring(beginOfStatement, getEndOfStatement());
+		if (statementTokens.size() > 0) {
+			beginOfStatementReplacement = statementTokens.get(0).offset;
+			leadingCharacters = AbapCodeReader.getCode().substring(beginOfStatement, beginOfStatementReplacement);
+			Statement = AbapCodeReader.getCode().substring(beginOfStatementReplacement, getEndOfStatement());
+		} else {
+			Statement = AbapCodeReader.getCode().substring(beginOfStatement, getEndOfStatement());
+		}
 		checkFullLineComment();
 
 	}
@@ -95,10 +103,10 @@ public class AbapStatement {
 		Matcher regexPatterMatcher = RegularExpressionUtils.createMatcherWithTimeout(Statement, redexPattern, 1000);
 		while (regexPatterMatcher.find()) {
 
-			return regexPatterMatcher.replaceFirst(replace);
+			return leadingCharacters + regexPatterMatcher.replaceFirst(replace);
 		}
 
-		return StatementCode;
+		return leadingCharacters + StatementCode;
 
 	}
 
@@ -113,7 +121,7 @@ public class AbapStatement {
 			StatementCode = regexPatterMatcher.replaceAll(replace);
 		}
 
-		return StatementCode;
+		return leadingCharacters + StatementCode;
 
 	}
 
@@ -134,6 +142,10 @@ public class AbapStatement {
 
 	public void setFullLineComment(boolean isFullLineComment) {
 		this.FullLineComment = isFullLineComment;
+	}
+
+	public int getBeginOfStatementWithoutLeadingComment() {
+		return beginOfStatementReplacement;
 	}
 
 }

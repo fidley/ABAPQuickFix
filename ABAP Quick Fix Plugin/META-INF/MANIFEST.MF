@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.ui,
  com.sap.adt.tools.abapsource.ui,
  com.sap.adt.util.ui,
  org.eclipse.ui.ide,
- org.eclipse.json;bundle-version="1.1.100"
+ org.eclipse.json;bundle-version="1.1.100",
+ org.eclipse.help
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.abapblog.adt.quickfix
 Bundle-ActivationPolicy: lazy
