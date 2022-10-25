@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="ABAP Quick Fix Plugin - abapblog.com">
+	<topic label="ABAP Quick Fix Plugin"  href="html/maintopic.html"> 
+		<topic href="html/changelog.html" label="Changelog">
+     <topic href="html/changelog/version1.1.1.html" label="version 1.1.1">
+     </topic>
+  </topic>
+  <topic href="html/quickfixes.html" label="Available quick fixes">
+     <topic href="html/quickfixes/removeAllComments.html" label="Remove all comments">
+     </topic>
+     <topic href="html/quickfixes/removeAllCommentsInSelection.html" label="Remove all comments in selection">
+     </topic>
+     <topic href="html/quickfixes/replaceIconLiteralsWithConstant.html" label="Replace icon literals with constant">
+     </topic>
+  </topic>
+  <topic href="html/preferences.html" label="Preferences">
+  </topic> 
+	</topic>
+</toc>
