@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html id="doc-page">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/toc.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ABAP Quick Fixes</title>
+</head>
+
+<body id="doc-body">
+	<h2 class="heading">ABAP Quick Fixes - Replace READ TABLE TRANSPORTING NO FIELDS with LINE_EXISTS</h2>
+
+	If you prefer new way of checking existance of the entrie in internal table, then you can use this quick fix to replace READ TABLE TRANSPORTING NO FIELDS to LINE_EXISTS>
+	<blockquote>Works only if after READ TABLE TRANSPORTING NO FIELDS statement you can see IF SY-SUBRC EQ/= 0 OR IF SY-SUBRC NE/<> 0 is found</blockquote>
+	<p><img src="../../../media/ReplaceReadTableTransportingNoFields.gif"></p>
+
+</body>
+</html>

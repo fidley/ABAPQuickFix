@@ -41,8 +41,9 @@ public class CreateObjectToNEW extends StatementAssist implements IAssistRegex {
 
 	@Override
 	public boolean canAssist() {
-		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())
-				&& !new CreateObjectExportingToNEW().canAssist()) {
+		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern()) && !new CreateObjectExportingToNEW().canAssist()
+				&& !new CreateObjectWithTypeToNEW().canAssist()
+				&& !new CreateObjectWithTypeExportingToNEW().canAssist()) {
 			return true;
 		}
 		return false;

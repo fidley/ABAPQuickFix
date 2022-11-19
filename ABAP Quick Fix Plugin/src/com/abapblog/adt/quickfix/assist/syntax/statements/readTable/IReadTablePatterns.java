@@ -33,8 +33,8 @@ public interface IReadTablePatterns {
 	public static final String readTableTransportingNoFieldsIndex = "(?s)read\\s+table\\s+(\\S*)\\s+transporting\\s+no\\s+fields\\s+index\\s+(.*)";
 	public static final String replaceReadTableTransportingNoFieldsIndex = "line_exists( $1[ $2 ] )";
 	public static final String readTableIndexTransportingNoFields = "(?s)read\\s+table\\s+(\\S*)\\s+index\\s+(.*)\\s+transporting\\s+no\\s+fields";
-	public static final String replaceReadTableIndexTransportingNoFields = "line_exists( $1[ $2 ] )";
+	public static final String replaceReadTableIndexTransportingNoFields = "line_exists( $1[ $2 ] ).";
 	public static final String ifSySubrcEq0 = "(?s)(if.*)(sy-subrc\\s+(EQ)?(=)?\\s+0)(.*)";
 	public static final String ifSySubrcNe0 = "(?s)(if.*)(sy-subrc\\s+(NE)?(<>)?\\s+0)(.*)";
-	public static final String replaceIfSySubrc = "$1 Code $5";
+	public static final String replaceIfSySubrc = "$1 Code. $5";
 }

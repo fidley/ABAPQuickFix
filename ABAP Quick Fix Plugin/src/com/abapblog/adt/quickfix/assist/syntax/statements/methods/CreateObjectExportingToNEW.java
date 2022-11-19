@@ -41,7 +41,8 @@ public class CreateObjectExportingToNEW extends StatementAssist implements IAssi
 
 	@Override
 	public boolean canAssist() {
-		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())) {
+		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())
+				&& !new CreateObjectWithTypeExportingToNEW().canAssist()) {
 			return true;
 		}
 		return false;

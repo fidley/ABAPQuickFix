@@ -76,6 +76,8 @@ public class AppendToInsertValueInto extends StatementAssist implements IAssistR
 	}
 
 	private boolean canAssistWithPrevious() {
+		if (CodeReader.PreviousStatement == null)
+			return false;
 		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())
 				&& CodeReader.PreviousStatement.matchPattern(MatchDirectAssignmentPattern))
 			assistWithPrevious = true;
@@ -95,14 +97,16 @@ public class AppendToInsertValueInto extends StatementAssist implements IAssistR
 	public void checkPreviousStatements(AbapStatement statement) {
 		if (matchedStatements == null)
 			matchedStatements = new ArrayList<>();
+		try {
+			AbapStatement previousStatement = statement.getPreviousAbapStatement();
+			if (previousStatement.matchPattern(MatchDirectAssignmentPattern)) {
+				if (previousStatement.isFullLineComment() == false)
+					matchedStatements.add(0, previousStatement);
+				checkPreviousStatements(previousStatement);
+			}
+		} catch (Exception e) {
 
-		AbapStatement previousStatement = statement.getPreviousAbapStatement();
-		if (previousStatement.matchPattern(MatchDirectAssignmentPattern)) {
-			if (previousStatement.isFullLineComment() == false)
-				matchedStatements.add(0, previousStatement);
-			checkPreviousStatements(previousStatement);
 		}
-
 	}
 
 }

@@ -21,6 +21,8 @@ import com.abapblog.adt.quickfix.assist.formatter.AlignTypes;
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapCodeReader;
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToAppendValueTo;
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToInsertValueInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendWithHeaderLineToAppendValueTo;
+import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendWithHeaderLineToInsertValueInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Check;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.ClassMethods;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Clear;
@@ -41,6 +43,8 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.lineEnd.LineBreakAtEnd
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CallMethod;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectExportingToNEW;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectToNEW;
+import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectWithTypeExportingToNEW;
+import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectWithTypeToNEW;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitExporting;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitReceiving;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitSelfReference;
@@ -155,7 +159,9 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new Methods());
 		assists.add(new ClassMethods());
 		assists.add(new AppendToAppendValueTo());
+		assists.add(new AppendWithHeaderLineToAppendValueTo());
 		assists.add(new AppendToInsertValueInto());
+		assists.add(new AppendWithHeaderLineToInsertValueInto());
 		assists.add(new InsertIntoInsertValueInto());
 		assists.add(new LineBreakAtEnd());
 		assists.add(new LineBreakAtEndOfMethod());
@@ -163,7 +169,9 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new MethodOmitReceiving());
 		assists.add(new MethodOmitExporting());
 		assists.add(new CreateObjectToNEW());
+		assists.add(new CreateObjectWithTypeToNEW());
 		assists.add(new CreateObjectExportingToNEW());
+		assists.add(new CreateObjectWithTypeExportingToNEW());
 		assists.add(new GetReferenceToRef());
 		assists.add(new RemoveFullLineCommentsFromStatement());
 		assists.add(new MethodOmitSelfReference());
