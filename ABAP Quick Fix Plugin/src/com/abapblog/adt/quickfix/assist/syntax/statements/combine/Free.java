@@ -92,6 +92,8 @@ public class Free extends StatementAssist implements IAssistRegex {
 	}
 
 	private boolean canAssistWithPrevious() {
+		if (CodeReader.PreviousStatement == null)
+			return false;
 		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())
 				&& CodeReader.PreviousStatement.matchPattern(getMatchPattern()))
 			assistWithPrevious = true;
@@ -99,6 +101,8 @@ public class Free extends StatementAssist implements IAssistRegex {
 	}
 
 	private boolean canAssistWithNext() {
+		if (CodeReader.NextStatement == null)
+			return false;
 		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())
 				&& CodeReader.NextStatement.matchPattern(getMatchPattern()))
 			assistWithNext = true;
@@ -119,25 +123,31 @@ public class Free extends StatementAssist implements IAssistRegex {
 	public void checkPreviousStatements(AbapStatement statement) {
 		if (matchedStatements == null)
 			matchedStatements = new ArrayList<>();
-		AbapStatement previousStatement = statement.getPreviousAbapStatement();
-		if (previousStatement.matchPattern(MatchPattern)) {
-			if (previousStatement.isFullLineComment() == false)
-				matchedStatements.add(0, previousStatement);
-			checkPreviousStatements(previousStatement);
-		}
+		try {
+			AbapStatement previousStatement = statement.getPreviousAbapStatement();
+			if (previousStatement.matchPattern(MatchPattern)) {
+				if (previousStatement.isFullLineComment() == false)
+					matchedStatements.add(0, previousStatement);
+				checkPreviousStatements(previousStatement);
+			}
+		} catch (Exception e) {
 
+		}
 	}
 
 	public void checkNextStatements(AbapStatement statement) {
 		if (matchedStatements == null)
 			matchedStatements = new ArrayList<>();
-		AbapStatement nextStatement = statement.getNextAbapStatement();
-		if (nextStatement.matchPattern(MatchPattern)) {
-			if (nextStatement.isFullLineComment() == false)
-				matchedStatements.add(nextStatement);
-			checkNextStatements(nextStatement);
-		}
+		try {
+			AbapStatement nextStatement = statement.getNextAbapStatement();
+			if (nextStatement.matchPattern(MatchPattern)) {
+				if (nextStatement.isFullLineComment() == false)
+					matchedStatements.add(nextStatement);
+				checkNextStatements(nextStatement);
+			}
+		} catch (Exception e) {
 
+		}
 	}
 
 }

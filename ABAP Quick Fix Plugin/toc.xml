@@ -1,21 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?NLS TYPE="org.eclipse.help.toc"?>
 
-<toc label="ABAP Quick Fix Plugin - abapblog.com">
-	<topic label="ABAP Quick Fix Plugin"  href="html/maintopic.html"> 
+<toc label="abapBlog.com - ABAP Quick Fix">
+	<topic label="ABAP Quick Fix Plugin"  href="html/quickfixes.html"> 
 		<topic href="html/changelog.html" label="Changelog">
+     <topic href="html/changelog/version1.1.2.html" label="version 1.1.2">
+     </topic>
      <topic href="html/changelog/version1.1.1.html" label="version 1.1.1">
      </topic>
   </topic>
   <topic href="html/quickfixes.html" label="Available quick fixes">
-     <topic href="html/quickfixes/removeAllComments.html" label="Remove all comments">
+     <topic href="html/quickfixes/comments/RemoveAllComments.html" label="Remove all comments">
      </topic>
-     <topic href="html/quickfixes/removeAllCommentsInSelection.html" label="Remove all comments in selection">
+     <topic href="html/quickfixes/comments/RemoveAllCommentsInSelection.html" label="Remove all comments in selection">
      </topic>
-     <topic href="html/quickfixes/replaceIconLiteralsWithConstant.html" label="Replace icon literals with constant">
+     <topic href="html/quickfixes/iconConstants/ReplaceIconLiteralsWIthConstants.html" label="Replace icon literals with constant">
+     </topic>
+     <topic href="html/quickfixes/comments/translateCommentsToEnglish.html" label="Translate comments into English">
+     </topic>
+     <topic href="html/quickfixes/statements/ReplaceReadTableWithAssign.html" label="Replace READ TABLE with ASSIGN">
+     </topic>
+     <topic href="html/quickfixes/statements/ReplaceReadTableWithRef.html" label="Replace READ TABLE with REF #( )">
+     </topic>
+     <topic href="html/quickfixes/statements/ReplaceReadTableWithTableExpression.html" label="Replace READ TABLE with Table Expression">
+     </topic>
+     <topic href="html/quickfixes/statements/ReplaceMethodCallWithDirectCall.html" label="Replace CALL METHOD with direct call">
+     </topic>
+     <topic href="html/quickfixes/statements/ReplaceMoveWithDirectAssignment.html" label="Replace MOVE with direct assignment">
+     </topic>
+     <topic href="html/quickfixes/statements/CombineStatements.html" label="Combine statements: DATA, TYPES, CONSTANTS, FIELD-SYMBOLS, CHECK, CLEAR, REFRESH, FREE, PARAMETERS, SELECT-OPTIONS, METHODS, CLASS-METHODS">
+     </topic>
+     <topic href="html/quickfixes/statements/ChangeAppendToAppendValue.html" label="Change APPEND TO to APPEND VALUE #( ) TO">
+     </topic>
+     <topic href="html/quickfixes/statements/ChangeInsertToInsertValue.html" label="Change INSERT INTO to INSERT VALUE #( ) INTO">
+     </topic>
+     <topic href="html/quickfixes/statements/SplitStatements.html" label="Split combined(chained) statements">
+     </topic>
+     <topic href="html/quickfixes/formatter/RemoveLineBreakAtEndOfStatement.html" label="Remove Line Break at end of statement">
+     </topic>
+     <topic href="html/quickfixes/statements/ReplaceCreateObjectWithNew.html" label="Replace CREATE OBJECT with NEW">
+     </topic>
+     <topic href="html/quickfixes/statements/OmitExportingWithMethodCall.html" label="Omit EXPORTING in method call">
+     </topic>
+     <topic href="html/quickfixes/statements/OmitReceivingWithMethodCall.html" label="Omit RECEIVING in method call">
+     </topic>
+     <topic href="html/quickfixes/statements/ChangeAppendToInsertValue.html" label="Change APPEND TO to INSERT VALUE #( ) INTO">
+     </topic>
+     <topic href="html/quickfixes/statements/ReplaceGetReferenceWithRef.html" label="Replace GET REFERENCE with REF #">
+     </topic>
+     <topic href="html/quickfixes/statements/ReplaceReadTableTransportingNoFields.html" label="Replace READ TABLE TRANSPORTING NO FIELDS with LINE_EXISTS">
+     </topic>
+     <topic href="html/quickfixes/comments/RemoveFullLineCommentFormStatement.html" label="Remove full line comments from statement">
+     </topic>
+     <topic href="html/quickfixes/statements/OmitSelfReferenceMe.html" label="Omit self reference ME-&gt;">
+     </topic>
+     <topic href="html/quickfixes/statements/ReplaceLogicalOperators.html" label="Replace operators EQ,NE,GT,GE,LT,LE with =,&lt;&gt;,&gt;,&gt;=,&lt;,&lt;=">
+     </topic>
+     <topic href="html/quickfixes/comments/ReplaceFullLineCommentWithInlineComment.html" label="Replace Full Line Comment with In-line comment">
+     </topic>
+     <topic href="html/quickfixes/formatter/AlignLogicalOperators.html" label="Align operators (in selected code)">
+     </topic>
+     <topic href="html/quickfixes/formatter/AlignTypesAndLikes.html" label="Align TYPEs(and LIKE) in variable definitions">
      </topic>
   </topic>
-  <topic href="html/preferences.html" label="Preferences">
-  </topic> 
 	</topic>
 </toc>

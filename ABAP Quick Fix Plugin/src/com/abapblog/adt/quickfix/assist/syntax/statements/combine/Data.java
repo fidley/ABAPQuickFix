@@ -102,12 +102,16 @@ public class Data extends StatementAssist implements IAssistRegex {
 	}
 
 	private boolean canAssistWithPrevious() {
+		if (CodeReader.PreviousStatement == null)
+			return false;
 		if (checkMatch(CodeReader.CurrentStatement) && checkMatch(CodeReader.PreviousStatement))
 			assistWithPrevious = true;
 		return assistWithPrevious;
 	}
 
 	private boolean canAssistWithNext() {
+		if (CodeReader.NextStatement == null)
+			return false;
 		if (checkMatch(CodeReader.CurrentStatement) && checkMatch(CodeReader.NextStatement))
 			assistWithNext = true;
 		return assistWithNext;
@@ -127,25 +131,31 @@ public class Data extends StatementAssist implements IAssistRegex {
 	public void checkPreviousStatements(AbapStatement statement) {
 		if (matchedStatements == null)
 			matchedStatements = new ArrayList<>();
-		AbapStatement previousStatement = statement.getPreviousAbapStatement();
-		if (checkMatch(previousStatement)) {
-			if (previousStatement.isFullLineComment() == false)
-				matchedStatements.add(0, previousStatement);
-			checkPreviousStatements(previousStatement);
-		}
+		try {
+			AbapStatement previousStatement = statement.getPreviousAbapStatement();
+			if (checkMatch(previousStatement)) {
+				if (previousStatement.isFullLineComment() == false)
+					matchedStatements.add(0, previousStatement);
+				checkPreviousStatements(previousStatement);
+			}
+		} catch (Exception e) {
 
+		}
 	}
 
 	public void checkNextStatements(AbapStatement statement) {
 		if (matchedStatements == null)
 			matchedStatements = new ArrayList<>();
-		AbapStatement nextStatement = statement.getNextAbapStatement();
-		if (checkMatch(nextStatement)) {
-			if (nextStatement.isFullLineComment() == false)
-				matchedStatements.add(nextStatement);
-			checkNextStatements(nextStatement);
-		}
+		try {
+			AbapStatement nextStatement = statement.getNextAbapStatement();
+			if (checkMatch(nextStatement)) {
+				if (nextStatement.isFullLineComment() == false)
+					matchedStatements.add(nextStatement);
+				checkNextStatements(nextStatement);
+			}
+		} catch (Exception e) {
 
+		}
 	}
 
 }
