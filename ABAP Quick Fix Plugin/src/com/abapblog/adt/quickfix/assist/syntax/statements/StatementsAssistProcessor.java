@@ -40,6 +40,9 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.global.RemoveFullLineC
 import com.abapblog.adt.quickfix.assist.syntax.statements.insert.InsertIntoInsertValueInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.lineEnd.LineBreakAtEnd;
 import com.abapblog.adt.quickfix.assist.syntax.statements.lineEnd.LineBreakAtEndOfMethod;
+import com.abapblog.adt.quickfix.assist.syntax.statements.loop.LoopAtItabWithHeaderLineAsFieldSymbol;
+import com.abapblog.adt.quickfix.assist.syntax.statements.loop.LoopAtItabWithHeaderLineAsIntoWa;
+import com.abapblog.adt.quickfix.assist.syntax.statements.loop.LoopAtItabWithHeaderLineAsRefInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CallMethod;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectExportingToNEW;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectToNEW;
@@ -183,6 +186,9 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new Ne());
 		assists.add(new AlignOperators());
 		assists.add(new AlignTypes());
+		assists.add(new LoopAtItabWithHeaderLineAsFieldSymbol());
+		assists.add(new LoopAtItabWithHeaderLineAsRefInto());
+		assists.add(new LoopAtItabWithHeaderLineAsIntoWa());
 		// assists.add(new SelectSingle());
 
 		IConfigurationElement[] config = RegistryFactory.getRegistry().getConfigurationElementsFor(IFIXAPPENDER_ID);

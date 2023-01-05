@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?NLS TYPE="org.eclipse.help.toc"?>
 
-<toc label="abapBlog.com - ABAP Quick Fix">
+<toc label="abapBlog.com - ABAP Quick Fix" topic="html/quickfixes.html">
 	<topic label="ABAP Quick Fix Plugin"  href="html/quickfixes.html"> 
 		<topic href="html/changelog.html" label="Changelog">
+     <topic href="html/changelog/version1.1.3.html" label="version 1.1.3">
+     </topic>
      <topic href="html/changelog/version1.1.2.html" label="version 1.1.2">
      </topic>
      <topic href="html/changelog/version1.1.1.html" label="version 1.1.1">
@@ -26,7 +28,7 @@
      </topic>
      <topic href="html/quickfixes/statements/ReplaceMethodCallWithDirectCall.html" label="Replace CALL METHOD with direct call">
      </topic>
-     <topic href="html/quickfixes/statements/ReplaceMoveWithDirectAssignment.html" label="Replace MOVE with direct assignment">
+     <topic href="html/quickfixes/statements/ReplaceMoveWIthDirectAssignment.html" label="Replace MOVE with direct assignment">
      </topic>
      <topic href="html/quickfixes/statements/CombineStatements.html" label="Combine statements: DATA, TYPES, CONSTANTS, FIELD-SYMBOLS, CHECK, CLEAR, REFRESH, FREE, PARAMETERS, SELECT-OPTIONS, METHODS, CLASS-METHODS">
      </topic>
@@ -61,6 +63,8 @@
      <topic href="html/quickfixes/formatter/AlignLogicalOperators.html" label="Align operators (in selected code)">
      </topic>
      <topic href="html/quickfixes/formatter/AlignTypesAndLikes.html" label="Align TYPEs(and LIKE) in variable definitions">
+     </topic>
+     <topic href="html/quickfixes/statements/ReplaceLoopAtItabWithHeaderLine.html" label="Replace LOOP AT ITAB with header line">
      </topic>
   </topic>
 	</topic>
