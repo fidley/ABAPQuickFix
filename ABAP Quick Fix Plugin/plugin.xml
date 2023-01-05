@@ -65,13 +65,28 @@
                      class="com.abapblog.adt.quickfix.preferences.PreferenceInitializer">
                </initializer>
             </extension>
-            <extension
-                  point="org.eclipse.help.toc">
-               <toc
-                     category="ABAP Quick Fix"
-                     file="toc.xml"
-                     primary="true">
-               </toc>
-            </extension>
 
+ <extension
+            point="org.eclipse.ui.editors">
+         <editor
+               class="com.abapblog.adt.quickfix.release.notes.ReleaseNotesEditor"
+               default="false"
+               icon="icons/qf16.png"
+               id="com.abapblog.adt.quickfix.release.notes.editor"
+               name="ADT Quick Fix Release Notes">
+         </editor>
+      </extension>
+      <extension
+            point="org.eclipse.ui.startup">
+         <startup
+               class="com.abapblog.adt.quickfix.release.notes.Startup">
+         </startup>
+      </extension>
+      <extension
+            point="org.eclipse.ui.elementFactories">
+         <factory
+               class="com.abapblog.adt.quickfix.release.notes.EditorInputPersistant"
+               id="com.abapblog.adt.quickfix.release.notes.EditorInputPersistant">
+         </factory>
+      </extension>
 </plugin>

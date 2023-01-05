@@ -7,6 +7,12 @@ p {
 	color: #333;
 	font-family: Verdana,sans-serif;
 }
+
+body {
+	max-width: 1080px;
+	margin: 0 auto !important;
+	float: none !important;
+}
 #doc-body,
 body {
 	margin: 0;
@@ -94,6 +100,7 @@ table th {
 	color: #595959;
 	font-family: "Arial Black", Arial, Arial Unicode MS, Helvetica,
 		sans-serif;
+	text-align: left !important;
 }
 
 a.link:link {

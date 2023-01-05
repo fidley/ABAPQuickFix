@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html id="doc-page">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/toc.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ABAP Quick Fixes</title>
+</head>
+
+<body id="doc-body">
+	<h2 class="heading">ABAP Quick Fixes - Replace LOOP AT ITAB with Header Line</h2>
+
+	Using this quick fix, you can replace old fashioned LOOP AT ITAB with header line with<br><br>
+	<p class="code">LOOP AT ITAB ASSIGNING FIELD-SYMBOL(&lt;ITAB&gt;)<br>
+	LOOP AT ITAB REFERENCE INTO DATA(ref_ITAB)<br>
+	LOOP AT ITAB INTO DATA(wa_ITAB)
+	</p><br>
+	I case of the first two quick fixes, when MODIFY or DELETE statement is found inside the loop,<br>
+	it is commented out. In case of LOOP AT ITAB INTO DATA, it is adjusted to the form<br><br>
+	<p class="code">MODIFY ITAB FROM wa_ITAB.</p><br>
+	<p><img src="../../../media/replaceLoopAtItabWithHederLine.gif"></p>
+</body>
+</html>
