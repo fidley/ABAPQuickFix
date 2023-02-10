@@ -31,17 +31,19 @@ public class SplitToSeveralStatements extends StatementAssist implements IAssist
 	public String getChangedCode() {
 
 		String ChangedCode = "";
-		String CodeToSplit = CodeReader.CurrentStatement.replacePattern(getMatchPattern(), getReplacePattern());
-		String[] SplittedCode = CodeToSplit.split(",");
-		for (int i = 0; i < SplittedCode.length; i++)
-			ChangedCode = ChangedCode
-					+ BeginningOfStatement + MatchedStatement + " " + SplittedCode[i]
-							.replaceAll(multipleEmptyLines, NewLineString).replaceFirst(NewLinePatternWithSpaces, "")
-					+ ".";
+		String CodeToSplit = CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 3);
+		String[] SplittedCode = CodeToSplit.split("\r\n");
+		for (int i = 0; i < SplittedCode.length; i++) {
+			String codeLine = SplittedCode[i].replaceAll(multipleEmptyLines, NewLineString)
+					.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(",", ".");
+			if (codeLine.startsWith("  ") || codeLine.startsWith("\t\t"))
+				codeLine = codeLine.replaceFirst("[ \t]{2,}", "");
+			ChangedCode = ChangedCode + BeginningOfStatement + MatchedStatement + " " + codeLine;
 
+		}
 		ChangedCode = ChangedCode.replaceAll(multipleEmptyLines, NewLineString).replaceFirst(NewLinePatternWithSpaces,
 				"");
-		return BeginningOfStatement + ChangedCode.substring(0, ChangedCode.length() - 1);
+		return BeginningOfStatement + ChangedCode.substring(0, ChangedCode.length());
 	}
 
 	@Override
