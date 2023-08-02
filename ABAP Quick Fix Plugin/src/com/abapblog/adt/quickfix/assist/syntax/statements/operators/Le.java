@@ -5,7 +5,7 @@ public class Le extends Operators {
 	public Le() {
 		super();
 		operatorName = "LE";
-		replacement = ">=";
+		replacement = "<=";
 	}
 
 }
