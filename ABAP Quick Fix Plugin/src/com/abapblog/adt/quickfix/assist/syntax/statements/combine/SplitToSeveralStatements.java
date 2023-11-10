@@ -36,6 +36,10 @@ public class SplitToSeveralStatements extends StatementAssist implements IAssist
 		for (int i = 0; i < SplittedCode.length; i++) {
 			String codeLine = SplittedCode[i].replaceAll(multipleEmptyLines, NewLineString)
 					.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(",", ".");
+			if (codeLine.trim().equals("")) {
+				// skip empty rows
+				continue;
+			}
 			if (codeLine.startsWith("  ") || codeLine.startsWith("\t\t"))
 				codeLine = codeLine.replaceFirst("[ \t]{2,}", "");
 			ChangedCode = ChangedCode + BeginningOfStatement + MatchedStatement + " " + codeLine;

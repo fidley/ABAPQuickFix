@@ -76,6 +76,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWit
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyReferenceInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyTransportingNoFields;
 import com.abapblog.adt.quickfix.assist.syntax.statements.reference.GetReferenceToRef;
+import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByName;
 
 public class StatementsAssistProcessor implements IQuickAssistProcessor {
 
@@ -189,6 +190,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new LoopAtItabWithHeaderLineAsFieldSymbol());
 		assists.add(new LoopAtItabWithHeaderLineAsRefInto());
 		assists.add(new LoopAtItabWithHeaderLineAsIntoWa());
+		assists.add(new DataSortByName());
 		// assists.add(new SelectSingle());
 
 		IConfigurationElement[] config = RegistryFactory.getRegistry().getConfigurationElementsFor(IFIXAPPENDER_ID);
