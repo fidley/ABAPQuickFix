@@ -45,6 +45,11 @@ public class QuickFixPreferences extends FieldEditorPreferencePage implements IW
 				"&Remove line breaks from translated text", tcte_group));
 		addField(new BooleanFieldEditor(PreferenceConstants.HideRemoveAllComments,
 				"&Hide Remove All Comments Quick Fix", getFieldEditorParent()));
+		addField(new OrderEditor(PreferenceConstants.ORDER_PREFIX_DECL,
+				"Order of prefixes (sorting of data declarations)", getFieldEditorParent()));
+		addField(new BooleanFieldEditor(PreferenceConstants.ADDITIONAL_EMPTY_ROW_SORT_DECL,
+				"&Additional empty row between each type of declaration",
+				getFieldEditorParent()));
 
 	}
 
