@@ -19,7 +19,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.P_TCTE_REMOVE_LINE_BREAKS, false);
 		store.setDefault(PreferenceConstants.P_TCTE_ALLOWED, true);
 		store.setDefault(PreferenceConstants.HideRemoveAllComments, false);
-		store.setDefault(PreferenceConstants.ADDITIONAL_EMPTY_ROW_SORT_DECL, true);
+		store.setDefault(PreferenceConstants.ADDITIONAL_EMPTY_ROW_DECL_PREFIX, true);
+		store.setDefault(PreferenceConstants.ADDITIONAL_EMPTY_ROW_DECL_TYPE, true);
 		store.setDefault(PreferenceConstants.ORDER_PREFIX_DECL, buildString(ORDER_PREFIX));
 	}
 

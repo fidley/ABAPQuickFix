@@ -46,10 +46,16 @@ public class QuickFixPreferences extends FieldEditorPreferencePage implements IW
 		addField(new BooleanFieldEditor(PreferenceConstants.HideRemoveAllComments,
 				"&Hide Remove All Comments Quick Fix", getFieldEditorParent()));
 		addField(new OrderEditor(PreferenceConstants.ORDER_PREFIX_DECL,
-				"Order of prefixes (sorting of data declarations)", getFieldEditorParent()));
-		addField(new BooleanFieldEditor(PreferenceConstants.ADDITIONAL_EMPTY_ROW_SORT_DECL,
-				"&Additional empty row between each type of declaration",
-				getFieldEditorParent()));
+				"Order of prefixes (Sort DATA statements)", getFieldEditorParent()));
+		Composite bot = new Composite(getFieldEditorParent(), SWT.LEFT);
+		bot.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		bot.setLayout(new GridLayout());
+		Group tcte_sort_group = new Group(bot, SWT.SHADOW_ETCHED_IN);
+		tcte_sort_group.setText("Additional empty row between each");
+		addField(new BooleanFieldEditor(PreferenceConstants.ADDITIONAL_EMPTY_ROW_DECL_PREFIX,
+				"prefix in combined DATA statement", tcte_sort_group));
+		addField(new BooleanFieldEditor(PreferenceConstants.ADDITIONAL_EMPTY_ROW_DECL_TYPE,
+				"DATA statement (Sort all DATA statements)", tcte_sort_group));
 
 	}
 
