@@ -52,7 +52,7 @@ public class DataSortByNameCombined extends AbstractDataSortByName implements IA
 				}
 			}
 
-			if (additionalRow) {
+			if (additionalLine) {
 				code = code + newLine;
 			}
 		}

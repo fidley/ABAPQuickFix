@@ -7,7 +7,7 @@ public class PreferenceConstants {
 	public static final String P_TCTE_ALLOWED = "tcteAllowed";
 	public static final String HideRemoveAllComments = "hideRemoveAllComments";
 	public static final String ORDER_PREFIX_DECL = "ORDER_PREFIX_DECL";
-	public static final String ADDITIONAL_EMPTY_ROW_DECL_PREFIX = "ADDITIONAL_EMPTY_ROW_DECL_PREFIX";
-	public static final String ADDITIONAL_EMPTY_ROW_DECL_TYPE = "ADDITIONAL_EMPTY_ROW_DECL_TYPE";
+	public static final String ADDITIONAL_EMPTY_LINE_DECL_PREFIX = "ADDITIONAL_EMPTY_LINE_DECL_PREFIX";
+	public static final String ADDITIONAL_EMPTY_LINE_DECL_TYPE = "ADDITIONAL_EMPTY_LINE_DECL_TYPE";
 
 }

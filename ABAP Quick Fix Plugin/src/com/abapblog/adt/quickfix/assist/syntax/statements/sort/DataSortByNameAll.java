@@ -60,7 +60,7 @@ public class DataSortByNameAll extends AbstractDataSortByName implements IAssist
 	@Override
 	public String getChangedCode() {
 		boolean extraRow = Activator.getDefault().getPreferenceStore()
-				.getBoolean(PreferenceConstants.ADDITIONAL_EMPTY_ROW_DECL_TYPE);
+				.getBoolean(PreferenceConstants.ADDITIONAL_EMPTY_LINE_DECL_TYPE);
 
 		// singles
 		HashMap<String, List<String>> singlesMap = DataSortByNameSingle.statementsToMap(singleStatements, order);

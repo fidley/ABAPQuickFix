@@ -51,10 +51,10 @@ public class QuickFixPreferences extends FieldEditorPreferencePage implements IW
 		bot.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		bot.setLayout(new GridLayout());
 		Group tcte_sort_group = new Group(bot, SWT.SHADOW_ETCHED_IN);
-		tcte_sort_group.setText("Additional empty row between each");
-		addField(new BooleanFieldEditor(PreferenceConstants.ADDITIONAL_EMPTY_ROW_DECL_PREFIX,
+		tcte_sort_group.setText("Additional empty line between each");
+		addField(new BooleanFieldEditor(PreferenceConstants.ADDITIONAL_EMPTY_LINE_DECL_PREFIX,
 				"prefix in combined DATA statement", tcte_sort_group));
-		addField(new BooleanFieldEditor(PreferenceConstants.ADDITIONAL_EMPTY_ROW_DECL_TYPE,
+		addField(new BooleanFieldEditor(PreferenceConstants.ADDITIONAL_EMPTY_LINE_DECL_TYPE,
 				"DATA statement (Sort all DATA statements)", tcte_sort_group));
 
 	}

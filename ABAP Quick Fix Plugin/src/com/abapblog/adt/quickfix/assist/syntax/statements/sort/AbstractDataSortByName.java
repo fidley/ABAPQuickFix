@@ -24,13 +24,13 @@ public abstract class AbstractDataSortByName extends StatementAssist {
 	protected final static String dataInline = "DATA(";
 	protected final static String data = "DATA";
 	protected final static String newLine = "\r\n";
-	protected static boolean additionalRow;
+	protected static boolean additionalLine;
 
 	protected AbstractDataSortByName() {
 		super();
 
-		additionalRow = Activator.getDefault().getPreferenceStore()
-				.getBoolean(PreferenceConstants.ADDITIONAL_EMPTY_ROW_DECL_PREFIX);
+		additionalLine = Activator.getDefault().getPreferenceStore()
+				.getBoolean(PreferenceConstants.ADDITIONAL_EMPTY_LINE_DECL_PREFIX);
 
 		getMatchedStatements();
 
