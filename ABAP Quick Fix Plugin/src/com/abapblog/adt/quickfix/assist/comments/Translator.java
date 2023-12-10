@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 import org.eclipse.json.provisonnal.com.eclipsesource.json.JsonArray;
+import org.eclipse.json.provisonnal.com.eclipsesource.json.ParseException;
 
 import com.abapblog.adt.quickfix.Activator;
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
@@ -42,15 +43,20 @@ public class Translator {
 
 	private static String parseJson(StringBuilder response) {
 		String jsonTranslation = "";
-		JsonArray jsonArray = JsonArray.readFrom(response.toString());
+		try {
+			JsonArray jsonArray = JsonArray.readFrom(response.toString());
 
-		int len = jsonArray.get(0).asArray().size();
-		if (jsonArray.get(0).asArray() != null) {
-			for (int i = 0; i < len; i++) {
-				jsonTranslation = jsonTranslation + jsonArray.get(0).asArray().get(i).asArray().get(0).asString();
+			int len = jsonArray.get(0).asArray().size();
+			if (jsonArray.get(0).asArray() != null) {
+				for (int i = 0; i < len; i++) {
+					jsonTranslation = jsonTranslation + jsonArray.get(0).asArray().get(i).asArray().get(0).asString();
+				}
 			}
+			return jsonTranslation.toString();
+		} catch (ParseException e) {
+			System.out.println(e.getMessage());
+			return "";
 		}
-		return jsonTranslation.toString();
 	}
 
 	private static String removeLineBreaks(String code) {

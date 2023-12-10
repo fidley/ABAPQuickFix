@@ -52,6 +52,8 @@ public class TranslateCommentToEnglish implements IQuickAssistProcessor {
 			CompletionProposal cPropSelectedComments;
 			try {
 				String translatedText = Translator.main(sourceCode.substring(offset, offset + lenght));
+				if (translatedText.equals(""))
+					return null;
 				cPropSelectedComments = new CompletionProposal(translatedText, offset, lenght, 0, image,
 						"Translate selection to English", null, translatedText);
 				proposals.add(cPropSelectedComments);

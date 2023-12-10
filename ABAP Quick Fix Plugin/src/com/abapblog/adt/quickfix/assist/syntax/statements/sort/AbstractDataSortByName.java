@@ -121,7 +121,7 @@ public abstract class AbstractDataSortByName extends StatementAssist {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public int getStartOfReplace() {
 		return matchedStatements.get(0).getBeginOfStatementWithoutLeadingComment();
@@ -129,18 +129,19 @@ public abstract class AbstractDataSortByName extends StatementAssist {
 
 	@Override
 	public int getReplaceLength() {
-		int end = matchedStatements.get(matchedStatements.size()-1).getEndOfStatement();
+		int end = matchedStatements.get(matchedStatements.size() - 1).getEndOfStatement();
 		int start = getStartOfReplace();
 		return end - start + 1;
 	}
 
 	protected static String getVariableName(String code) {
-		if (code.startsWith(dataDoubleBegin)) {
-			code = code.replaceFirst(dataDoubleBegin, "");
-		} else if (code.startsWith(dataBegin)) {
+		if (code.toUpperCase().startsWith(dataDoubleBegin)) {
+			code = code.substring(6);
+		} else if (code.toUpperCase().startsWith(dataBegin)) {
 			code = code.replaceFirst(dataBegin, "");
-		} else if (code.startsWith(dataInline)) {
-			code = code.replaceFirst(dataInline, "");
+			code = code.substring(5);
+		} else if (code.toUpperCase().startsWith(dataInline)) {
+			code = code.substring(5);
 		}
 		List<String> splits = Arrays.asList(code.split(" "));
 		if (splits.isEmpty()) {

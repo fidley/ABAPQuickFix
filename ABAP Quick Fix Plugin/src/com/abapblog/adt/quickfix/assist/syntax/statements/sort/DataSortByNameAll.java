@@ -150,7 +150,7 @@ public class DataSortByNameAll extends AbstractDataSortByName implements IAssist
 		AbapStatement curStatement = CodeReader.CurrentStatement;
 
 		// previous
-		while (curStatement.getPreviousAbapStatement().getStatement().startsWith(data)) {
+		while (curStatement.getPreviousAbapStatement().getStatement().toUpperCase().startsWith(data)) {
 			curStatement = curStatement.getPreviousAbapStatement();
 			matchedStatements.add(curStatement);
 		}
@@ -162,7 +162,7 @@ public class DataSortByNameAll extends AbstractDataSortByName implements IAssist
 		matchedStatements.add(CodeReader.CurrentStatement);
 
 		// next
-		while (curStatement.getNextAbapStatement().getStatement().startsWith(data)) {
+		while (curStatement.getNextAbapStatement().getStatement().toUpperCase().startsWith(data)) {
 			curStatement = curStatement.getNextAbapStatement();
 			matchedStatements.add(curStatement);
 		}
