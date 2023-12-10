@@ -76,7 +76,9 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWit
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyReferenceInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyTransportingNoFields;
 import com.abapblog.adt.quickfix.assist.syntax.statements.reference.GetReferenceToRef;
-import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByName;
+import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByNameAll;
+import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByNameCombined;
+import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByNameSingle;
 
 public class StatementsAssistProcessor implements IQuickAssistProcessor {
 
@@ -190,7 +192,9 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new LoopAtItabWithHeaderLineAsFieldSymbol());
 		assists.add(new LoopAtItabWithHeaderLineAsRefInto());
 		assists.add(new LoopAtItabWithHeaderLineAsIntoWa());
-		assists.add(new DataSortByName());
+		assists.add(new DataSortByNameCombined());
+		assists.add(new DataSortByNameAll());
+		assists.add(new DataSortByNameSingle());
 		// assists.add(new SelectSingle());
 
 		IConfigurationElement[] config = RegistryFactory.getRegistry().getConfigurationElementsFor(IFIXAPPENDER_ID);
