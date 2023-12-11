@@ -9,7 +9,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.core.runtime.SafeRunner;
-import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
@@ -122,9 +121,9 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		while (assistIterator.hasNext()) {
 			IAssist assist = assistIterator.next();
 			if (assist.canAssist()) {
-				proposals.add(new CompletionProposal(assist.getChangedCode(), assist.getStartOfReplace(),
+				proposals.add(new QuickFIxProposal(assist.getChangedCode(), assist.getStartOfReplace(),
 						assist.getReplaceLength(), 0, assist.getAssistIcon(), assist.getAssistShortText(), null,
-						assist.getAssistLongText()));
+						assist.getAssistLongText(), assist.getCallPrettyPrintOnBlock()));
 
 			}
 		}

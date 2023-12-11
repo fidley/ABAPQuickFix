@@ -9,5 +9,6 @@ public class PreferenceConstants {
 	public static final String ORDER_PREFIX_DECL = "ORDER_PREFIX_DECL";
 	public static final String ADDITIONAL_EMPTY_LINE_DECL_PREFIX = "ADDITIONAL_EMPTY_LINE_DECL_PREFIX";
 	public static final String ADDITIONAL_EMPTY_LINE_DECL_TYPE = "ADDITIONAL_EMPTY_LINE_DECL_TYPE";
+	public static final String CALL_PRETTY_PRINTER_AFTER_QF = "CALL_PRETTY_PRINTER_AFTER_QF";
 
 }

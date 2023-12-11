@@ -15,10 +15,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.json;bundle-version="1.1.100",
  org.eclipse.help
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-9
 Automatic-Module-Name: com.abapblog.adt.quickfix
 Bundle-ActivationPolicy: lazy
 Import-Package: com.sap.adt.project.ui.util,
+ com.sap.adt.tools.core.ui.editors,
  org.eclipse.core.resources
 Export-Package: com.abapblog.adt.quickfix,
  com.abapblog.adt.quickfix.assist.syntax.codeParser,

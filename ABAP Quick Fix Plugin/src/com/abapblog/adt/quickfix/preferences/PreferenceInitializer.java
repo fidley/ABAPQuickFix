@@ -22,6 +22,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.ADDITIONAL_EMPTY_LINE_DECL_PREFIX, true);
 		store.setDefault(PreferenceConstants.ADDITIONAL_EMPTY_LINE_DECL_TYPE, true);
 		store.setDefault(PreferenceConstants.ORDER_PREFIX_DECL, buildString(ORDER_PREFIX));
+		store.setDefault(PreferenceConstants.CALL_PRETTY_PRINTER_AFTER_QF, true);
 	}
 
 	private String buildString(List<String> list) {

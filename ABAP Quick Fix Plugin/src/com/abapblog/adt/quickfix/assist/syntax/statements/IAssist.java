@@ -18,4 +18,6 @@ public interface IAssist {
 
 	public int getReplaceLength();
 
+	public Boolean getCallPrettyPrintOnBlock();
+
 }
