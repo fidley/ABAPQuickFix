@@ -45,6 +45,19 @@ public class QuickFixPreferences extends FieldEditorPreferencePage implements IW
 				"&Remove line breaks from translated text", tcte_group));
 		addField(new BooleanFieldEditor(PreferenceConstants.HideRemoveAllComments,
 				"&Hide Remove All Comments Quick Fix", getFieldEditorParent()));
+		addField(new BooleanFieldEditor(PreferenceConstants.CALL_PRETTY_PRINTER_AFTER_QF,
+				"&Call Pretty Printer for replaced code", getFieldEditorParent()));
+		addField(new OrderEditor(PreferenceConstants.ORDER_PREFIX_DECL, "Order of prefixes (Sort DATA statements)",
+				getFieldEditorParent()));
+		Composite bot = new Composite(getFieldEditorParent(), SWT.LEFT);
+		bot.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		bot.setLayout(new GridLayout());
+		Group tcte_sort_group = new Group(bot, SWT.SHADOW_ETCHED_IN);
+		tcte_sort_group.setText("Additional empty line between each");
+		addField(new BooleanFieldEditor(PreferenceConstants.ADDITIONAL_EMPTY_LINE_DECL_PREFIX,
+				"prefix in combined DATA statement", tcte_sort_group));
+		addField(new BooleanFieldEditor(PreferenceConstants.ADDITIONAL_EMPTY_LINE_DECL_TYPE,
+				"DATA statement (Sort all DATA statements)", tcte_sort_group));
 
 	}
 

@@ -9,7 +9,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.core.runtime.SafeRunner;
-import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
@@ -76,6 +75,9 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWit
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyReferenceInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyTransportingNoFields;
 import com.abapblog.adt.quickfix.assist.syntax.statements.reference.GetReferenceToRef;
+import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByNameAll;
+import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByNameCombined;
+import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByNameSingle;
 
 public class StatementsAssistProcessor implements IQuickAssistProcessor {
 
@@ -119,9 +121,9 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		while (assistIterator.hasNext()) {
 			IAssist assist = assistIterator.next();
 			if (assist.canAssist()) {
-				proposals.add(new CompletionProposal(assist.getChangedCode(), assist.getStartOfReplace(),
+				proposals.add(new QuickFIxProposal(assist.getChangedCode(), assist.getStartOfReplace(),
 						assist.getReplaceLength(), 0, assist.getAssistIcon(), assist.getAssistShortText(), null,
-						assist.getAssistLongText()));
+						assist.getAssistLongText(), assist.getCallPrettyPrintOnBlock()));
 
 			}
 		}
@@ -189,6 +191,9 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new LoopAtItabWithHeaderLineAsFieldSymbol());
 		assists.add(new LoopAtItabWithHeaderLineAsRefInto());
 		assists.add(new LoopAtItabWithHeaderLineAsIntoWa());
+		assists.add(new DataSortByNameCombined());
+		assists.add(new DataSortByNameAll());
+		assists.add(new DataSortByNameSingle());
 		// assists.add(new SelectSingle());
 
 		IConfigurationElement[] config = RegistryFactory.getRegistry().getConfigurationElementsFor(IFIXAPPENDER_ID);
