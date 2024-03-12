@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ISafeRunnable;
@@ -13,6 +14,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
+import org.eclipse.ui.texteditor.MarkerAnnotation;
 
 import com.abapblog.adt.quickfix.IFixAppender;
 import com.abapblog.adt.quickfix.assist.formatter.AlignOperators;
@@ -92,7 +94,21 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 	}
 
 	@Override
-	public boolean canFix(Annotation arg0) {
+	public boolean canFix(Annotation annotation) {
+		if (annotation instanceof MarkerAnnotation) {
+			MarkerAnnotation markerAnnotation = (MarkerAnnotation) annotation;
+			try {
+				markerAnnotation.getMarker().getAttribute(IMarker.MESSAGE);
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+			IMarker marker = markerAnnotation.getMarker();
+//			String markerId = RefactoringUiUtilInternal.getQuickfixMarkerAttributeValue(marker);
+//			boolean hasResolutions = (markerId != null);
+//			if (hasResolutions) {
+//				return true;
+//			}
+		}
 		return false;
 	}
 
