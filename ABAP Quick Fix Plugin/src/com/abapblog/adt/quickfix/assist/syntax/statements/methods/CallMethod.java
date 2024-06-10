@@ -1,5 +1,6 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.methods;
 
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
@@ -24,7 +25,7 @@ public class CallMethod extends StatementAssist implements IAssistRegex {
 
 	@Override
 	public String getChangedCode() {
-		return CodeReader.CurrentStatement.replacePattern(getMatchPattern(), getReplacePattern());
+		return StringCleaner.clean(CodeReader.CurrentStatement.replacePattern(getMatchPattern(), getReplacePattern()));
 	}
 
 	@Override

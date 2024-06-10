@@ -24,6 +24,14 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToAppendV
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendToInsertValueInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendWithHeaderLineToAppendValueTo;
 import com.abapblog.adt.quickfix.assist.syntax.statements.append.AppendWithHeaderLineToInsertValueInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.calculation.Add;
+import com.abapblog.adt.quickfix.assist.syntax.statements.calculation.AddShort;
+import com.abapblog.adt.quickfix.assist.syntax.statements.calculation.Divide;
+import com.abapblog.adt.quickfix.assist.syntax.statements.calculation.DivideShort;
+import com.abapblog.adt.quickfix.assist.syntax.statements.calculation.Multiply;
+import com.abapblog.adt.quickfix.assist.syntax.statements.calculation.MultiplyShort;
+import com.abapblog.adt.quickfix.assist.syntax.statements.calculation.Subtract;
+import com.abapblog.adt.quickfix.assist.syntax.statements.calculation.SubtractShort;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Check;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.ClassMethods;
 import com.abapblog.adt.quickfix.assist.syntax.statements.combine.Clear;
@@ -53,6 +61,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitExpo
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitReceiving;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.MethodOmitSelfReference;
 import com.abapblog.adt.quickfix.assist.syntax.statements.move.Move;
+import com.abapblog.adt.quickfix.assist.syntax.statements.move.MoveCorrespondingToCorresponding;
 import com.abapblog.adt.quickfix.assist.syntax.statements.move.MoveExact;
 import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Eq;
 import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Ge;
@@ -60,26 +69,28 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Gt;
 import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Le;
 import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Lt;
 import com.abapblog.adt.quickfix.assist.syntax.statements.operators.Ne;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableAssigningIndex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableAssigningWithKey;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexAssigning;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexInto;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexReferenceInto;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIndexTransportingNoFields;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIntoIndex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableIntoWithKey;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableReferenceIntoIndex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableReferenceIntoWithKey;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableTransportingNoFieldsIndex;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableTransportingNoFieldsWithKey;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyAssigning;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyInto;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyReferenceInto;
-import com.abapblog.adt.quickfix.assist.syntax.statements.readTable.ReadTableWithKeyTransportingNoFields;
 import com.abapblog.adt.quickfix.assist.syntax.statements.reference.GetReferenceToRef;
 import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByNameAll;
 import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByNameCombined;
 import com.abapblog.adt.quickfix.assist.syntax.statements.sort.DataSortByNameSingle;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.DescribeTableLines;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableAssigningIndex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableAssigningWithKey;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableIndexAssigning;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableIndexInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableIndexReferenceInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableIndexTransportingNoFields;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableIntoIndex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableIntoWithKey;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableReferenceIntoIndex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableReferenceIntoWithKey;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableTransportingNoFieldsIndex;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableTransportingNoFieldsWithKey;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableWithKeyAssigning;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableWithKeyInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableWithKeyReferenceInto;
+import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableWithKeyTransportingNoFields;
+import com.abapblog.adt.quickfix.assist.syntax.statements.texts.WriteToStringExpression;
 
 public class StatementsAssistProcessor implements IQuickAssistProcessor {
 
@@ -210,6 +221,18 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new DataSortByNameCombined());
 		assists.add(new DataSortByNameAll());
 		assists.add(new DataSortByNameSingle());
+		assists.add(new Add());
+		assists.add(new AddShort());
+		assists.add(new Subtract());
+		assists.add(new SubtractShort());
+		assists.add(new Multiply());
+		assists.add(new MultiplyShort());
+		assists.add(new Divide());
+		assists.add(new DivideShort());
+		assists.add(new DescribeTableLines());
+		assists.add(new WriteToStringExpression());
+		assists.add(new MoveCorrespondingToCorresponding());
+
 		// assists.add(new SelectSingle());
 
 		IConfigurationElement[] config = RegistryFactory.getRegistry().getConfigurationElementsFor(IFIXAPPENDER_ID);

@@ -2,7 +2,7 @@
 <feature
       id="com.abapblog.adt.quickfix.feature"
       label="ABAP Quick Fix"
-      version="1.1.5.qualifier"
+      version="1.1.6.qualifier"
       provider-name="ABAPblog.com"
       plugin="com.abapblog.branding">
 
@@ -70,22 +70,14 @@ END OF TERMS AND CONDITIONS
 
    <plugin
          id="com.abapblog.adt.quickfix"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="com.abapblog.branding"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="com.abapblog.adt.quickfix.release.notes.content"
-         download-size="0"
-         install-size="0"
          version="0.0.0"/>
 
 </feature>

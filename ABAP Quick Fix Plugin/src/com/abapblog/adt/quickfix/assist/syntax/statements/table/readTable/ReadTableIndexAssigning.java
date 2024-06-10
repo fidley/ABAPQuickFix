@@ -1,27 +1,27 @@
-package com.abapblog.adt.quickfix.assist.syntax.statements.readTable;
+package com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class ReadTableReferenceIntoWithKey extends StatementAssist implements IAssistRegex {
+public class ReadTableIndexAssigning extends StatementAssist implements IAssistRegex {
 
-	public ReadTableReferenceIntoWithKey() {
+	public ReadTableIndexAssigning() {
 		super();
 	}
 
 	@Override
 	public String getMatchPattern() {
-		return IReadTablePatterns.readTableRefereceWithKey;
+		return IReadTablePatterns.readTableIndexAssigning;
 	}
 
 	@Override
 	public String getReplacePattern() {
-		return IReadTablePatterns.replaceReadTableRefereceWithKey;
+		return IReadTablePatterns.replacereadTableIndexAssigning;
 	}
 
 	@Override
 	public String getAssistShortText() {
-		return "Replace READ TABLE with REF #( )";
+		return "Replace READ TABLE with ASSIGN";
 	}
 
 	@Override
