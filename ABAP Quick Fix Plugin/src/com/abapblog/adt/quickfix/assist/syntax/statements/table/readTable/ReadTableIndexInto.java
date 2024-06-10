@@ -1,22 +1,22 @@
-package com.abapblog.adt.quickfix.assist.syntax.statements.readTable;
+package com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable;
 
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class ReadTableWithKeyInto extends StatementAssist implements IAssistRegex {
+public class ReadTableIndexInto extends StatementAssist implements IAssistRegex {
 
-	public ReadTableWithKeyInto() {
+	public ReadTableIndexInto() {
 		super();
 	}
 
 	@Override
 	public String getMatchPattern() {
-		return IReadTablePatterns.readTableWithKeyInto;
+		return IReadTablePatterns.readTableIndexInto;
 	}
 
 	@Override
 	public String getReplacePattern() {
-		return IReadTablePatterns.replaceReadTableWithKeyInto;
+		return IReadTablePatterns.replacereadTableIndexInto;
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class ReadTableWithKeyInto extends StatementAssist implements IAssistRege
 	@Override
 	public boolean canAssist() {
 		if (CodeReader.CurrentStatement.matchPattern(getMatchPattern())
-				&& !(new ReadTableWithKeyReferenceInto().canAssist())) {
+				&& !(new ReadTableIndexReferenceInto().canAssist())) {
 			return true;
 		}
 		return false;

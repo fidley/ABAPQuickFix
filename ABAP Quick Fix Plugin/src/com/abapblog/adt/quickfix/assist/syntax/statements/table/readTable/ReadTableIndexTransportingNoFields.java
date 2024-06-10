@@ -1,26 +1,26 @@
-package com.abapblog.adt.quickfix.assist.syntax.statements.readTable;
+package com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable;
 
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.IAssistRegex;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
-public class ReadTableWithKeyTransportingNoFields extends StatementAssist implements IAssistRegex {
+public class ReadTableIndexTransportingNoFields extends StatementAssist implements IAssistRegex {
 
 	private static final String NOT = "NOT";
 	private static final String CODE = "Code";
 
-	public ReadTableWithKeyTransportingNoFields() {
+	public ReadTableIndexTransportingNoFields() {
 		super();
 	}
 
 	@Override
 	public String getMatchPattern() {
-		return IReadTablePatterns.readTableWithKeyTransportingNoFields;
+		return IReadTablePatterns.readTableIndexTransportingNoFields;
 	}
 
 	@Override
 	public String getReplacePattern() {
-		return IReadTablePatterns.replaceReadTableWithKeyTransportingNoFields;
+		return IReadTablePatterns.replaceReadTableIndexTransportingNoFields;
 	}
 
 	@Override

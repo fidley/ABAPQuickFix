@@ -4,6 +4,8 @@
 <toc label="abapBlog.com - ABAP Quick Fix" topic="html/quickfixes.html">
 	<topic label="ABAP Quick Fix Plugin"  href="html/quickfixes.html"> 
 		<topic href="html/changelog.html" label="Changelog">
+     <topic href="html/changelog/version1.1.6.html" label="version 1.1.5">
+     </topic>
      <topic href="html/changelog/version1.1.5.html" label="version 1.1.5">
      </topic>
      <topic href="html/changelog/version1.1.4.html" label="version 1.1.4">
