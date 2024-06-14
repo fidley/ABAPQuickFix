@@ -1,5 +1,6 @@
 package com.abapblog.adt.quickfix.assist.syntax.codeParser;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,13 +12,13 @@ import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
 
 public class AbapStatement {
 	private static final String fullLineCommentPattern = "^(\\*.*)|^((\\r\\n)+\\*.*)";
-	private int beginOfStatement;
-	private int beginOfStatementReplacement;
-	private int endOfStatement;
-	private String Statement;
+	private int beginOfStatement = 0;
+	private int beginOfStatementReplacement = 0;
+	private int endOfStatement = 0;
+	private String Statement = "";
 	private String leadingCharacters = "";
-	public List<Token> statementTokens;
-	private boolean FullLineComment;
+	public List<Token> statementTokens = new ArrayList<>();
+	private boolean FullLineComment = false;
 
 	public AbapStatement(int offset) {
 		int moveOffsetLeftForDot = 0;
@@ -26,11 +27,13 @@ public class AbapStatement {
 				moveOffsetLeftForDot = 1;
 			}
 		} catch (BadLocationException e) {
-			e.printStackTrace();
+			return;
 		}
 
 		beginOfStatement = AbapCodeReader.scannerServices.goBackToDot(AbapCodeReader.document,
 				offset - moveOffsetLeftForDot) + 1;
+		if (beginOfStatement == 1)
+			beginOfStatement = 0;
 		endOfStatement = AbapCodeReader.scannerServices.goForwardToDot(AbapCodeReader.document, offset);
 		statementTokens = AbapCodeReader.scannerServices.getStatementTokens(AbapCodeReader.document, beginOfStatement);
 		if (statementTokens.size() > 0) {
