@@ -50,7 +50,7 @@ public class CallMethod extends StatementAssist implements IAssistRegex {
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public abstract class Operators extends StatementAssist {
 				code = code.substring(0, currentToken.offset) + replacement + code.substring(currentToken.offset + 2);
 			}
 		}
-		return StringCleaner.clean(code.substring(CodeReader.CurrentStatement.getBeginOfStatement(),
+		return StringCleaner.clean(code.substring(CodeReader.CurrentStatement.getBeginOfStatementReplacement(),
 				CodeReader.CurrentStatement.getEndOfStatement()));
 
 	}
@@ -53,7 +53,7 @@ public abstract class Operators extends StatementAssist {
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override

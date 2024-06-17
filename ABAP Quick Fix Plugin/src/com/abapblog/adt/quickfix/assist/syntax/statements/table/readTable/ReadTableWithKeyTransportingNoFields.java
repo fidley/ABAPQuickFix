@@ -51,12 +51,13 @@ public class ReadTableWithKeyTransportingNoFields extends StatementAssist implem
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override
 	public int getReplaceLength() {
-		return CodeReader.NextStatement.getEndOfStatement() - CodeReader.CurrentStatement.getBeginOfStatement() + 1;
+		return CodeReader.NextStatement.getEndOfStatement()
+				- CodeReader.CurrentStatement.getBeginOfStatementReplacement() + 1;
 	}
 
 	@Override

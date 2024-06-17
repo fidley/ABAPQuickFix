@@ -46,7 +46,7 @@ public class RemoveFullLineCommentsFromStatement extends StatementAssist impleme
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override
