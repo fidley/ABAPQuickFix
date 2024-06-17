@@ -35,13 +35,16 @@ public class AbapStatement {
 		if (beginOfStatement == 1)
 			beginOfStatement = 0;
 		endOfStatement = AbapCodeReader.scannerServices.goForwardToDot(AbapCodeReader.document, offset);
+		if (endOfStatement == -1)
+			endOfStatement = offset;
 		statementTokens = AbapCodeReader.scannerServices.getStatementTokens(AbapCodeReader.document, beginOfStatement);
 		if (statementTokens.size() > 0) {
 			beginOfStatementReplacement = statementTokens.get(0).offset;
-			leadingCharacters = AbapCodeReader.getCode().substring(beginOfStatement, beginOfStatementReplacement);
-			Statement = AbapCodeReader.getCode().substring(beginOfStatementReplacement, getEndOfStatement());
+			leadingCharacters = AbapCodeReader.getCode().substring(beginOfStatement, getBeginOfStatementReplacement());
+			Statement = AbapCodeReader.getCode().substring(getBeginOfStatementReplacement(), getEndOfStatement());
 		} else {
 			Statement = AbapCodeReader.getCode().substring(beginOfStatement, getEndOfStatement());
+			beginOfStatementReplacement = beginOfStatement;
 		}
 		checkFullLineComment();
 
@@ -74,7 +77,7 @@ public class AbapStatement {
 	}
 
 	public int getStatementLength() {
-		return endOfStatement - beginOfStatement;
+		return endOfStatement - getBeginOfStatementReplacement();
 	}
 
 	public Boolean matchPattern(String pattern) {
@@ -106,10 +109,10 @@ public class AbapStatement {
 		Matcher regexPatterMatcher = RegularExpressionUtils.createMatcherWithTimeout(Statement, redexPattern, 1000);
 		while (regexPatterMatcher.find()) {
 
-			return leadingCharacters + regexPatterMatcher.replaceFirst(replace);
+			return regexPatterMatcher.replaceFirst(replace);
 		}
 
-		return leadingCharacters + StatementCode;
+		return StatementCode;
 
 	}
 
@@ -124,7 +127,7 @@ public class AbapStatement {
 			StatementCode = regexPatterMatcher.replaceAll(replace);
 		}
 
-		return leadingCharacters + StatementCode;
+		return StatementCode;
 
 	}
 
@@ -148,6 +151,10 @@ public class AbapStatement {
 	}
 
 	public int getBeginOfStatementWithoutLeadingComment() {
+		return getBeginOfStatementReplacement();
+	}
+
+	public int getBeginOfStatementReplacement() {
 		return beginOfStatementReplacement;
 	}
 

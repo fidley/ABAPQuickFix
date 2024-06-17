@@ -51,7 +51,7 @@ public class MethodOmitSelfReference extends StatementAssist implements IAssistR
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override

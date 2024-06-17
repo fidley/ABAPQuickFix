@@ -40,7 +40,7 @@ public class ReadTableReferenceIntoWithKey extends StatementAssist implements IA
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override

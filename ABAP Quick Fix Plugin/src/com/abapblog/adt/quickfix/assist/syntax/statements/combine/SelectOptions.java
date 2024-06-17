@@ -11,12 +11,12 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
 public class SelectOptions extends StatementAssist implements IAssistRegex {
 
-	private static final String BeginningOfStatement = "\r\n\tSELECT-OPTIONS: ";
+	private static final String BeginningOfStatement = "SELECT-OPTIONS: ";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePattern = "\\r\\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
-	private String MatchPattern = "(?s)\\s+select-options\\s*:*\\s+(.*)";
+	private String MatchPattern = "(?s)\\s*select-options\\s*:*\\s+(.*)";
 	private String ReplacePattern = "$1";
 	private boolean assistWithNext;
 	private boolean assistWithPrevious;
@@ -111,7 +111,7 @@ public class SelectOptions extends StatementAssist implements IAssistRegex {
 
 	@Override
 	public int getStartOfReplace() {
-		return matchedStatements.get(0).getBeginOfStatement();
+		return matchedStatements.get(0).getBeginOfStatementReplacement();
 	}
 
 	@Override

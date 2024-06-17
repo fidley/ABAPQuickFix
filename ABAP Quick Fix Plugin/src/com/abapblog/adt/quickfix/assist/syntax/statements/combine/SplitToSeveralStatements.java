@@ -5,7 +5,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
 public class SplitToSeveralStatements extends StatementAssist implements IAssistRegex {
 
-	private static final String BeginningOfStatement = "\r\n";
+	private static final String BeginningOfStatement = "";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePatternWithSpaces = "\\r\\n\\s*";
 	private String multipleEmptyLines = "(\\r?\\n?(\\r?\\n))+";
@@ -42,11 +42,14 @@ public class SplitToSeveralStatements extends StatementAssist implements IAssist
 			}
 			if (codeLine.startsWith("  ") || codeLine.startsWith("\t\t"))
 				codeLine = codeLine.replaceFirst("[ \t]{2,}", "");
+			if (codeLine.startsWith(" ") || codeLine.startsWith("\t"))
+				codeLine = codeLine.replaceFirst("[ \t]{1,}", "");
+			if (!ChangedCode.equals(""))
+				ChangedCode = ChangedCode + NewLineString;
 			ChangedCode = ChangedCode + BeginningOfStatement + MatchedStatement + " " + codeLine;
 
 		}
-		ChangedCode = ChangedCode.replaceAll(multipleEmptyLines, NewLineString).replaceFirst(NewLinePatternWithSpaces,
-				"");
+		ChangedCode = ChangedCode.replaceAll(multipleEmptyLines, NewLineString);
 		return BeginningOfStatement + ChangedCode.substring(0, ChangedCode.length());
 	}
 
@@ -77,7 +80,7 @@ public class SplitToSeveralStatements extends StatementAssist implements IAssist
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override

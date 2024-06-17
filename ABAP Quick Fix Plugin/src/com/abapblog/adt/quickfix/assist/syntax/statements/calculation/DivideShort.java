@@ -36,7 +36,7 @@ public class DivideShort extends StatementAssistRegex {
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override

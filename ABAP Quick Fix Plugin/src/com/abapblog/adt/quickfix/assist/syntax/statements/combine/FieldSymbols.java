@@ -11,7 +11,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
 public class FieldSymbols extends StatementAssist implements IAssistRegex {
 
-	private static final String BeginningOfStatement = "\r\n\tFIELD-SYMBOLS: ";
+	private static final String BeginningOfStatement = "FIELD-SYMBOLS: ";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";
 	private static final String NewLineString = "\r\n";
 	private static final String NewLinePattern = "\\r\\n";
@@ -111,7 +111,7 @@ public class FieldSymbols extends StatementAssist implements IAssistRegex {
 
 	@Override
 	public int getStartOfReplace() {
-		return matchedStatements.get(0).getBeginOfStatement();
+		return matchedStatements.get(0).getBeginOfStatementReplacement();
 	}
 
 	@Override

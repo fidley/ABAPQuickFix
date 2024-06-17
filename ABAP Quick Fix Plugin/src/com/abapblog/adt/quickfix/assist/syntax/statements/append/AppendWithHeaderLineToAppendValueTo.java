@@ -11,7 +11,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 
 public class AppendWithHeaderLineToAppendValueTo extends StatementAssist implements IAssistRegex {
 
-	private static final String BeginningOfStatement = "\r\n\tAPPEND VALUE #(  ";
+	private static final String BeginningOfStatement = "APPEND VALUE #(  ";
 	private String EndOfStatement = " ) TO internalTable.";
 	private static final String NewLineWithTabAndSpaceString = "\r\n\t  ";
 	private static final String NewLineString = "\r\n";
@@ -90,7 +90,7 @@ public class AppendWithHeaderLineToAppendValueTo extends StatementAssist impleme
 
 	@Override
 	public int getStartOfReplace() {
-		return matchedStatements.get(0).getBeginOfStatement();
+		return matchedStatements.get(0).getBeginOfStatementReplacement();
 	}
 
 	@Override

@@ -49,7 +49,7 @@ public class CreateObjectWithTypeExportingToNEW extends StatementAssist implemen
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override

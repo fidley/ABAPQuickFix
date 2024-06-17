@@ -30,9 +30,8 @@ public class MethodOmitExporting extends StatementAssist implements IAssistRegex
 
 	@Override
 	public String getChangedCode() {
-		String Code = "\r\n"
-				+ CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 1)
-						.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(NewLineString, "")
+		String Code = CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 1)
+				.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(NewLineString, "")
 				+ CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 3)
 						.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(NewLineString, "")
 				+ " )";
@@ -64,7 +63,7 @@ public class MethodOmitExporting extends StatementAssist implements IAssistRegex
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override

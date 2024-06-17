@@ -50,7 +50,7 @@ public class CreateObjectExportingToNEW extends StatementAssist implements IAssi
 
 	@Override
 	public int getStartOfReplace() {
-		return CodeReader.CurrentStatement.getBeginOfStatement();
+		return CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 	@Override
