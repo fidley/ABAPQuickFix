@@ -23,11 +23,11 @@ public class DataSortByNameCombined extends AbstractDataSortByName implements IA
 	protected void split() {
 		declMap = statementToMap(matchedStatements.get(0), order);
 	}
-	
+
 	public static String mapToCode(HashMap<String, List<String>> map, List<String> order, String spaces) {
 		// store starting DATA:
 		String code = dataDoubleBegin;
-		
+
 		for (int i = 0; i < dataDoubleBegin.length(); i++) {
 			spaces = spaces + " ";
 		}
@@ -45,10 +45,17 @@ public class DataSortByNameCombined extends AbstractDataSortByName implements IA
 			for (int i = 0; i < decls.size(); i++) {
 				String decl = decls.get(i);
 
+				if (decl.lastIndexOf(",") < 0) {
+					decl = decl + ",";
+				}
+
 				if (count == 1 && i == 0) {
-					code = code + decl + "," + newLine;
+					code = code + decl;
 				} else {
-					code = code + spaces + decl + "," + newLine;
+					code = code + spaces + decl;
+				}
+				if (!code.endsWith(newLine)) {
+					code = code + newLine;
 				}
 			}
 
@@ -58,8 +65,9 @@ public class DataSortByNameCombined extends AbstractDataSortByName implements IA
 		}
 
 		// delete last comma and set point
-		code = code.substring(0, code.lastIndexOf(",")) + ".";
-
+		// code = code.substring(0, code.lastIndexOf(",")) + ".";
+		code = code.substring(0, code.lastIndexOf(",")) + "."
+				+ code.substring(code.lastIndexOf(",") + 1, code.length());
 		return code;
 	}
 
@@ -69,8 +77,11 @@ public class DataSortByNameCombined extends AbstractDataSortByName implements IA
 		String code = statement.getStatement();
 		// delete starting DATA:
 		code = code.substring(dataDoubleBegin.length(), code.length());
+		if (!statement.getInlineComment().isEmpty())
+			;
+		code = code + "," + statement.getInlineComment();
 		List<String> allDeclars = new ArrayList<>();
-		allDeclars.addAll(Arrays.asList(code.split(",")));
+		allDeclars.addAll(Arrays.asList(code.split("\r\n")));
 
 		for (String prefix : order) {
 			List<String> declarsForMap = new ArrayList<>();
@@ -83,7 +94,7 @@ public class DataSortByNameCombined extends AbstractDataSortByName implements IA
 				// upper case -> startsWithIgnoreCase()
 				if (curDecl.trim().toUpperCase().startsWith(prefix.trim().toUpperCase())) {
 					declarsForMap.add(curDecl.strip());
-				} else {
+				} else if (!curDecl.isEmpty()) {
 					curDeclars.add(curDecl);
 				}
 			}

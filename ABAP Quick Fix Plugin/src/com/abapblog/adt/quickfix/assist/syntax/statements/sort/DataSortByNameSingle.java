@@ -56,9 +56,12 @@ public class DataSortByNameSingle extends AbstractDataSortByName implements IAss
 			for (int i = 0; i < decls.size(); i++) {
 				String decl = decls.get(i);
 				if (count == 1 && i == 0) {
-					code = code + decl + "." + newLine;
+					code = code + decl;
 				} else {
-					code = code + spaces + decl + "." + newLine;
+					code = code + spaces + decl;
+				}
+				if (!code.endsWith(newLine)) {
+					code = code + newLine;
 				}
 			}
 		}
@@ -82,7 +85,7 @@ public class DataSortByNameSingle extends AbstractDataSortByName implements IAss
 				AbapStatement curStatement = allDeclars.get(i);
 				String variable = getVariableName(curStatement.getStatement());
 				if (variable.trim().toUpperCase().startsWith(prefix)) {
-					declarsForMap.add(curStatement.getStatement());
+					declarsForMap.add(curStatement.getStatement() + "." + curStatement.getInlineComment());
 				} else {
 					curDeclars.add(curStatement);
 				}

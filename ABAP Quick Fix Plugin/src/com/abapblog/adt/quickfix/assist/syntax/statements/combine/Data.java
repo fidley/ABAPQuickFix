@@ -46,21 +46,23 @@ public class Data extends CombineAbstract implements IAssistRegex {
 							.replaceAll(multipleEmptyLines, NewLineString);
 					ChangedCode = BeginningOfStatement + ChangedCode;
 				} else {
-					if (!statement.getLeadingCharacters().endsWith(NewLineString)) {
+					if (!ChangedCode.endsWith(NewLineString)) {
 						ChangedCode = ChangedCode + NewLineString;
 					}
 
-					ChangedCode = ChangedCode + statement.getLeadingCharacters()
-							+ statement.replacePattern(getMatchPattern(), getReplacePattern())
-									.replaceAll(multipleEmptyLines, NewLineString);
+					ChangedCode = ChangedCode + statement.replacePattern(getMatchPattern(), getReplacePattern())
+							.replaceAll(multipleEmptyLines, NewLineString);
 				}
-				if (statementIterator.hasNext())
-					ChangedCode = ChangedCode + ",";
+				if (statementIterator.hasNext()) {
+					ChangedCode = ChangedCode + "," + statement.getInlineComment();
+				} else {
+					ChangedCode = ChangedCode + "." + statement.getInlineComment();
+				}
 			}
 
 		}
 
-		return StringCleaner.clean(ChangedCode + ".");
+		return StringCleaner.clean(ChangedCode);
 	}
 
 	@Override
