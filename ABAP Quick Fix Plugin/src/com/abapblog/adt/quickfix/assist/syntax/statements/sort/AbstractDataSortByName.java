@@ -53,7 +53,8 @@ public abstract class AbstractDataSortByName extends StatementAssist {
 			lineStartOffset = AbapCodeReader.document.getLineOffset(lineNr);
 			nextLineStartOffset = AbapCodeReader.document.getLineOffset(lineNr + 1);
 		} catch (BadLocationException e) {
-			e.printStackTrace();
+			// next line does not exists.
+			// e.printStackTrace();
 			return;
 		}
 		String line = AbapCodeReader.document.get().substring(lineStartOffset, nextLineStartOffset - 1)
@@ -136,12 +137,11 @@ public abstract class AbstractDataSortByName extends StatementAssist {
 
 	protected static String getVariableName(String code) {
 		if (code.toUpperCase().startsWith(dataDoubleBegin)) {
-			code = code.substring(6);
+			code = code.substring(5).trim();
 		} else if (code.toUpperCase().startsWith(dataBegin)) {
-			code = code.replaceFirst(dataBegin, "");
-			code = code.substring(5);
+			code = code.substring(5).trim();
 		} else if (code.toUpperCase().startsWith(dataInline)) {
-			code = code.substring(5);
+			code = code.substring(5).trim();
 		}
 		List<String> splits = Arrays.asList(code.split(" "));
 		if (splits.isEmpty()) {

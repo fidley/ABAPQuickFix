@@ -148,9 +148,13 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		while (assistIterator.hasNext()) {
 			IAssist assist = assistIterator.next();
 			if (assist.canAssist()) {
-				proposals.add(new QuickFIxProposal(assist.getChangedCode(), assist.getStartOfReplace(),
-						assist.getReplaceLength(), 0, assist.getAssistIcon(), assist.getAssistShortText(), null,
-						assist.getAssistLongText(), assist.getCallPrettyPrintOnBlock()));
+				try {
+					proposals.add(new QuickFIxProposal(assist.getChangedCode(), assist.getStartOfReplace(),
+							assist.getReplaceLength(), 0, assist.getAssistIcon(), assist.getAssistShortText(), null,
+							assist.getAssistLongText(), assist.getCallPrettyPrintOnBlock()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 
 			}
 		}

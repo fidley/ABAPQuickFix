@@ -33,7 +33,7 @@ public class MethodOmitExporting extends StatementAssist implements IAssistRegex
 		String Code = CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 1)
 				.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(NewLineString, "")
 				+ CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 3)
-						.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(NewLineString, "")
+						.replaceFirst(NewLinePatternWithSpaces, " ").replaceFirst(NewLineString, "")
 				+ " )";
 		return StringCleaner.clean(Code);
 	}
