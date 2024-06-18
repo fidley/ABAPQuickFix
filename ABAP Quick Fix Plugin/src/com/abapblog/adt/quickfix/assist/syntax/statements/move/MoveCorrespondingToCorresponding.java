@@ -48,9 +48,9 @@ public class MoveCorrespondingToCorresponding extends StatementAssist {
 
 		}
 
-		return StringCleaner.clean("\r\n" + target.trim() + " = CORRESPONDING #("
-				+ (isExpandingNestedTables ? " DEEP " : "") + (isKeepingTargetLines ? " APPENDING" : "") + " BASE ( "
-				+ target.trim() + " ) " + source.trim() + " )");
+		return StringCleaner.clean(target.trim() + " = CORRESPONDING #(" + (isExpandingNestedTables ? " DEEP " : "")
+				+ (isKeepingTargetLines ? " APPENDING" : "") + " BASE ( " + target.trim() + " ) " + source.trim()
+				+ " )");
 	}
 
 	@Override

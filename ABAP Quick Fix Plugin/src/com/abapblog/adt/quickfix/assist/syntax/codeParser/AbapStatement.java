@@ -39,11 +39,20 @@ public class AbapStatement {
 			endOfStatement = offset;
 		statementTokens = AbapCodeReader.scannerServices.getStatementTokens(AbapCodeReader.document, beginOfStatement);
 		if (statementTokens.size() > 0) {
-			beginOfStatementReplacement = statementTokens.get(0).offset;
+			for (int i = 0; i < statementTokens.size(); i++) {
+				if (AbapCodeReader.scannerServices.isComment(AbapCodeReader.document, statementTokens.get(i).offset))
+					continue;
+
+				beginOfStatementReplacement = statementTokens.get(i).offset;
+				break;
+			}
 			leadingCharacters = AbapCodeReader.getCode().substring(beginOfStatement, getBeginOfStatementReplacement());
 			Statement = AbapCodeReader.getCode().substring(getBeginOfStatementReplacement(), getEndOfStatement());
 		} else {
 			Statement = AbapCodeReader.getCode().substring(beginOfStatement, getEndOfStatement());
+
+		}
+		if (beginOfStatementReplacement == 0) {
 			beginOfStatementReplacement = beginOfStatement;
 		}
 		checkFullLineComment();
@@ -156,6 +165,10 @@ public class AbapStatement {
 
 	public int getBeginOfStatementReplacement() {
 		return beginOfStatementReplacement;
+	}
+
+	public String getLeadingCharacters() {
+		return leadingCharacters;
 	}
 
 }
