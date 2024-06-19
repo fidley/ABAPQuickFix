@@ -90,7 +90,10 @@ public class DataSortByNameAll extends AbstractDataSortByName implements IAssist
 		String inlineCode = "";
 		List<AbapStatement> inlines = getInlineStatements();
 		for (int i = 0; i < inlines.size(); i++) {
-			inlineCode = inlineCode + spaces + inlines.get(i).getStatement() + "." + newLine;
+			inlineCode = inlineCode + spaces + inlines.get(i).getStatement() + "." + inlines.get(i).getInlineComment();
+			if (!inlineCode.endsWith(newLine)) {
+				inlineCode = inlineCode + newLine;
+			}
 		}
 
 		String newCode = "";
@@ -103,10 +106,13 @@ public class DataSortByNameAll extends AbstractDataSortByName implements IAssist
 			if (newCode.isBlank()) {
 				newCode = combinedStatementsCode;
 			} else {
+
+				if (!newCode.endsWith(newLine))
+					newCode = newCode + newLine;
 				if (extraRow) {
-					newCode = newCode + newLine + newLine + combinedStatementsCode;
-				} else {
 					newCode = newCode + newLine + combinedStatementsCode;
+				} else {
+					newCode = newCode + combinedStatementsCode;
 				}
 			}
 		}
@@ -115,17 +121,20 @@ public class DataSortByNameAll extends AbstractDataSortByName implements IAssist
 			if (newCode.isBlank()) {
 				newCode = inlineCode;
 			} else {
+				if (!newCode.endsWith(newLine))
+					newCode = newCode + newLine;
+
 				if (extraRow) {
-					newCode = newCode + newLine + newLine + inlineCode;
-				} else {
 					newCode = newCode + newLine + inlineCode;
+				} else {
+					newCode = newCode + inlineCode;
 				}
 			}
 		}
 
-		if (newCode.endsWith(newLine)) {
-			newCode = newCode.substring(0, newCode.length() - newLine.length());
-		}
+//		if (newCode.endsWith(newLine)) {
+//			newCode = newCode.substring(0, newCode.length() - newLine.length());
+//		}
 
 		return newCode;
 	}
