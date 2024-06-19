@@ -66,10 +66,10 @@ public class DataSortByNameSingle extends AbstractDataSortByName implements IAss
 			}
 		}
 
-		// delete last empty line
-		if (code.endsWith(newLine)) {
-			code = code.substring(0, code.length() - newLine.length());
-		}
+//		// delete last empty line
+//		if (code.endsWith(newLine)) {
+//			code = code.substring(0, code.length() - newLine.length());
+//		}
 
 		return code;
 	}

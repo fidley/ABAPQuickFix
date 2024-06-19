@@ -130,7 +130,7 @@ public abstract class AbstractDataSortByName extends StatementAssist {
 
 	@Override
 	public int getReplaceLength() {
-		int end = matchedStatements.get(matchedStatements.size() - 1).getEndOfStatement();
+		int end = matchedStatements.get(matchedStatements.size() - 1).getEndOfStatementWithInlineComment();
 		int start = getStartOfReplace();
 		return end - start + 1;
 	}

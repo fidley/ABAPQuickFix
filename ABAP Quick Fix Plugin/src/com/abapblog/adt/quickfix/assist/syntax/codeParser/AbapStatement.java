@@ -15,6 +15,7 @@ public class AbapStatement {
 	private int beginOfStatement = 0;
 	private int beginOfStatementReplacement = 0;
 	private int endOfStatement = 0;
+	private int endOfStatementWithInlineComment = 0;
 	private String Statement = "";
 	private String leadingCharacters = "";
 	private String inlineComment = "";
@@ -31,35 +32,16 @@ public class AbapStatement {
 			return;
 		}
 
-		beginOfStatement = AbapCodeReader.scannerServices.goBackToDot(AbapCodeReader.document,
-				offset - moveOffsetLeftForDot) + 1;
-		if (beginOfStatement == 1)
-			beginOfStatement = 0;
-
-		endOfStatement = AbapCodeReader.scannerServices.goForwardToDot(AbapCodeReader.document, offset);
-		if (endOfStatement == -1)
-			endOfStatement = offset;
-		int lastStatementLine;
-		try {
-			Boolean inlineCommentFound = false;
-			lastStatementLine = AbapCodeReader.document.getLineOfOffset(endOfStatement);
-			int offsetNew = endOfStatement + 2;
-			while (lastStatementLine == AbapCodeReader.document.getLineOfOffset(offsetNew)) {
-				if (AbapCodeReader.scannerServices.isComment(AbapCodeReader.document, offsetNew)) {
-					offsetNew += 1;
-					inlineCommentFound = true;
-				} else {
-					break;
-				}
-			}
-			if (inlineCommentFound) {
-				inlineComment = AbapCodeReader.getCode().substring(endOfStatement + 1, offsetNew);
-			}
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
-		}
+		findBeginningOfStatememt(offset, moveOffsetLeftForDot);
+		findEndOfStatememt(offset);
+		checkInlineCommentExists();
 		statementTokens = AbapCodeReader.scannerServices.getStatementTokens(AbapCodeReader.document, beginOfStatement);
+		adaptBeginningOfStatement();
+		checkFullLineComment();
+
+	}
+
+	private void adaptBeginningOfStatement() {
 		if (statementTokens.size() > 0) {
 			for (int i = 0; i < statementTokens.size(); i++) {
 				if (AbapCodeReader.scannerServices.isComment(AbapCodeReader.document, statementTokens.get(i).offset))
@@ -77,8 +59,44 @@ public class AbapStatement {
 		if (beginOfStatementReplacement == 0) {
 			beginOfStatementReplacement = beginOfStatement;
 		}
-		checkFullLineComment();
+	}
 
+	private void findEndOfStatememt(int offset) {
+		endOfStatement = AbapCodeReader.scannerServices.goForwardToDot(AbapCodeReader.document, offset);
+		if (endOfStatement == -1)
+			endOfStatement = offset;
+		endOfStatementWithInlineComment = endOfStatement;
+	}
+
+	private void findBeginningOfStatememt(int offset, int moveOffsetLeftForDot) {
+		beginOfStatement = AbapCodeReader.scannerServices.goBackToDot(AbapCodeReader.document,
+				offset - moveOffsetLeftForDot) + 1;
+		if (beginOfStatement == 1)
+			beginOfStatement = 0;
+	}
+
+	private void checkInlineCommentExists() {
+		int lastStatementLine;
+		try {
+			Boolean inlineCommentFound = false;
+			lastStatementLine = AbapCodeReader.document.getLineOfOffset(endOfStatement);
+			int offsetNew = endOfStatement + 2;
+			while (lastStatementLine == AbapCodeReader.document.getLineOfOffset(offsetNew)) {
+				if (AbapCodeReader.scannerServices.isComment(AbapCodeReader.document, offsetNew)) {
+					endOfStatementWithInlineComment = offsetNew;
+					offsetNew += 1;
+					inlineCommentFound = true;
+				} else {
+					break;
+				}
+			}
+			if (inlineCommentFound) {
+				inlineComment = AbapCodeReader.getCode().substring(endOfStatement + 1, offsetNew);
+			}
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
 	}
 
 	private void checkFullLineComment() {
@@ -195,6 +213,10 @@ public class AbapStatement {
 
 	public String getInlineComment() {
 		return inlineComment;
+	}
+
+	public int getEndOfStatementWithInlineComment() {
+		return endOfStatementWithInlineComment;
 	}
 
 }
