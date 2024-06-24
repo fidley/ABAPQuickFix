@@ -78,6 +78,11 @@ public abstract class AbstractDataSortByName extends StatementAssist {
 		for (String prefix : orderSplit) {
 			order.add(prefix.trim());
 		}
+
+		if (!order.contains("")) {
+			order.add("");
+		}
+
 	}
 
 	protected abstract void split();

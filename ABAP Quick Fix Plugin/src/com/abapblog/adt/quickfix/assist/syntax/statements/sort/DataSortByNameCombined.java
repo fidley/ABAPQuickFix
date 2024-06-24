@@ -101,7 +101,6 @@ public class DataSortByNameCombined extends AbstractDataSortByName implements IA
 			allDeclars = curDeclars;
 			map.put(prefix, declarsForMap);
 		}
-
 		return map;
 	}
 

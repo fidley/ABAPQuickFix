@@ -10,7 +10,7 @@ import com.abapblog.adt.quickfix.Activator;
 
 public class PreferenceInitializer extends AbstractPreferenceInitializer {
 
-	private static final List<String> ORDER_PREFIX = Arrays.asList("GO", "GT", "GS", "GV", "LO", "LT", "LS", "LV");
+	private static final List<String> ORDER_PREFIX = Arrays.asList("GO", "GT", "GS", "GV", "LO", "LT", "LS", "LV", "");
 
 	@Override
 	public void initializeDefaultPreferences() {
