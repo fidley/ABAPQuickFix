@@ -117,14 +117,43 @@ public class AbapStatement {
 		return Statement;
 	}
 
+	/**
+	 * This method retrieves the end of the statement. The end of the statement is
+	 * the offset of the last character in the statement. It does not include the
+	 * inline comment. It stops at the last character of the statement.
+	 *
+	 * If you want to get the end of the statement including the inline comment, use
+	 * {@link #getEndOfStatementWithInlineComment()
+	 * getEndOfStatementWithInlineComment}
+	 *
+	 * @return The offset of the last character in the statement.
+	 */
 	public int getEndOfStatement() {
 		return endOfStatement;
 	}
 
+	/**
+	 * This method retrieves the beginning of the statement. The beginning of the
+	 * statement is the offset of the first character in the statement. In case
+	 * there are comments before the statement, they are included in the beginning
+	 * of the statement. This is due to the fact that the beginning of the statement
+	 * is used to calculated on a base of the end of previous statement.
+	 *
+	 * @return The offset of the first character in the statement.
+	 */
 	public int getBeginOfStatement() {
 		return beginOfStatement;
 	}
 
+	/**
+	 * This method calculates the length of an ABAP statement. The length is
+	 * determined by subtracting the beginning of the statement replacement from the
+	 * end of the statement. The beginning of the statement replacement is the
+	 * offset of the first non-comment token in the statement. The end of the
+	 * statement is the offset of the last character in the statement.
+	 *
+	 * @return The length of the ABAP statement.
+	 */
 	public int getStatementLength() {
 		return endOfStatement - getBeginOfStatementReplacement();
 	}
@@ -203,18 +232,47 @@ public class AbapStatement {
 		return getBeginOfStatementReplacement();
 	}
 
+	/**
+	 * This method retrieves the offset of the first non-comment token in the
+	 * statement. This offset is used to calculate the length of the statement and
+	 * to determine the leading characters of the statement.
+	 *
+	 * @return The offset of the first non-comment token in the statement.
+	 */
 	public int getBeginOfStatementReplacement() {
 		return beginOfStatementReplacement;
 	}
 
+	/**
+	 * This method retrieves the leading characters of the statement. The leading
+	 * characters are the characters before the first non-comment token in the
+	 * statement.
+	 *
+	 * @return The leading characters of the statement.
+	 */
 	public String getLeadingCharacters() {
 		return leadingCharacters;
 	}
 
+	/**
+	 * This method retrieves the inline comment of the statement. The inline comment
+	 * is the comment that is located at the end of the statement. After the "
+	 * character
+	 *
+	 * @return The inline comment of the statement.
+	 */
 	public String getInlineComment() {
 		return inlineComment;
 	}
 
+	/**
+	 * This method retrieves the end of the statement including the inline comment.
+	 * The end of the statement with inline comment is the offset of the last
+	 * character in the statement including the inline comment.
+	 *
+	 * @return The offset of the last character in the statement including the
+	 *         inline comment.
+	 */
 	public int getEndOfStatementWithInlineComment() {
 		return endOfStatementWithInlineComment;
 	}
