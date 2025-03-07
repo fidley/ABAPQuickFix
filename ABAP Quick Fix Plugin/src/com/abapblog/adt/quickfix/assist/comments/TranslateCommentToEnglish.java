@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
@@ -12,6 +11,7 @@ import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
 
 import com.abapblog.adt.quickfix.Activator;
+import com.abapblog.adt.quickfix.assist.syntax.statements.QuickFIxProposal;
 import com.abapblog.adt.quickfix.assist.utility.QuickFixIcon;
 import com.abapblog.adt.quickfix.preferences.PreferenceConstants;
 
@@ -49,13 +49,13 @@ public class TranslateCommentToEnglish implements IQuickAssistProcessor {
 			String sourceCode = context.getSourceViewer().getDocument().get();
 
 			Image image = QuickFixIcon.get();
-			CompletionProposal cPropSelectedComments;
+			ICompletionProposal cPropSelectedComments;
 			try {
 				String translatedText = Translator.main(sourceCode.substring(offset, offset + lenght));
 				if (translatedText.equals(""))
 					return null;
-				cPropSelectedComments = new CompletionProposal(translatedText, offset, lenght, 0, image,
-						"Translate selection to English", null, translatedText);
+				cPropSelectedComments = new QuickFIxProposal(translatedText, offset, lenght, 0, image,
+						"Translate selection to English", null, translatedText, false);
 				proposals.add(cPropSelectedComments);
 				return proposals.toArray(new ICompletionProposal[1]);
 			} catch (IOException e) {

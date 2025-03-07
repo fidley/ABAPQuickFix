@@ -5,23 +5,27 @@ import org.eclipse.core.commands.NotEnabledException;
 import org.eclipse.core.commands.NotHandledException;
 import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextSelection;
-import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.part.MultiPageEditorPart;
 
+import com.sap.adt.tools.abapsource.ui.quickassist.IQuickAssistProposal;
 import com.sap.adt.tools.abapsource.ui.sources.editors.IAbapSourcePage;
+import com.sap.adt.tools.abapsource.ui.sources.prettyprinter.PrettyPrintHandler;
 import com.sap.adt.tools.core.ui.editors.IAdtFormEditor;
 
-public class QuickFIxProposal implements ICompletionProposal {
-
+public class QuickFIxProposal implements IQuickAssistProposal {
+	private static IHandlerService handlerService = PlatformUI.getWorkbench().getService(IHandlerService.class);
 	/** The string to be displayed in the completion proposal popup. */
 	private String fDisplayString;
 	/** The replacement string. */
@@ -125,12 +129,27 @@ public class QuickFIxProposal implements ICompletionProposal {
 	}
 
 	private void callPrettyPrintBlockCommand() {
-		IHandlerService handlerService = PlatformUI.getWorkbench().getService(IHandlerService.class);
-		try {
-			handlerService.executeCommand("com.sap.adt.tools.abapsource.ui.prettyPrintBlock", null);
-		} catch (ExecutionException | NotDefinedException | NotEnabledException | NotHandledException e) {
-			e.printStackTrace();
-		}
+		setFocutOnActiveEditor();
+
+		Display.getDefault().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					handlerService.executeCommand(PrettyPrintHandler.COMMAND_ID_FORMAT_BLOCK, null);
+
+				} catch (ExecutionException | NotDefinedException | NotEnabledException | NotHandledException e) {
+					e.printStackTrace();
+				}
+			}
+
+		});
+
+	}
+
+	private void setFocutOnActiveEditor() {
+		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+				.getActiveEditor();
+		activeEditor.setFocus();
 	}
 
 	public IAbapSourcePage getTextEditor(IEditorPart editor) {
@@ -178,6 +197,11 @@ public class QuickFIxProposal implements ICompletionProposal {
 	@Override
 	public String getAdditionalProposalInfo() {
 		return fAdditionalProposalInfo;
+	}
+
+	@Override
+	public IStatus getStatus() {
+		return new Status(0, "com.sap.adt.refactoring.ui", (String) null);
 	}
 
 }
