@@ -33,6 +33,8 @@ public class SplitToSeveralStatements extends StatementAssist implements IAssist
 		String ChangedCode = "";
 		String CodeToSplit = CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 3);
 		String[] SplittedCode = CodeToSplit.split("\r\n");
+//		String[] SplittedCode = CodeToSplit.split(",");
+
 		for (int i = 0; i < SplittedCode.length; i++) {
 			String codeLine = SplittedCode[i].replaceAll(multipleEmptyLines, NewLineString)
 					.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(",", ".");

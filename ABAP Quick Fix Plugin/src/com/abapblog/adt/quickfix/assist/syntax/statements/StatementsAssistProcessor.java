@@ -53,6 +53,7 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.loop.LoopAtItabWithHea
 import com.abapblog.adt.quickfix.assist.syntax.statements.loop.LoopAtItabWithHeaderLineAsIntoWa;
 import com.abapblog.adt.quickfix.assist.syntax.statements.loop.LoopAtItabWithHeaderLineAsRefInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CallMethod;
+import com.abapblog.adt.quickfix.assist.syntax.statements.methods.Cast;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectExportingToNEW;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectToNEW;
 import com.abapblog.adt.quickfix.assist.syntax.statements.methods.CreateObjectWithTypeExportingToNEW;
@@ -90,6 +91,11 @@ import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTa
 import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableWithKeyInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableWithKeyReferenceInto;
 import com.abapblog.adt.quickfix.assist.syntax.statements.table.readTable.ReadTableWithKeyTransportingNoFields;
+import com.abapblog.adt.quickfix.assist.syntax.statements.texts.BooleanEmptyToAbapFalse;
+import com.abapblog.adt.quickfix.assist.syntax.statements.texts.BooleanXToAbapTrue;
+import com.abapblog.adt.quickfix.assist.syntax.statements.texts.EmptyToSpace;
+import com.abapblog.adt.quickfix.assist.syntax.statements.texts.TranslateToLowerCase;
+import com.abapblog.adt.quickfix.assist.syntax.statements.texts.TranslateToUpperCase;
 import com.abapblog.adt.quickfix.assist.syntax.statements.texts.WriteToStringExpression;
 
 public class StatementsAssistProcessor implements IQuickAssistProcessor {
@@ -120,7 +126,7 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 //				return true;
 //			}
 		}
-		return false;
+		return true;
 	}
 
 	@Override
@@ -236,7 +242,12 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new DescribeTableLines());
 		assists.add(new WriteToStringExpression());
 		assists.add(new MoveCorrespondingToCorresponding());
-
+		assists.add(new TranslateToLowerCase());
+		assists.add(new TranslateToUpperCase());
+		assists.add(new Cast());
+		assists.add(new BooleanXToAbapTrue());
+		assists.add(new BooleanEmptyToAbapFalse());
+		assists.add(new EmptyToSpace());
 		// assists.add(new SelectSingle());
 
 		IConfigurationElement[] config = RegistryFactory.getRegistry().getConfigurationElementsFor(IFIXAPPENDER_ID);

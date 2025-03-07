@@ -3,12 +3,12 @@ package com.abapblog.adt.quickfix.assist.comments;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
 
+import com.abapblog.adt.quickfix.assist.syntax.statements.QuickFIxProposal;
 import com.abapblog.adt.quickfix.assist.utility.QuickFixIcon;
 
 public class ReplaceFullLineWithInlineComment implements IQuickAssistProcessor {
@@ -44,10 +44,10 @@ public class ReplaceFullLineWithInlineComment implements IQuickAssistProcessor {
 		int offset = context.getSourceViewer().getSelectedRange().x;
 		String sourceCode = context.getSourceViewer().getDocument().get();
 
-		CompletionProposal cPropSelectedComments = new CompletionProposal(
+		ICompletionProposal cPropSelectedComments = new QuickFIxProposal(
 				commentParser.fullLineCommentsToInLineComments(sourceCode.substring(offset, offset + length)), offset,
 				length, 0, QuickFixIcon.get(), "Replace full-line with in-line comments in selection", null,
-				"Replaces all full-line comments in the selected code. Please think twice before using it.");
+				"Replaces all full-line comments in the selected code. Please think twice before using it.", false);
 		proposals.add(cPropSelectedComments);
 		return proposals.toArray(new ICompletionProposal[1]);
 	}
