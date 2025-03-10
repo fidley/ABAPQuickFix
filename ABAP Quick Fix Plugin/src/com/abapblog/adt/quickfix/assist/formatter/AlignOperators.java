@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.jface.text.BadLocationException;
 
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapCodeReader;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
 
@@ -125,7 +126,7 @@ public class AlignOperators extends StatementAssist {
 	private boolean isTokenAnOperator(Token currentToken) {
 		return Arrays.stream(operatorNames).anyMatch(currentToken.name.toUpperCase()::equals)
 				&& currentToken.offset >= selectionStart && currentToken.offset <= selectionEnd
-				&& CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true);
+				&& AbapCodeReader.isKeyword(currentToken.offset);
 	}
 
 	private int setNumberOfOffsetChanges(int currentOffset, int offsetChanges, int currentLine, int previousLine) {

@@ -70,4 +70,14 @@ public class AbapCodeReader {
 	public static AbapCodeReader getInstance() {
 		return CodeReader;
 	}
+
+	public static boolean isKeyword(int offset) {
+		boolean keyword = false;
+		try {
+			keyword = scannerServices.isKeyword(sourcePage, offset, true);
+		} catch (Exception e) {
+			keyword = false;
+		}
+		return keyword;
+	}
 }
