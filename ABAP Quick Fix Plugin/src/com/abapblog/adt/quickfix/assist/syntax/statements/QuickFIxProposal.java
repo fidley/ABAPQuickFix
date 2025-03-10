@@ -131,7 +131,7 @@ public class QuickFIxProposal implements IQuickAssistProposal {
 	private void callPrettyPrintBlockCommand() {
 		setFocutOnActiveEditor();
 
-		Display.getDefault().asyncExec(new Runnable() {
+		Display.getDefault().syncExec(new Runnable() {
 			@Override
 			public void run() {
 				try {

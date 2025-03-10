@@ -1,5 +1,6 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.move;
 
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapCodeReader;
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
@@ -22,13 +23,11 @@ public class MoveCorrespondingToCorresponding extends StatementAssist {
 		for (int i = 0; i < CodeReader.CurrentStatement.statementTokens.size(); i++) {
 			Token currentToken = CodeReader.CurrentStatement.statementTokens.get(i);
 
-			if (currentToken.name.toUpperCase().equals(ToToken)
-					&& CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true)) {
+			if (currentToken.name.toUpperCase().equals(ToToken) && AbapCodeReader.isKeyword(currentToken.offset + 1)) {
 				ToTokenFound = true;
 			}
 
-			if (!CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true)
-					|| (currentToken.name.toUpperCase().equals("]"))) {
+			if (!AbapCodeReader.isKeyword(currentToken.offset + 1) || (currentToken.name.toUpperCase().equals("]"))) {
 				if (ToTokenFound) {
 					target = target + " " + currentToken.name;
 				} else {
@@ -37,12 +36,12 @@ public class MoveCorrespondingToCorresponding extends StatementAssist {
 			}
 
 			if (currentToken.name.toUpperCase().equals(ExpandingToken)
-					&& CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true)) {
+					&& AbapCodeReader.isKeyword(currentToken.offset + 1)) {
 				isExpandingNestedTables = true;
 			}
 
 			if (currentToken.name.toUpperCase().equals(KeepingToken)
-					&& CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true)) {
+					&& AbapCodeReader.isKeyword(currentToken.offset + 1)) {
 				isKeepingTargetLines = true;
 			}
 
@@ -69,7 +68,7 @@ public class MoveCorrespondingToCorresponding extends StatementAssist {
 		for (int i = 0; i < CodeReader.CurrentStatement.statementTokens.size(); i++) {
 			Token currentToken = CodeReader.CurrentStatement.statementTokens.get(i);
 			if (currentToken.name.toUpperCase().equals(MoveCorrenspondingToken)
-					&& CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true)) {
+					&& AbapCodeReader.isKeyword(currentToken.offset + 1)) {
 				return true;
 			}
 		}

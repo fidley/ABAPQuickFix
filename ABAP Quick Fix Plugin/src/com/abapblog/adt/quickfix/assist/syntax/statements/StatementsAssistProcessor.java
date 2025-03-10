@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ISafeRunnable;
@@ -14,7 +13,6 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.jface.text.quickassist.IQuickAssistProcessor;
 import org.eclipse.jface.text.source.Annotation;
-import org.eclipse.ui.texteditor.MarkerAnnotation;
 
 import com.abapblog.adt.quickfix.IFixAppender;
 import com.abapblog.adt.quickfix.assist.formatter.AlignOperators;
@@ -112,21 +110,21 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 
 	@Override
 	public boolean canFix(Annotation annotation) {
-		if (annotation instanceof MarkerAnnotation) {
-			MarkerAnnotation markerAnnotation = (MarkerAnnotation) annotation;
-			try {
-				markerAnnotation.getMarker().getAttribute(IMarker.MESSAGE);
-			} catch (CoreException e) {
-				e.printStackTrace();
-			}
-			IMarker marker = markerAnnotation.getMarker();
-//			String markerId = RefactoringUiUtilInternal.getQuickfixMarkerAttributeValue(marker);
-//			boolean hasResolutions = (markerId != null);
-//			if (hasResolutions) {
-//				return true;
+//		if (annotation instanceof MarkerAnnotation) {
+//			MarkerAnnotation markerAnnotation = (MarkerAnnotation) annotation;
+//			try {
+//				markerAnnotation.getMarker().getAttribute(IMarker.MESSAGE);
+//			} catch (CoreException e) {
+//				e.printStackTrace();
 //			}
-		}
-		return true;
+//			IMarker marker = markerAnnotation.getMarker();
+////			String markerId = RefactoringUiUtilInternal.getQuickfixMarkerAttributeValue(marker);
+////			boolean hasResolutions = (markerId != null);
+////			if (hasResolutions) {
+////				return true;
+////			}
+//		}
+		return false;
 	}
 
 	@Override
@@ -153,17 +151,19 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		Iterator<IAssist> assistIterator = assists.iterator();
 		while (assistIterator.hasNext()) {
 			IAssist assist = assistIterator.next();
-			if (assist.canAssist()) {
-				try {
+			try {
+				if (assist.canAssist()) {
+
 					proposals.add(new QuickFIxProposal(assist.getChangedCode(), assist.getStartOfReplace(),
 							assist.getReplaceLength(), 0, assist.getAssistIcon(), assist.getAssistShortText(), null,
 							assist.getAssistLongText(), assist.getCallPrettyPrintOnBlock()));
-				} catch (Exception e) {
-					e.printStackTrace();
 				}
-
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+
 		}
+
 	}
 
 	private void createAssistsList() {
@@ -228,9 +228,13 @@ public class StatementsAssistProcessor implements IQuickAssistProcessor {
 		assists.add(new LoopAtItabWithHeaderLineAsFieldSymbol());
 		assists.add(new LoopAtItabWithHeaderLineAsRefInto());
 		assists.add(new LoopAtItabWithHeaderLineAsIntoWa());
-		assists.add(new DataSortByNameCombined());
-		assists.add(new DataSortByNameAll());
-		assists.add(new DataSortByNameSingle());
+		try {
+			assists.add(new DataSortByNameCombined());
+			assists.add(new DataSortByNameAll());
+			assists.add(new DataSortByNameSingle());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		assists.add(new Add());
 		assists.add(new AddShort());
 		assists.add(new Subtract());

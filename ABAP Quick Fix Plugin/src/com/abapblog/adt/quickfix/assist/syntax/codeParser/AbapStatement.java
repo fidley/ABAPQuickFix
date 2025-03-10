@@ -20,6 +20,7 @@ public class AbapStatement {
 	private String leadingCharacters = "";
 	private String inlineComment = "";
 	public List<Token> statementTokens = new ArrayList<>();
+	public List<String> combinedLines = new ArrayList<>();
 	private boolean FullLineComment = false;
 
 	public AbapStatement(int offset) {
@@ -36,8 +37,58 @@ public class AbapStatement {
 		findEndOfStatememt(offset);
 		checkInlineCommentExists();
 		statementTokens = AbapCodeReader.scannerServices.getStatementTokens(AbapCodeReader.document, beginOfStatement);
+		combinedLines = createLinesForCombinedStatements(statementTokens);
 		adaptBeginningOfStatement();
 		checkFullLineComment();
+
+	}
+
+	private List<String> createLinesForCombinedStatements(List<Token> currentStatements) {
+		List<String> lines = new ArrayList();
+		String inLineComment = "";
+		String currentLine = "";
+		int lastTokenIterator = currentStatements.size() - 1;
+		Token lastToken = currentStatements.get(lastTokenIterator);
+		int endOfStatementOffset = lastToken.offset + lastToken.name.length();
+
+		int endOfPreviousLine = currentStatements.get(1).offset;
+
+		for (int i = endOfStatementOffset; i <= endOfStatement; i++) {
+
+			Token nextToken = AbapCodeReader.scannerServices.getNextToken(AbapCodeReader.document, i);
+
+			i = nextToken.offset + nextToken.name.length() - 1;
+			if (AbapCodeReader.scannerServices.isComma(nextToken.name.charAt(0))
+					|| AbapCodeReader.scannerServices.isDot(nextToken.name.charAt(0))) {
+				inLineComment = "";
+				String dotOrNot = ".";
+				if (i == endOfStatement && getInlineComment().isBlank())
+					dotOrNot = "";
+				if (lastToken.offset + lastToken.name.length() + 1 < nextToken.offset) {
+
+					currentLine = AbapCodeReader.getCode().substring(endOfPreviousLine,
+							lastToken.offset + lastToken.name.length()) + dotOrNot
+							+ AbapCodeReader.getCode().substring(lastToken.offset + lastToken.name.length(),
+									nextToken.offset);
+				} else {
+					currentLine = AbapCodeReader.getCode().substring(endOfPreviousLine, nextToken.offset) + dotOrNot;
+					Token commentCheckToken = AbapCodeReader.scannerServices.getNextToken(AbapCodeReader.document,
+							nextToken.offset + nextToken.name.length() + 1);
+					if (commentCheckToken.offset > nextToken.offset + nextToken.name.length() + 1) {
+						inLineComment = " " + AbapCodeReader.getCode()
+								.substring(nextToken.offset + nextToken.name.length() + 1, commentCheckToken.offset);
+						i = commentCheckToken.offset - 1;
+					}
+				}
+
+				lines.add(currentLine + inLineComment);
+				endOfPreviousLine = i + 1;
+
+			}
+			lastToken = nextToken;
+		}
+
+		return lines;
 
 	}
 

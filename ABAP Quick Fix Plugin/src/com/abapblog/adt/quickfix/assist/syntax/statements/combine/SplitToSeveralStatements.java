@@ -29,30 +29,46 @@ public class SplitToSeveralStatements extends StatementAssist implements IAssist
 
 	@Override
 	public String getChangedCode() {
-
+		String[] SplittedCode;
 		String ChangedCode = "";
-		String CodeToSplit = CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 3);
-		String[] SplittedCode = CodeToSplit.split("\r\n");
-//		String[] SplittedCode = CodeToSplit.split(",");
+		String CodeToSplit = "";
+		String CodeLine = "";
+		if (CodeReader.CurrentStatement.combinedLines.size() < 1) {
+			CodeToSplit = CodeReader.CurrentStatement.getMatchGroup(getMatchPattern(), 3);
+		} else {
+			for (int i = 0; i < CodeReader.CurrentStatement.combinedLines.size(); i++) {
+				CodeLine = CodeReader.CurrentStatement.combinedLines.get(i);
+				if (CodeLine.trim().equals("")) {
+					// skip empty rows
+					continue;
+				}
+				if (!CodeToSplit.equals(""))
+					CodeToSplit = CodeToSplit + NewLineString;
+				CodeToSplit = CodeToSplit + MatchedStatement + " " + CodeLine;
+			}
+		}
 
+		SplittedCode = CodeToSplit.split("\r?\n");
 		for (int i = 0; i < SplittedCode.length; i++) {
-			String codeLine = SplittedCode[i].replaceAll(multipleEmptyLines, NewLineString)
-					.replaceFirst(NewLinePatternWithSpaces, "").replaceFirst(",", ".");
-			if (codeLine.trim().equals("")) {
+			CodeLine = SplittedCode[i].replaceAll(multipleEmptyLines, NewLineString);
+			if (CodeLine.trim().equals("")) {
 				// skip empty rows
 				continue;
 			}
-			if (codeLine.startsWith("  ") || codeLine.startsWith("\t\t"))
-				codeLine = codeLine.replaceFirst("[ \t]{2,}", "");
-			if (codeLine.startsWith(" ") || codeLine.startsWith("\t"))
-				codeLine = codeLine.replaceFirst("[ \t]{1,}", "");
+			CodeLine = CodeLine.trim();
+			if (CodeLine.startsWith("  ") || CodeLine.startsWith("\t\t"))
+				CodeLine = CodeLine.replaceFirst("[ \t]{2,}", "");
+			if (CodeLine.startsWith(" ") || CodeLine.startsWith("\t"))
+				CodeLine = CodeLine.replaceFirst("[ \t]{1,}", "");
 			if (!ChangedCode.equals(""))
 				ChangedCode = ChangedCode + NewLineString;
-			ChangedCode = ChangedCode + BeginningOfStatement + MatchedStatement + " " + codeLine;
+			ChangedCode = ChangedCode + BeginningOfStatement + CodeLine;
 
 		}
+
 		ChangedCode = ChangedCode.replaceAll(multipleEmptyLines, NewLineString);
-		return BeginningOfStatement + ChangedCode.substring(0, ChangedCode.length());
+		return BeginningOfStatement + ChangedCode.substring(0, ChangedCode.length())
+				+ CodeReader.CurrentStatement.getInlineComment();
 	}
 
 	@Override
@@ -87,7 +103,8 @@ public class SplitToSeveralStatements extends StatementAssist implements IAssist
 
 	@Override
 	public int getReplaceLength() {
-		return CodeReader.CurrentStatement.getStatementLength();
+		return CodeReader.CurrentStatement.getEndOfStatementWithInlineComment()
+				- CodeReader.CurrentStatement.getBeginOfStatementReplacement();
 	}
 
 }

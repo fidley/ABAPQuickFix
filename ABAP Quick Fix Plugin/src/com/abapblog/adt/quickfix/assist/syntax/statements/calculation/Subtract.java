@@ -1,5 +1,6 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.calculation;
 
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapCodeReader;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
 import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
 
@@ -27,7 +28,7 @@ public class Subtract extends StatementAssistRegex {
 		for (int i = 0; i < CodeReader.CurrentStatement.statementTokens.size(); i++) {
 			Token currentToken = CodeReader.CurrentStatement.statementTokens.get(i);
 			if (currentToken.name.toUpperCase().equals(SUBTRACT_TOKEN)
-					&& CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true)) {
+					&& AbapCodeReader.isKeyword(currentToken.offset)) {
 				return true;
 			}
 		}

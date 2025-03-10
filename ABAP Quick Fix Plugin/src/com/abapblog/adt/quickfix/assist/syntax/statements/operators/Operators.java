@@ -1,5 +1,6 @@
 package com.abapblog.adt.quickfix.assist.syntax.statements.operators;
 
+import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapCodeReader;
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.StringCleaner;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
 import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
@@ -19,7 +20,7 @@ public abstract class Operators extends StatementAssist {
 		for (int i = 0; i < CodeReader.CurrentStatement.statementTokens.size(); i++) {
 			Token currentToken = CodeReader.CurrentStatement.statementTokens.get(i);
 			if (currentToken.name.toUpperCase().equals(operatorName)
-					&& CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true)) {
+					&& AbapCodeReader.isKeyword(currentToken.offset + 1)) {
 				code = code.substring(0, currentToken.offset) + replacement + code.substring(currentToken.offset + 2);
 			}
 		}
@@ -44,7 +45,7 @@ public abstract class Operators extends StatementAssist {
 		for (int i = 0; i < CodeReader.CurrentStatement.statementTokens.size(); i++) {
 			Token currentToken = CodeReader.CurrentStatement.statementTokens.get(i);
 			if (currentToken.name.toUpperCase().equals(operatorName)
-					&& CodeReader.scannerServices.isKeyword(CodeReader.sourcePage, currentToken.offset + 1, true)) {
+					&& AbapCodeReader.isKeyword(currentToken.offset + 1)) {
 				return true;
 			}
 		}
