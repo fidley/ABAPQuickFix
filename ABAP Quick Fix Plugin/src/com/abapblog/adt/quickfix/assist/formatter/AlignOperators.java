@@ -126,7 +126,7 @@ public class AlignOperators extends StatementAssist {
 	private boolean isTokenAnOperator(Token currentToken) {
 		return Arrays.stream(operatorNames).anyMatch(currentToken.name.toUpperCase()::equals)
 				&& currentToken.offset >= selectionStart && currentToken.offset <= selectionEnd
-				&& AbapCodeReader.isKeyword(currentToken.offset);
+				&& (AbapCodeReader.isKeyword(currentToken.offset + 1) || AbapCodeReader.isKeyword(currentToken.offset));
 	}
 
 	private int setNumberOfOffsetChanges(int currentOffset, int offsetChanges, int currentLine, int previousLine) {
