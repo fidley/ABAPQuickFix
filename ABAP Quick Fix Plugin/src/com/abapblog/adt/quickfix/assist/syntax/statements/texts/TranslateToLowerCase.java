@@ -2,7 +2,7 @@ package com.abapblog.adt.quickfix.assist.syntax.statements.texts;
 
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapCodeReader;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssistRegex;
-import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
+import com.sap.adt.tools.abapsource.sources.scanner.IBaseAbapSourceScannerServices.Token;
 
 public class TranslateToLowerCase extends StatementAssistRegex {
 

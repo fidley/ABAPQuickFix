@@ -9,7 +9,7 @@ import org.eclipse.jface.text.BadLocationException;
 
 import com.abapblog.adt.quickfix.assist.syntax.codeParser.AbapCodeReader;
 import com.abapblog.adt.quickfix.assist.syntax.statements.StatementAssist;
-import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
+import com.sap.adt.tools.abapsource.sources.scanner.IBaseAbapSourceScannerServices.Token;
 
 public class AlignOperators extends StatementAssist {
 
