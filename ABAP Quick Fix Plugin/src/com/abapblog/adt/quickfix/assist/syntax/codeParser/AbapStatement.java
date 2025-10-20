@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import org.eclipse.jface.text.BadLocationException;
 
 import com.abapblog.adt.quickfix.assist.utility.RegularExpressionUtils;
-import com.sap.adt.tools.abapsource.ui.sources.IAbapSourceScannerServices.Token;
+import com.sap.adt.tools.abapsource.sources.scanner.IBaseAbapSourceScannerServices.Token;
 
 public class AbapStatement {
 	private static final String fullLineCommentPattern = "^(\\*.*)|^((\\r\\n)+\\*.*)";
